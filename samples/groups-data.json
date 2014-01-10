@@ -14,6 +14,20 @@
     ]
   },
   {
+    "_id": "52c7a1e76125d412e0000007",
+    "group_name": "Design",
+    "users": [
+      {
+        "_id": "52c7a233a3323c1ce0000001",
+        "fullname": "Toan Nguyen"
+      },
+      {
+        "_id": "52c7a233a3323c1ce0000003",
+        "fullname": "Bao Huynh"
+      }
+    ]
+  },
+  {
     "_id": "52c7a1e76125d412e0000009",
     "group_name": "2359 Bosses",
     "users": [

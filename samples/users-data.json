@@ -6,7 +6,8 @@
     "fullname": "Toan Nguyen",
     "avatar": "https://1.gravatar.com/avatar/a13b9d1fc146fc072c60d55dd348ddb6?d=https%3A%2F%2Fidenticons.github.com%2F456925e5b42509e868df6466fdf9cef5.png&r=x&s=440",
     "groups": [
-      "52c7a1e76125d412e0000008"
+      "52c7a1e76125d412e0000008",
+      "52c7a1e76125d412e0000007"
     ]
   },
   {
@@ -25,7 +26,9 @@
     "password": "admin2359",
     "fullname": "Bao Huynh",
     "avatar": "https://1.gravatar.com/avatar/a13b9d1fc146fc072c60d55dd348ddb6?d=https%3A%2F%2Fidenticons.github.com%2F456925e5b42509e868df6466fdf9cef5.png&r=x&s=440",
-    "groups": []
+    "groups": [
+      "52c7a1e76125d412e0000007"
+    ]
   },
   {
     "_id": "52c7a233a3323c1ce0000004",

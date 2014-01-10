@@ -23,15 +23,12 @@ block content
                 = acronym
           div.clear
 
-    div.chat-windows-container
-      div.chat-window
+    div#chat-windows-container
 
   script(src='/javascripts/application.js')
+  script(src='/javascripts/fitgrid.jquery.js')
   script(type='text/javascript')
     var currentUser = !{JSON.stringify(user)}
     delete currentUser.password;
     delete currentUser.groups;
-    //- var currentGroup = !{JSON.stringify(group)}
-    //- delete currentGroup.users;
-    var currentGroup = {};
   script(src='/javascripts/chat.js')

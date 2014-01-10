@@ -24,7 +24,7 @@ require('./passport')(app, passport);
 //config all
 app.configure(function(){
   //setting
-  app.set('port', process.env.PORT || 3000);
+  app.set('port', process.env.PORT || 9999);
   app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'jade');
 
@@ -66,12 +66,17 @@ var io = socket.listen(server);
 io.sockets.on('connection', function(socket) {
   socket.on('user join', function (user, group) {
     socket.username = user.username;
-    socket.room = group.group_name;
-    socket.join(group.group_name);
-    socket.broadcast.to(group.group_name).emit('updatechat', user.fullname + ' has connected to this room.');
+    console.log(user.username+' has connect to '+group);
+    socket.room = group;
+    socket.join(group);
+    socket.broadcast.to(group).emit('updatechat', user.fullname + ' has connected to this room.');
+    console.log(io.roomClients[socket.id]);
   });
-  socket.on('updatechat', function (data) {
-    io.sockets.in(socket.room).emit("updatechat", data);
+  socket.on('update chat', function (data, group) {
+    io.sockets.in(group).emit("updatechat", data);
+  });
+  socket.on('user leave', function (data, group) {
+    io.sockets.in(group).emit("updatechat", data);
   });
   socket.on('disconnect', function() {
     socket.broadcast.to(socket.room).emit('updatechat', socket.username + ' has leaved this room.');
