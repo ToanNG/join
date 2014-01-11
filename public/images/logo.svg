@@ -1,0 +1,19 @@
+<svg 
+    xmlns:svg="http://www.w3.org/2000/svg" 
+    xmlns="http://www.w3.org/2000/svg" 
+    width="80" 
+    height="80">
+    <g fill="#fff" fill-opacity="25%">
+        <circle cx="10" cy="10" r="7"/>
+        <circle cx="40" cy="10" r="7"/>
+        <circle cx="40" cy="40" r="7"/>
+        <circle cx="10" cy="70" r="7"/>
+        <circle cx="70" cy="70" r="7"/>
+    </g>
+    <g fill="#CE534D">
+        <circle cx="70" cy="10" r="7"/>
+        <circle cx="70" cy="40" r="7"/>
+        <circle cx="40" cy="70" r="7"/>
+        <circle cx="10" cy="40" r="7"/>
+    </g>
+</svg>

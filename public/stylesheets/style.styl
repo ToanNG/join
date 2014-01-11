@@ -3,6 +3,7 @@
 /*------------------------------------*\
     $CONTENTS
 \*------------------------------------*/
+
 /**
  * CONTENTS............You’re reading it!
  * DEFAULTS............Set defaults
@@ -20,16 +21,25 @@
     $DEFAULTS
 \*------------------------------------*/
 
-primary-color = #1ead75
-home-bg-color = #2c3338
-home-text-color = #606468
-home-field-bg-color = #3b4148
-home-field-text-color = #eee
+/**
+ * color palette by tekiegirl
+ * http://www.colourlovers.com/palette/1393494/Brooklyn
+ */
 
-site-bg-color = #e4e4e4
-site-text-color = #5a5656
-site-field-bg-color = #e5e5e5
-site-field-text-color = #5a5656
+primary-color = #CE534D
+secondary-color = #64B6B1
+home-bg-color = #222
+home-text-color = #888
+home-field-bg-color = #333
+home-field-text-color = #888
+
+header-bg-color = #222
+header-text-color = #888
+
+site-bg-color = #eee
+site-text-color = #333
+site-field-bg-color = #fff
+site-field-text-color = #333
 
 alert-color = #c50f13
 success-color = #5da423
@@ -70,8 +80,11 @@ a
 		text-decoration: underline
 
 .wrapper
+	position: relative
 	width: 100%
 	height: 100%
+	min-width: 960px
+	min-height: 500px
 
 /*------------------------------------*\
     $HOME
@@ -85,14 +98,15 @@ a
 
 .form-wrapper
 	position: absolute
-	top: 20%
+	top: 50%
+	margin-top: -210px
 	left: 50%
 	margin-left: -125px
 	width: 250px
 	text-align: center
 	.logo
 		width: 100%
-		height: 105px
+		height: 100px
 	.form
 		.form__control
 			position: relative
@@ -147,13 +161,16 @@ a
 \*------------------------------------*/
 
 .top-header
-	height: 70px
-	line-height: 70px
-	padding: 0 20px
+	height: 50px
+	line-height: 50px
+	padding: 0 10px
+	background-color: header-bg-color
 	.logo-small
-		display: inline-block
-		vertical-align: middle
-		bg-sprite('/images/logo_small.png',80px,33px,0,0)
+		float: left
+		img
+			width: 40px
+			height: 40px
+			margin: 5px 0
 	ul.user-wrapper
 		float: right
 		height: 100%
@@ -163,11 +180,11 @@ a
 		li
 			float: left
 			height: 100%
-			padding: 0 0px 0 20px
+			padding: 0 0 0 20px
 			.avatar
-				margin: 10px 0
+				margin: 5px 0
 			a
-				color: site-text-color
+				color: header-text-color
 
 /*------------------------------------*\
     $PROFILE
@@ -178,34 +195,39 @@ a
 \*------------------------------------*/
 
 .user-content
+	position: absolute
+	top: 60px
+	right: 0
+	bottom: 0
+	left: 0
 	color: site-text-color
 
 sidebar-width = 200px
 	
 .groups-list
 	position: absolute
-	top: 80px
-	bottom: 20px
-	left: 20px
+	top: 10px
+	bottom: 10px
+	left: 10px
 	width: sidebar-width
-	background-color: white
-	border-radius: 3px
-	box-shadow: 0 5px 0 rgba(0,0,0,.15)
 	.form
-		padding: 5px 5px 10px
+		padding-bottom: 10px
 		.form__control
 			float: left
 			input[type="text"]
-				width: sidebar-width - (5*3) - (8*2) - 33
+				width: sidebar-width - (8*2) - 33
 				padding: 8px
 				color: site-field-text-color
 				background-color: site-field-bg-color
+				border-top-right-radius: 0
+				border-bottom-right-radius: 0
 			.button
 				width: 33px
 				height: 33px
-				margin-left: 5px
 				padding: 0
-				background-color: primary-color
+				background-color: secondary-color
+				border-top-left-radius: 0
+				border-bottom-left-radius: 0
 				.fa
 					position: absolute
 					top: 0
@@ -217,16 +239,19 @@ sidebar-width = 200px
 					padding-top: 3px
 
 .group
-	padding: 0 10px 10px
+	padding-bottom: 10px
 	.group__name
-		font-weight: 700
+		font-weight: 600
 		cursor: pointer
 	.group__list
 		.member
 			float: left
-			margin: 5px 5px 0 0
-			padding: 3px 5px
-			font-size: 0.857142em
+			height: 24px
+			line-height: 24px
+			margin: 2px 2px 0 0
+			padding: 0 6px
+			text-align: center
+			font-size: 0.714285em
 			font-weight: 700
 			color: rgba(255,255,255,.5)
 			border-radius: 3px
@@ -257,19 +282,19 @@ sidebar-width = 200px
 
 #chat-windows-container
 	position: absolute
-	top: 80px
-	right: 20px
-	bottom: 20px
-	left: 240px
+	top: 0
+	right: 0
+	bottom: 0
+	left: sidebar-width + 20
 	.chat-window
 		position: absolute
-		top: 0
-		right: 0
-		bottom: 0
-		left: 0
+		top: 10px
+		right: 10px
+		bottom: 10px
+		left: 10px
 		background-color: white
 		border-radius: 3px
-		box-shadow: 0 5px 0 rgba(0,0,0,.15)
+		box-shadow: 0 3px 0 rgba(0,0,0,.15)
 
 /*------------------------------------*\
     $401
@@ -333,8 +358,8 @@ sidebar-width = 200px
 	background-size: cover
 	border-radius: 50%
 	&.small
-		width: 50px
-		height: 50px
+		width: 40px
+		height: 40px
 
 /*------------------------------------*\
     $ANIMATIONS
@@ -379,3 +404,40 @@ sidebar-width = 200px
 		-webkit-transform: scale(1.0)
 	100%
 		-webkit-transform: scale(0.0)
+
+/*------------------------------------*\
+    $FITGRID_STYLES
+\*------------------------------------*/
+
+.fitgrid-slot
+	position: absolute
+	top: 0
+	right: 0
+	bottom: 0
+	left: 0
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	transition: all 200ms ease;
+	&.slot--13
+		right: 50% !important
+
+	&.slot--24
+		left: 50% !important
+
+	&.slot--11
+		right: 50% !important
+		bottom: 50% !important
+
+	&.slot--22
+		left: 50% !important
+		bottom: 50% !important
+
+	&.slot--33
+		right: 50% !important
+		top: 50% !important
+
+	&.slot--44
+		left: 50% !important
+		top: 50% !important

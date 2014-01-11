@@ -24,7 +24,7 @@ require('./passport')(app, passport);
 //config all
 app.configure(function(){
   //setting
-  app.set('port', process.env.PORT || 9999);
+  app.set('port', process.env.PORT || 3000);
   app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'jade');
 

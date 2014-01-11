@@ -1,5 +1,6 @@
 div.top-header
   div.logo-small
+    img(src="/images/logo.svg")
   ul.user-wrapper
     li.user__avatar
       div.avatar.small(style="background-image: url(#{user.avatar});")
@@ -8,13 +9,10 @@ div.top-header
         = user.fullname
     li.user__chat
       a(href="/users/#{user.username}/chat")
-        | Chat groups
+        | Chat
     li.user__notification
       a(href="")
         | Notification
-    li.user__setting
-      a(href="")
-        | Setting
     li.user__logout
       a(href="/logout")
         | Logout

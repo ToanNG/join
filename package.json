@@ -15,7 +15,7 @@
     "passport": "*",
     "passport-local": "*",
     "passport-facebook": "*",
-    "bcrypt-nodejs": "*",
+    "bcrypt": "*",
     "connect-flash": "*",
     "socket.io": "*",
     "grunt": "~0.4.2",
