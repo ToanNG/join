@@ -332,6 +332,18 @@ a:hover {
   border-radius: 3px;
   box-shadow: 0 3px 0 rgba(0,0,0,0.15);
 }
+#chat-windows-container .chat-window .chat-window__helper {
+  height: 30px;
+  background-color: #888;
+}
+#chat-windows-container .chat-window .chat-window__room,
+#chat-windows-container .chat-window .chat-window__type {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #808080;
+}
 /*------------------------------------*     $401
 \*------------------------------------*/
 .gandalf {

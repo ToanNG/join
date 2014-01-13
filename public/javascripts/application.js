@@ -39,3 +39,38 @@ UserModel.prototype = Object.create(AppModel.prototype);
 
 // var allUsers = new UserModel("/api/users");
 // allUsers.fetch();
+
+var Template = (function($) {
+	var HandlebarsTemplates = [],
+		baseURL = '/templates/';
+
+	return {
+		downloadTemplate: function(templateName) {
+			return $.ajax({
+				cache: true,
+				url: baseURL + templateName + '.html'
+			});
+		},
+
+		getTemplate: function(templateName) {
+			var deferred = $.Deferred();
+
+			if ( typeof HandlebarsTemplates[templateName] !== 'undefined' ) {
+				deferred.resolve();
+			} else {
+				this.downloadTemplate(templateName).done(function(template) {
+					HandlebarsTemplates[templateName] = template;
+					deferred.resolve();
+				});
+			}
+
+			return deferred.promise();
+		},
+
+		render: function(context, templateName) {
+			source = HandlebarsTemplates[templateName];
+			template = Handlebars.compile(source);
+			return template(context);
+		}
+	}
+})(jQuery);
