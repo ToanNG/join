@@ -11,15 +11,23 @@ exports.show = function(req, res){
 };
 
 exports.post = function(req, res){
+  var isPasswordValid = true;
   if (req.body.password != req.body.confirm_password) {
     req.flash('confirm-password-error', 'Password does not match.');
+    isPasswordValid = false;
+  } 
+  if (req.body.password.length < 8) {
+    req.flash('password-error', 'Password length must be > 7.');
+    isPasswordValid = false;
+  }
+  if (!isPasswordValid) {
     res.redirect('/register');
   } else {
     new res.app.db.models.User({
     	username: req.body.username,
     	password: req.body.password,
     	fullname: req.body.fullname,
-      avatar: "https://1.gravatar.com/avatar/a13b9d1fc146fc072c60d55dd348ddb6?d=https%3A%2F%2Fidenticons.github.com%2F456925e5b42509e868df6466fdf9cef5.png&r=x&s=440",
+      avatar: "https://secure.gravatar.com/avatar/8ac18f1eccadee3bed611b0423126a66?s=75&r=any&d=mm&time=46322817",
       groups: []
     }).save(function(err, user){
       if (err && err.err) {

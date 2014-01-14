@@ -38,7 +38,7 @@ exports = module.exports = function(app, passport) {
 				    password: "",     
 				    fullname: (profile.name.givenName+" "+profile.name.familyName+" "+profile.name.middleName).replace(/undefined/g, "").trim(),
 				    facebook_id: profile.id,
-				    avatar: "https://1.gravatar.com/avatar/a13b9d1fc146fc072c60d55dd348ddb6?d=https%3A%2F%2Fidenticons.github.com%2F456925e5b42509e868df6466fdf9cef5.png&r=x&s=440",
+				    avatar: "https://secure.gravatar.com/avatar/8ac18f1eccadee3bed611b0423126a66?s=75&r=any&d=mm&time=46322817",
 				    groups: []
 				  }).save(function(err, user){
 				  	if (err) { return done(err); }

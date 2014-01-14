@@ -25,6 +25,9 @@ block content
           div.clear
 
     div#chat-windows-container
+      if groups.length <= 0
+        h2
+          | Welcome to Join! Lets start by create some groups and invite your friend.
 
   script(src='/javascripts/application.js')
   script(src='/javascripts/fitgrid.jquery.js')

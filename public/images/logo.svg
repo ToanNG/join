@@ -10,11 +10,11 @@
         <circle cx="10" cy="70" r="7"/>
         <circle cx="70" cy="70" r="7"/>
     </g>
-    <g fill="#B13A39">
+    <g fill="#CE534D">
         <circle cx="70" cy="10" r="7"/>
         <circle cx="70" cy="40" r="7"/>
         <circle cx="40" cy="70" r="7"/>
         <circle cx="10" cy="40" r="7"/>
-        <path d="M70 10 L70 40 L40 70 L10 40" stroke="#B13A39" stroke-width="3" fill="none"/>
+        <path d="M70 10 L70 40 L40 70 L10 40" stroke="#CE534D" stroke-width="3" fill="none"/>
     </g>
 </svg>
