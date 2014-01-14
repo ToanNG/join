@@ -165,7 +165,9 @@ a:hover {
   height: 50px;
   line-height: 50px;
   padding: 0 10px;
-  background-color: #222;
+  background-color: #64b6b1;
+  border-bottom: solid thin #428c87;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.2);
 }
 .top-header .logo-small {
   float: left;
@@ -191,7 +193,7 @@ a:hover {
   margin: 5px 0;
 }
 .top-header ul.user-wrapper li a {
-  color: #888;
+  color: #fff;
 }
 /*------------------------------------*     $PROFILE
 \*------------------------------------*/
@@ -248,7 +250,7 @@ a:hover {
   padding: 0 10px;
 }
 .group .group__name {
-  font-weight: 600;
+  color: #64b6b1;
   cursor: pointer;
 }
 .group .group__list .member {
