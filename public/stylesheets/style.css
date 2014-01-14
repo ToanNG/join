@@ -15,8 +15,12 @@
 /*------------------------------------*     $DEFAULTS
 \*------------------------------------*/
 /**
- * color palette by tekiegirl
+ * used color palette
+ * http://www.colourlovers.com/palette/1411495/Color_Oddity
+ *
+ * other palettes:
  * http://www.colourlovers.com/palette/1393494/Brooklyn
+ * http://www.colourlovers.com/lover/ajpaschka
  */
 html,
 body {
@@ -56,7 +60,7 @@ textarea {
   color: #888;
 }
 a {
-  color: #ce534d;
+  color: #b13a39;
   text-decoration: none;
   cursor: pointer;
 }
@@ -110,7 +114,7 @@ a:hover {
   width: 250px;
 }
 .form-wrapper #submit-button {
-  background-color: #ce534d;
+  background-color: #b13a39;
 }
 .form-wrapper a.login-fb-button {
   height: 17px;
@@ -162,19 +166,19 @@ a:hover {
 /*------------------------------------*     $HEADER_BAR
 \*------------------------------------*/
 .top-header {
-  height: 50px;
-  line-height: 50px;
-  padding: 0 10px;
-  background-color: #64b6b1;
-  border-bottom: solid thin #428c87;
+  height: 45px;
+  line-height: 45px;
+  padding-left: 10px;
+  background-color: #4a968f;
+  border-bottom: solid thin #31635e;
   box-shadow: 0 1px 5px rgba(0,0,0,0.2);
 }
 .top-header .logo-small {
   float: left;
 }
 .top-header .logo-small img {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   margin: 5px 0;
 }
 .top-header ul.user-wrapper {
@@ -187,7 +191,7 @@ a:hover {
 .top-header ul.user-wrapper li {
   float: left;
   height: 100%;
-  padding: 0 0 0 20px;
+  padding: 0 15px;
 }
 .top-header ul.user-wrapper li .avatar {
   margin: 5px 0;
@@ -195,13 +199,21 @@ a:hover {
 .top-header ul.user-wrapper li a {
   color: #fff;
 }
+.top-header ul.user-wrapper li.selected {
+  background-color: #42857f;
+}
+.top-header ul.user-wrapper li.seperate-line {
+  padding: 0;
+  border-right: solid thin #62b1aa;
+  border-left: solid thin #39746e;
+}
 /*------------------------------------*     $PROFILE
 \*------------------------------------*/
 /*------------------------------------*     $CHAT
 \*------------------------------------*/
 .user-content {
   position: absolute;
-  top: 60px;
+  top: 55px;
   right: 0;
   bottom: 0;
   left: 0;
@@ -229,7 +241,7 @@ a:hover {
   width: 33px;
   height: 33px;
   padding: 0;
-  color: #64b6b1;
+  color: #4a968f;
   background-color: #fff;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
@@ -250,7 +262,7 @@ a:hover {
   padding: 0 10px;
 }
 .group .group__name {
-  color: #64b6b1;
+  color: #4a968f;
   cursor: pointer;
 }
 .group .group__list .member {
@@ -339,7 +351,6 @@ a:hover {
 }
 #chat-windows-container .chat-window .chat-window__title {
   height: 30px;
-  background-color: #888;
 }
 #chat-windows-container .chat-window .chat-window__room {
   position: absolute;
@@ -354,7 +365,6 @@ a:hover {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: #808080;
 }
 #chat-windows-container .chat-window .chat-window__type .chat-input {
   margin-right: 50px;
@@ -437,8 +447,8 @@ a:hover {
   border-radius: 50%;
 }
 .avatar.small {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
 }
 /*------------------------------------*     $ANIMATIONS
 \*------------------------------------*/
@@ -457,13 +467,13 @@ a:hover {
     opacity: 1;
   }
 }
-.show {
+.jelly-show {
   -webkit-animation: jelly-show 500ms;
   -webkit-animation-iteration-count: 1;
   -webkit-animation-fill-mode: forwards;
   -webkit-animation-timing-function: ease-out;
 }
-.hide {
+.jelly-hide {
   -webkit-animation: jelly-hide 250ms;
   -webkit-animation-iteration-count: 1;
   -webkit-animation-fill-mode: forwards;
@@ -495,6 +505,21 @@ a:hover {
     -webkit-transform: scale(0);
   }
 }
+.zoom-in {
+  -webkit-animation: zoom-in 200ms;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-timing-function: ease-out;
+}
+@-webkit-keyframes zoom-in {
+  0% {
+    -webkit-transform: scale(0);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+  }
+}
 /*------------------------------------*     $FITGRID_STYLES
 \*------------------------------------*/
 .fitgrid-slot {
@@ -510,24 +535,24 @@ a:hover {
   transition: all 200ms ease;
 }
 .fitgrid-slot.slot--13 {
-  right: 50% !important;
+  right: 50%;
 }
 .fitgrid-slot.slot--24 {
-  left: 50% !important;
+  left: 50%;
 }
 .fitgrid-slot.slot--11 {
-  right: 50% !important;
-  bottom: 50% !important;
+  right: 50%;
+  bottom: 50%;
 }
 .fitgrid-slot.slot--22 {
-  left: 50% !important;
-  bottom: 50% !important;
+  left: 50%;
+  bottom: 50%;
 }
 .fitgrid-slot.slot--33 {
-  right: 50% !important;
-  top: 50% !important;
+  right: 50%;
+  top: 50%;
 }
 .fitgrid-slot.slot--44 {
-  left: 50% !important;
-  top: 50% !important;
+  left: 50%;
+  top: 50%;
 }

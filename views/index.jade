@@ -9,7 +9,7 @@ block content
 			form(id="login-form", class="form", method="POST", action="/login", autocomplete="off")
 				div.form__control
 					if loginErr != ""
-						div.error-dialog-box.show
+						div.error-dialog-box.jelly-show
 							| #{loginErr}
 					input(name="username", type="text", placeholder="Username")
 				div.form__control
@@ -33,22 +33,22 @@ block content
 					a#switch-login-link Login
 				div.form__control
 					if usernameErr != ""
-						div.error-dialog-box.show
+						div.error-dialog-box.jelly-show
 							= usernameErr
 					input(name="username", type="text", placeholder="Username")
 				div.form__control
 					if fullnameErr != ""
-						div.error-dialog-box.show
+						div.error-dialog-box.jelly-show
 							= fullnameErr
 					input(name="fullname", type="text", placeholder="Fullname")
 				div.form__control
 					if passwordErr != ""
-						div.error-dialog-box.show
+						div.error-dialog-box.jelly-show
 							= passwordErr
 					input(name="password", type="password", placeholder="Password")
 				div.form__control
 					if confirmPasswordErr != ""
-						div.error-dialog-box.show
+						div.error-dialog-box.jelly-show
 							= confirmPasswordErr
 					input(name="confirm_password", type="password", placeholder="Confirm password")
 				div.form__control

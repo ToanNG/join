@@ -15,5 +15,5 @@ $("#switch-login-link").click(function(){
 });
 
 $("#login-form").find("input").on("focusin", function(){
-	$(".error-dialog-box").removeClass("show").addClass("hide");
+	$(".error-dialog-box").removeClass("jelly-show").addClass("jelly-hide");
 });

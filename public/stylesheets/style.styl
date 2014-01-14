@@ -22,19 +22,24 @@
 \*------------------------------------*/
 
 /**
- * color palette by tekiegirl
+ * used color palette
+ * http://www.colourlovers.com/palette/1411495/Color_Oddity
+ *
+ * other palettes:
  * http://www.colourlovers.com/palette/1393494/Brooklyn
+ * http://www.colourlovers.com/lover/ajpaschka
  */
 
-primary-color = #CE534D
-secondary-color = #64B6B1
+primary-color = #B13A39
+secondary-color = #4A968F
 home-bg-color = #222
 home-text-color = #888
 home-field-bg-color = #333
 home-field-text-color = #888
 
-header-bg-color = #64B6B1
+header-bg-color = #4A968F
 header-text-color = #fff
+header-selected-color = darken(header-bg-color, 5)
 
 site-bg-color = #eee
 site-text-color = #333
@@ -161,17 +166,17 @@ a
 \*------------------------------------*/
 
 .top-header
-	height: 50px
-	line-height: 50px
-	padding: 0 10px
+	height: 45px
+	line-height: 45px
+	padding-left: 10px
 	background-color: header-bg-color
 	border-bottom: solid thin darken(header-bg-color, 15)
 	box-shadow: 0 1px 5px rgba(0,0,0,.2)
 	.logo-small
 		float: left
 		img
-			width: 40px
-			height: 40px
+			width: 35px
+			height: 35px
 			margin: 5px 0
 	ul.user-wrapper
 		float: right
@@ -182,11 +187,17 @@ a
 		li
 			float: left
 			height: 100%
-			padding: 0 0 0 20px
+			padding: 0 15px
 			.avatar
 				margin: 5px 0
 			a
 				color: header-text-color
+			&.selected
+				background-color: header-selected-color
+			&.seperate-line
+				padding: 0
+				border-right: solid thin lighten(header-bg-color, 10)
+				border-left: solid thin darken(header-bg-color, 10)
 
 /*------------------------------------*\
     $PROFILE
@@ -198,7 +209,7 @@ a
 
 .user-content
 	position: absolute
-	top: 60px
+	top: 55px
 	right: 0
 	bottom: 0
 	left: 0
@@ -304,7 +315,6 @@ sidebar-width = 200px
 		box-shadow: 0 1px 5px rgba(0,0,0,.2)
 		.chat-window__title
 			height: 30px
-			background-color: #888
 		.chat-window__room
 			position: absolute
 			top: 30px
@@ -317,7 +327,6 @@ sidebar-width = 200px
 			right: 0
 			bottom: 0
 			left: 0
-			background-color: gray
 			.chat-input
 				margin-right: 50px
 			.chat-submit-button
@@ -388,8 +397,8 @@ sidebar-width = 200px
 	background-size: cover
 	border-radius: 50%
 	&.small
-		width: 40px
-		height: 40px
+		width: 35px
+		height: 35px
 
 /*------------------------------------*\
     $ANIMATIONS
@@ -400,25 +409,22 @@ sidebar-width = 200px
 	-webkit-animation-iteration-count: 1
 	-webkit-animation-fill-mode: forwards
 	-webkit-animation-timing-function: ease-out
-
 @-webkit-keyframes fade-in
 	0%
 		opacity: 0
 	100%
 		opacity: 1
 
-.show
+.jelly-show
 	-webkit-animation: jelly-show 500ms
 	-webkit-animation-iteration-count: 1
 	-webkit-animation-fill-mode: forwards
 	-webkit-animation-timing-function: ease-out
-
-.hide
+.jelly-hide
 	-webkit-animation: jelly-hide 250ms
 	-webkit-animation-iteration-count: 1
 	-webkit-animation-fill-mode: forwards
 	-webkit-animation-timing-function: ease-out
-
 @-webkit-keyframes jelly-show
 	0%
 		-webkit-transform: scale(0.0)
@@ -428,12 +434,22 @@ sidebar-width = 200px
 		-webkit-transform: scale(0.95)
 	100%
 		-webkit-transform: scale(1.0)
-
 @-webkit-keyframes jelly-hide
 	0%
 		-webkit-transform: scale(1.0)
 	100%
 		-webkit-transform: scale(0.0)
+
+.zoom-in
+	-webkit-animation: zoom-in 200ms
+	-webkit-animation-iteration-count: 1
+	-webkit-animation-fill-mode: forwards
+	-webkit-animation-timing-function: ease-out
+@-webkit-keyframes zoom-in
+	0%
+		-webkit-transform: scale(0.0)
+	100%
+		-webkit-transform: scale(1.0)
 
 /*------------------------------------*\
     $FITGRID_STYLES
@@ -450,24 +466,21 @@ sidebar-width = 200px
 	-o-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
 	transition: all 200ms ease;
-	&.slot--13
-		right: 50% !important
 
+	&.slot--13
+		right: 50%
 	&.slot--24
-		left: 50% !important
+		left: 50%
 
 	&.slot--11
-		right: 50% !important
-		bottom: 50% !important
-
+		right: 50%
+		bottom: 50%
 	&.slot--22
-		left: 50% !important
-		bottom: 50% !important
-
+		left: 50%
+		bottom: 50%
 	&.slot--33
-		right: 50% !important
-		top: 50% !important
-
+		right: 50%
+		top: 50%
 	&.slot--44
-		left: 50% !important
-		top: 50% !important
+		left: 50%
+		top: 50%
