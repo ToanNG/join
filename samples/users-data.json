@@ -1,7 +1,7 @@
 [
   {
     "_id": "52c7a233a3323c1ce0000001",
-    "username": "toan",
+    "username": "user1",
     "password": "admin2359",
     "fullname": "Toan Nguyen",
     "avatar": "https://1.gravatar.com/avatar/a13b9d1fc146fc072c60d55dd348ddb6?d=https%3A%2F%2Fidenticons.github.com%2F456925e5b42509e868df6466fdf9cef5.png&r=x&s=440",
@@ -12,60 +12,60 @@
   },
   {
     "_id": "52c7a233a3323c1ce0000002",
-    "username": "khang",
+    "username": "user2",
     "password": "admin2359",
-    "fullname": "Khang Hoang",
-    "avatar": "https://1.gravatar.com/avatar/a13b9d1fc146fc072c60d55dd348ddb6?d=https%3A%2F%2Fidenticons.github.com%2F456925e5b42509e868df6466fdf9cef5.png&r=x&s=440",
+    "fullname": "Meghan Alexander",
+    "avatar": "http://api.randomuser.me/0.2/portraits/women/0.jpg",
     "groups": [
       "52c7a1e76125d412e0000008"
     ]
   },
   {
     "_id": "52c7a233a3323c1ce0000003",
-    "username": "bao",
+    "username": "user3",
     "password": "admin2359",
-    "fullname": "Bao Huynh",
-    "avatar": "https://1.gravatar.com/avatar/a13b9d1fc146fc072c60d55dd348ddb6?d=https%3A%2F%2Fidenticons.github.com%2F456925e5b42509e868df6466fdf9cef5.png&r=x&s=440",
+    "fullname": "Elizabeth Ward",
+    "avatar": "http://api.randomuser.me/0.2/portraits/women/12.jpg",
     "groups": [
       "52c7a1e76125d412e0000007"
     ]
   },
   {
     "_id": "52c7a233a3323c1ce0000004",
-    "username": "kaiwei",
+    "username": "user4",
     "password": "admin2359",
-    "fullname": "Kaiwei Chen",
-    "avatar": "https://1.gravatar.com/avatar/a13b9d1fc146fc072c60d55dd348ddb6?d=https%3A%2F%2Fidenticons.github.com%2F456925e5b42509e868df6466fdf9cef5.png&r=x&s=440",
+    "fullname": "Samuel Martinez",
+    "avatar": "http://api.randomuser.me/0.2/portraits/men/35.jpg",
     "groups": [
       "52c7a1e76125d412e0000009"
     ]
   },
   {
     "_id": "52c7a233a3323c1ce0000005",
-    "username": "wenhan",
+    "username": "user5",
     "password": "admin2359",
-    "fullname": "Wenhan Zhou",
-    "avatar": "https://1.gravatar.com/avatar/a13b9d1fc146fc072c60d55dd348ddb6?d=https%3A%2F%2Fidenticons.github.com%2F456925e5b42509e868df6466fdf9cef5.png&r=x&s=440",
+    "fullname": "Keith White",
+    "avatar": "http://api.randomuser.me/0.2/portraits/men/25.jpg",
     "groups": [
       "52c7a1e76125d412e0000009"
     ]
   },
   {
     "_id": "52c7a233a3323c1ce0000006",
-    "username": "hongting",
+    "username": "user6",
     "password": "admin2359",
-    "fullname": "Hong Ting Wong",
-    "avatar": "https://1.gravatar.com/avatar/a13b9d1fc146fc072c60d55dd348ddb6?d=https%3A%2F%2Fidenticons.github.com%2F456925e5b42509e868df6466fdf9cef5.png&r=x&s=440",
+    "fullname": "Kevin Washington",
+    "avatar": "http://api.randomuser.me/0.2/portraits/men/39.jpg",
     "groups": [
       "52c7a1e76125d412e0000009"
     ]
   },
   {
     "_id": "52c7a233a3323c1ce0000007",
-    "username": "colin",
+    "username": "user7",
     "password": "admin2359",
-    "fullname": "Colin Toh",
-    "avatar": "https://1.gravatar.com/avatar/a13b9d1fc146fc072c60d55dd348ddb6?d=https%3A%2F%2Fidenticons.github.com%2F456925e5b42509e868df6466fdf9cef5.png&r=x&s=440",
+    "fullname": "Kristin Sanders",
+    "avatar": "http://api.randomuser.me/0.2/portraits/women/28.jpg",
     "groups": [
       "52c7a1e76125d412e0000009"
     ]

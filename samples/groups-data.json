@@ -1,51 +1,59 @@
 [
   {
     "_id": "52c7a1e76125d412e0000008",
-    "group_name": "Join",
+    "group_name": "Group 1",
     "users": [
       {
         "_id": "52c7a233a3323c1ce0000001",
-        "fullname": "Toan Nguyen"
+        "fullname": "Toan Nguyen",
+        "avatar": "https://1.gravatar.com/avatar/a13b9d1fc146fc072c60d55dd348ddb6?d=https%3A%2F%2Fidenticons.github.com%2F456925e5b42509e868df6466fdf9cef5.png&r=x&s=440"
       },
       {
         "_id": "52c7a233a3323c1ce0000002",
-        "fullname": "Khang Hoang"
+        "fullname": "Meghan Alexander",
+        "avatar": "http://api.randomuser.me/0.2/portraits/women/0.jpg"
       }
     ]
   },
   {
     "_id": "52c7a1e76125d412e0000007",
-    "group_name": "Design",
+    "group_name": "Group 2",
     "users": [
       {
         "_id": "52c7a233a3323c1ce0000001",
-        "fullname": "Toan Nguyen"
+        "fullname": "Toan Nguyen",
+        "avatar": "https://1.gravatar.com/avatar/a13b9d1fc146fc072c60d55dd348ddb6?d=https%3A%2F%2Fidenticons.github.com%2F456925e5b42509e868df6466fdf9cef5.png&r=x&s=440"
       },
       {
         "_id": "52c7a233a3323c1ce0000003",
-        "fullname": "Bao Huynh"
+        "fullname": "Elizabeth Ward",
+        "avatar": "http://api.randomuser.me/0.2/portraits/women/12.jpg"
       }
     ]
   },
   {
     "_id": "52c7a1e76125d412e0000009",
-    "group_name": "2359 Bosses",
+    "group_name": "Group 3",
     "users": [
       {
         "_id": "52c7a233a3323c1ce0000004",
-        "fullname": "Kaiwei Chen"
+        "fullname": "Samuel Martinez",
+        "avatar": "http://api.randomuser.me/0.2/portraits/men/35.jpg"
       },
       {
         "_id": "52c7a233a3323c1ce0000005",
-        "fullname": "Wenhan Zhou"
+        "fullname": "Keith White",
+        "avatar": "http://api.randomuser.me/0.2/portraits/men/25.jpg"
       },
       {
         "_id": "52c7a233a3323c1ce0000006",
-        "fullname": "Hong Ting Wong"
+        "fullname": "Kevin Washington",
+        "avatar": "http://api.randomuser.me/0.2/portraits/men/39.jpg"
       },
       {
         "_id": "52c7a233a3323c1ce0000007",
-        "fullname": "Colin Toh"
+        "fullname": "Kristin Sanders",
+        "avatar": "http://api.randomuser.me/0.2/portraits/women/28.jpg"
       }
     ]
   }

@@ -6,7 +6,8 @@ var groupSchema = new Schema({
 	users: [
 		{
 			_id: { type: Schema.Types.ObjectId, ref: 'users' },
-			fullname: String
+			fullname: String,
+      avatar: String
 		}
 	]
 });

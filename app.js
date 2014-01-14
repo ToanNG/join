@@ -66,14 +66,13 @@ var io = socket.listen(server);
 io.sockets.on('connection', function(socket) {
   socket.on('user join', function (user, group) {
     socket.username = user.username;
-    console.log(user.username+' has connect to '+group);
     socket.room = group;
     socket.join(group);
-    socket.broadcast.to(group).emit('updatechat', user.fullname + ' has connected to this room.');
-    console.log(io.roomClients[socket.id]);
+    socket.broadcast.to(group).emit('update chat', user.fullname + ' has connected to this room.', group);
+    // console.log(io.roomClients[socket.id]);
   });
   socket.on('update chat', function (data, group) {
-    io.sockets.in(group).emit("updatechat", data);
+    io.sockets.in(group).emit("update chat", data, group, socket.username);
   });
   socket.on('user leave', function (data, group) {
     io.sockets.in(group).emit("updatechat", data);

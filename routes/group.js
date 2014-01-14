@@ -11,7 +11,8 @@ exports.post = function(req, res){
 			users: [
 				{
 					_id: user._id,
-					fullname: user.fullname
+					fullname: user.fullname,
+					avatar: user.avatar
 				}
 			]
 		}).save(function(err, group){
@@ -34,7 +35,8 @@ exports.add = function(req, res){
 			res.app.db.models.Group.findOne({_id: req.body.group_id}, function(err, group){
 				group.users.push({
 					_id: user._id,
-					fullname: user.fullname
+					fullname: user.fullname,
+					avatar: user.avatar
 				});
 				group.save(function(err, group){
 					res.send(group);

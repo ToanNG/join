@@ -46,19 +46,19 @@ success-color = #5da423
 
 html, body
 	height: 100%
+	prevent-doubleclick()
 
 body
 	font: 300 14px 'Open Sans', sans-serif
 	background-color: site-bg-color
 
-input
+input, textarea
 	margin: 0
 	padding: 0
 	font-family: 'Open Sans', sans-serif
 	font-size: 0.857142em
 	outline: none
 	border: 0
-	border-radius: 3px
 
 ::-webkit-input-placeholder /* WebKit browsers */
 	color: home-text-color
@@ -207,11 +207,11 @@ sidebar-width = 200px
 .groups-list
 	position: absolute
 	top: 10px
-	bottom: 10px
+	// bottom: 10px
 	left: 10px
 	width: sidebar-width
+	background-color: white
 	.form
-		padding-bottom: 10px
 		.form__control
 			float: left
 			input[type="text"]
@@ -225,7 +225,8 @@ sidebar-width = 200px
 				width: 33px
 				height: 33px
 				padding: 0
-				background-color: secondary-color
+				color: secondary-color
+				background-color: white
 				border-top-left-radius: 0
 				border-bottom-left-radius: 0
 				.fa
@@ -239,7 +240,8 @@ sidebar-width = 200px
 					padding-top: 3px
 
 .group
-	padding-bottom: 10px
+	margin: 10px 0
+	padding: 0 10px
 	.group__name
 		font-weight: 600
 		cursor: pointer
@@ -254,7 +256,6 @@ sidebar-width = 200px
 			font-size: 0.714285em
 			font-weight: 700
 			color: rgba(255,255,255,.5)
-			border-radius: 3px
 			&.a, &.m, &.y
 				background-color: #ec4b43
 			&.b, &.n, &.z
@@ -279,6 +280,12 @@ sidebar-width = 200px
 				background-color: #c13929
 			&.l, &.x
 				background-color: #811b28
+		.member-avatar
+			display: block
+			float: left
+			width: 24px
+			height: 24px
+			margin: 2px 2px 0 0
 
 #chat-windows-container
 	position: absolute
@@ -293,18 +300,28 @@ sidebar-width = 200px
 		bottom: 10px
 		left: 10px
 		background-color: white
-		border-radius: 3px
-		box-shadow: 0 3px 0 rgba(0,0,0,.15)
-		.chat-window__helper
+		box-shadow: 0 1px 5px rgba(0,0,0,.2)
+		.chat-window__title
 			height: 30px
 			background-color: #888
 		.chat-window__room
+			position: absolute
+			top: 30px
+			right: 0
+			bottom: 50px
+			left: 0
+			overflow: auto;
 		.chat-window__type
 			position: absolute
 			right: 0
 			bottom: 0
 			left: 0
 			background-color: gray
+			.chat-input
+				margin-right: 50px
+			.chat-submit-button
+				float: right
+				width: 50px
 
 /*------------------------------------*\
     $401
@@ -338,7 +355,6 @@ sidebar-width = 200px
 	color: white
 	text-transform: uppercase
 	border: 0
-	border-radius: 3px
 	outline: none
 	&:hover
 		text-decoration: none
@@ -359,6 +375,9 @@ sidebar-width = 200px
 
 .clear
 	clear: both
+
+.bot-line
+	border-bottom: solid thin site-bg-color
 
 .avatar
 	width: 100px

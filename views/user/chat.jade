@@ -4,7 +4,7 @@ block content
   include ../includes/header
   div.user-content
     div.groups-list
-      form(id="new-group-form", class="form", method="POST", action="/users/#{user.username}/groups", autocomplete="off")
+      form(id="new-group-form", class="form bot-line", method="POST", action="/users/#{user.username}/groups", autocomplete="off")
         div.form__control
           input(name="group_name", type="text", placeholder="New group")
         div.form__control
@@ -17,10 +17,11 @@ block content
             = group.group_name
           div.group__list
             each user in group.users
-              - var acronym = user.fullname.match(/\b(\w)/g).join('')
-              - var char = acronym.charAt(0).toLowerCase()
-              div(class="member #{char}")
-                = acronym
+              //- - var acronym = user.fullname.match(/\b(\w)/g).join('')
+              //- - var char = acronym.charAt(0).toLowerCase()
+              //- div(class="member #{char}")
+              //-   = acronym
+              img(src="#{user.avatar}", class="member-avatar", title="#{user.fullname}")
           div.clear
 
     div#chat-windows-container

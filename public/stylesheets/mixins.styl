@@ -1,3 +1,10 @@
+prevent-doubleclick()
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+	-o-user-select: none;
+	user-select: none;
+
 border-radius(n)
 	-webkit-border-radius n
 	-moz-border-radius n
@@ -9,7 +16,6 @@ dialog-box(w,h,bg-clr,t)
 	height: h
 	padding: 15px
 	background-color: bg-clr
-	border-radius(3px)
 	&:after
 		content: ""
 		position: absolute

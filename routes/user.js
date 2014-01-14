@@ -7,7 +7,8 @@ exports.list = function(req, res){
 exports.show = function(req, res){
 	res.app.db.models.Group.find({users: {
       _id: req.user._id,
-      fullname: req.user.fullname
+      fullname: req.user.fullname,
+      avatar: req.user.avatar
   }}, function(err, groups){
       res.render('user/chat', {user: req.user, groups: groups});
   });

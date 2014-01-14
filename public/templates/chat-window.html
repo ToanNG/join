@@ -1,10 +1,10 @@
-<div class='chat-window show'>
-  <div class="chat-window__helper">{{name}}</div>
+<div id="group-{{id}}" class='chat-window'>
+  <div class="chat-window__title">{{name}}</div>
   <div class="chat-window__room"></div>
   <div class="chat-window__type">
-    <form id='chat-form' data-groupid='{{id}}' method='POST' autocomplete='off'>
-      <input id='chat-input' name='chat-input' type='text'>
-      <input id='submit-button' type='submit' value='Send'>
+    <form class='chat-form' data-groupid='{{id}}' method='POST' autocomplete='off'>
+      <textarea class='chat-input' name='chat-input'>Type here</textarea>
+      <input class='chat-submit-button button' type='submit' value='Send'>
     </form>
   </div>
 </div>

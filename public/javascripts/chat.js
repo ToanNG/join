@@ -21,12 +21,13 @@ $(".group__name").click(function(){
   });
 });
 
-// $("#chat-form").submit(function(e){
-//   var message = $("#chat-input").val();
-//   server.emit('updatechat', message, groupId);
-//   return false;
-// });
+$(document).on("submit", ".chat-form", function(e){
+  var message = $(this).find(".chat-input").val(),
+    group = $(this).data("groupid");
+  server.emit('update chat', message, group);
+  return false;
+});
 
-server.on('update chat', function(data) {
-  $("#chat-room").append("<div>"+data+"</div>");
+server.on('update chat', function(data, group, username) {
+  $("#group-"+group).find(".chat-window__room").append("<div>"+username+": "+data+"</div>");
 });
