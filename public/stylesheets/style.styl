@@ -65,6 +65,9 @@ input, textarea
 	outline: none
 	border: 0
 
+textarea
+	resize: none
+
 ::-webkit-input-placeholder /* WebKit browsers */
 	color: home-text-color
 
@@ -170,8 +173,8 @@ a
 	line-height: 45px
 	padding-left: 10px
 	background-color: header-bg-color
-	border-bottom: solid thin darken(header-bg-color, 15)
-	box-shadow: 0 1px 2px rgba(0,0,0,.2)
+	// border-bottom: solid thin darken(header-bg-color, 15)
+	// box-shadow: 0 1px 2px rgba(0,0,0,.2)
 	.logo-small
 		float: left
 		img
@@ -222,7 +225,7 @@ sidebar-width = 200px
 	top: 10px
 	left: 10px
 	width: sidebar-width
-	background-color: white
+	background-color: #f8f8f8
 	.form
 		.form__control
 			float: left
@@ -230,7 +233,7 @@ sidebar-width = 200px
 				width: sidebar-width - (8*2) - 33
 				padding: 8px
 				color: site-field-text-color
-				background-color: site-field-bg-color
+				background-color: #f8f8f8
 				border-top-right-radius: 0
 				border-bottom-right-radius: 0
 			.button
@@ -238,7 +241,7 @@ sidebar-width = 200px
 				height: 33px
 				padding: 0
 				color: secondary-color
-				background-color: white
+				background-color: #f8f8f8
 				border-top-left-radius: 0
 				border-bottom-left-radius: 0
 				.fa
@@ -305,33 +308,60 @@ sidebar-width = 200px
 	right: 0
 	bottom: 0
 	left: sidebar-width + 20
-	.chat-window
+
+.chat-window
+	position: absolute
+	top: 10px
+	right: 10px
+	bottom: 10px
+	left: 10px
+	background-color: white
+	// box-shadow: 0 1px 2px rgba(0,0,0,.2)
+	.chat-window__helper
+		height: 33px
+		line-height: 33px
+		border-bottom: solid thin site-bg-color
+		&>*
+			padding: 0 8px
+		.helper--title
+			float: left
+			font-weight: 600
+		.helper--buzz
+			float: right
+			font-size: 1.142857em
+			color: #eee
+		.helper--close-button
+			float: right
+			font-size: 1.142857em
+			color: alert-color
+	.chat-window__room
 		position: absolute
-		top: 10px
-		right: 10px
-		bottom: 10px
-		left: 10px
-		background-color: white
-		box-shadow: 0 1px 2px rgba(0,0,0,.2)
-		.chat-window__title
-			height: 30px
-		.chat-window__room
+		top: 34px
+		right: 0
+		bottom: 46px
+		left: 0
+		overflow: auto;
+	.chat-window__type
+		position: absolute
+		right: 0
+		bottom: 0
+		left: 0
+		height: 45px
+		border-top: solid thin site-bg-color
+		.chat-input
 			position: absolute
-			top: 30px
-			right: 0
-			bottom: 50px
-			left: 0
-			overflow: auto;
-		.chat-window__type
-			position: absolute
-			right: 0
+			top: 0
+			right: 45px
 			bottom: 0
 			left: 0
-			.chat-input
-				margin-right: 50px
-			.chat-submit-button
-				float: right
-				width: 50px
+			padding: 14px 8px
+		.chat-submit-button
+			float: right
+			width: 45px
+			height: 45px
+			font-size: 1.5em
+			color: secondary-color
+			background-color: white
 
 /*------------------------------------*\
     $401
