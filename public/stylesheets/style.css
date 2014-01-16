@@ -234,7 +234,7 @@ a:hover {
   width: 151px;
   padding: 8px;
   color: #333;
-  background-color: #f8f8f8;
+  background-color: #fff;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
@@ -243,7 +243,7 @@ a:hover {
   height: 33px;
   padding: 0;
   color: #64b6b1;
-  background-color: #f8f8f8;
+  background-color: #fff;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -259,10 +259,12 @@ a:hover {
   padding-top: 3px;
 }
 .group {
-  margin: 10px 0;
-  padding: 0 10px;
+  padding: 10px;
+  border-bottom: solid thin #eee;
 }
 .group .group__name {
+  margin-bottom: 5px;
+  font-weight: 600;
   color: #64b6b1;
   cursor: pointer;
 }
@@ -348,6 +350,7 @@ a:hover {
   bottom: 10px;
   left: 10px;
   background-color: #fff;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.2);
 }
 .chat-window .chat-window__helper {
   height: 33px;

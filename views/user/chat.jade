@@ -11,6 +11,14 @@ block content
           button(class="button", id="submit-button", type="submit")
             i.fa.fa-plus
         div.clear
+      //- div
+      //-   - var friends = 0
+      //-   - each group in groups
+      //-     - friends += group.users.length-1
+      //-   i.fa.fa-comments
+      //-   = groups.length
+      //-   i.fa.fa-users
+      //-   = friends
       each group in groups
         div.group
           div.group__name(data-groupid="#{group._id}")
