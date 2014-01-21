@@ -171,7 +171,7 @@ a
 .top-header
 	height: 45px
 	line-height: 45px
-	padding-left: 10px
+	padding: 0 5px 0 20px
 	background-color: header-bg-color
 	// border-bottom: solid thin darken(header-bg-color, 15)
 	// box-shadow: 0 1px 2px rgba(0,0,0,.2)
@@ -206,6 +206,10 @@ a
     $PROFILE
 \*------------------------------------*/
 
+.profile__image
+	width: 100px
+	height: 100px
+
 /*------------------------------------*\
     $CHAT
 \*------------------------------------*/
@@ -213,9 +217,9 @@ a
 .user-content
 	position: absolute
 	top: 55px
-	right: 0
-	bottom: 0
-	left: 0
+	right: 10px
+	bottom: 10px
+	left: 10px
 	color: site-text-color
 
 sidebar-width = 200px
@@ -306,17 +310,17 @@ sidebar-width = 200px
 
 #chat-windows-container
 	position: absolute
-	top: 0
-	right: 0
-	bottom: 0
-	left: sidebar-width + 20
+	top: 5px
+	right: 5px
+	bottom: 5px
+	left: sidebar-width + 25
 
 .chat-window
 	position: absolute
-	top: 10px
-	right: 10px
-	bottom: 10px
-	left: 10px
+	top: 5px
+	right: 5px
+	bottom: 5px
+	left: 5px
 	background-color: white
 	box-shadow: 0 1px 0 rgba(0,0,0,.2)
 	.chat-window__helper
@@ -350,20 +354,23 @@ sidebar-width = 200px
 		left: 0
 		height: 45px
 		border-top: solid thin site-bg-color
-		.chat-input
-			position: absolute
-			top: 0
-			right: 45px
-			bottom: 0
-			left: 0
-			padding: 14px 8px
-		.chat-submit-button
+		.form__control:nth-of-type(1)
 			float: right
+			width: 45px
+		.chat-submit-button
 			width: 45px
 			height: 45px
 			font-size: 1.5em
 			color: secondary-color
 			background-color: white
+			&:active
+				box-shadow: none
+		.form__control:nth-of-type(2)
+			margin-right: 45px + 16px
+		.chat-input
+			width: 100%
+			height: 17px
+			padding: 14px 8px
 
 /*------------------------------------*\
     $401
@@ -482,6 +489,23 @@ sidebar-width = 200px
 		-webkit-transform: scale(0.0)
 	100%
 		-webkit-transform: scale(1.0)
+
+.ding-dong
+	color: alert-color
+	-webkit-animation: ding-dong 500ms
+	-webkit-animation-iteration-count: 1
+	-webkit-animation-fill-mode: forwards
+	-webkit-animation-timing-function: ease
+	-webkit-transform-origin: 50% 0%
+@-webkit-keyframes ding-dong
+	0%
+		-webkit-transform: rotate(30deg)
+	50%
+		-webkit-transform: rotate(-30deg)
+	75%
+		-webkit-transform: rotate(30deg)
+	100%
+		-webkit-transform: rotate(0deg)
 
 /*------------------------------------*\
     $FITGRID_STYLES

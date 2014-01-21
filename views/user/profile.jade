@@ -1,7 +1,19 @@
 extends ../layout
 
 block content
-  include ../includes/header
+  include ../includes/_header
   div.user-content
     h1
       | This is profile page
+    p
+      = user.username
+    p
+      = user.fullname
+    p
+      img.profile__image(src="#{user.avatar}")
+    p
+      form(id="upload-avatar-form", method="POST", action="/users/#{user.username}/upload")
+        input(type="file", name="avatar")
+        input(type="submit")
+  script(src='/javascripts/application.js')
+  script(src='/javascripts/profile.js')

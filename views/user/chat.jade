@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-  include ../includes/header
+  include ../includes/_header
   div.user-content
     div.groups-list
       form(id="new-group-form", class="form bot-line", method="POST", action="/users/#{user.username}/groups", autocomplete="off")
@@ -20,7 +20,7 @@ block content
       //-   i.fa.fa-users
       //-   = friends
       each group in groups
-        div.group
+        div.group(id="group-tab-#{group._id}")
           div.group__name(data-groupid="#{group._id}")
             = group.group_name
           div.group__list
@@ -41,7 +41,6 @@ block content
   script(src='/javascripts/fitgrid.jquery.js')
   script(type='text/javascript').
     $(".user__chat").addClass("selected");
-    var currentUser = !{JSON.stringify(user)}
+    var currentUser = !{JSON.stringify(user)};
     delete currentUser.password;
-    delete currentUser.groups;
   script(src='/javascripts/chat.js')

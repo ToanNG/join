@@ -7,7 +7,7 @@
       <i class="fa fa-times"></i>
     </div>
     <div class="helper--buzz">
-      <i class="fa fa-comment"></i>
+      <i class="fa fa-bell"></i>
     </div>
   </div>
 
@@ -15,10 +15,14 @@
 
   <div class="chat-window__type">
     <form class='chat-form' data-groupid='{{id}}' method='POST' autocomplete='off'>
-      <textarea class='chat-input' name='chat-input' placeholder="What is your idea?"></textarea>
-      <button class="chat-submit-button button" type="submit">
-        <i class="fa fa-location-arrow"></i>
-      </button>
+      <div class="form__control">
+        <button class="chat-submit-button button" type="submit">
+          <i class="fa fa-location-arrow"></i>
+        </button>
+      </div>
+      <div class="form__control">
+        <textarea class='chat-input' name='chat-input' placeholder="What is your idea..."></textarea>
+      </div>
     </form>
   </div>
 </div>

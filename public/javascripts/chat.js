@@ -2,13 +2,12 @@
   var server = io.connect('http://localhost');
 
   server.on('connect', function(){
-    console.log("You're online.");
+    server.emit('user join', currentUser);
   });
 
   var chatGrid = $.fitgrid("#chat-windows-container");
 
   var openedChat = [];
-
   $(".group__name").click(function(){
     var groupId = $(this).data("groupid");
 
@@ -21,13 +20,14 @@
       name: $(this).text().trim()
     };
     
-    $.when( Template.getTemplate("chat-window") ).done(function(){
-      var html = Template.render(currentGroup, "chat-window");
-
-      chatGrid.add(html, function(){
-        server.emit('user join', currentUser, currentGroup.id);
-      });
+    $.when( Template.getTemplate("_chat-window") ).done(function(){
+      var html = Template.render(currentGroup, "_chat-window");
+      chatGrid.add(html, function(){});
     });
+  });
+
+  $(document).on("focus", ".chat-input", function(e){
+    $(this).closest(".chat-window").find(".helper--buzz>i").removeClass("ding-dong");
   });
 
   $(document).on("keypress", ".chat-input", function(e){
@@ -47,7 +47,17 @@
     return false;
   });
 
-  server.on('update chat', function(data, group, username){
-    $("#group-"+group).find(".chat-window__room").append("<div>"+username+": "+data+"</div>");
+  server.on('update chat', function(message, group, user){
+    if (typeof user === "undefined") {
+      $("#group-"+group).find(".chat-window__room").append("<div>"+message+"</div>");
+      return;
+    }
+
+    //[TASK] parse message to create notification
+    if (message.indexOf("@"+currentUser.username) != -1) {
+      $("#group-tab-"+group).css("background-color", "red");
+      $("#group-"+group).find(".helper--buzz>i").addClass("ding-dong");
+    }
+    $("#group-"+group).find(".chat-window__room").append("<div>"+user.fullname+": "+message+"</div>");
   });
 }());

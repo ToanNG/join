@@ -1,3 +1,17 @@
+var AWS = require('aws-sdk');
+AWS.config.loadFromPath('./aws.json');
+
+exports.upload = function(req, res){
+  var s3 = new AWS.S3();
+  s3.putObject({
+    Bucket: 'join-development',
+    Key: req.body.key,
+    Body: 'Hello!'
+  }, function() {
+    res.send("Successfully uploaded "+req.body.key+" to join-development");
+  });
+};
+
 exports.list = function(req, res){
 	res.app.db.models.User.find(function(err, users){
 		res.send(users);

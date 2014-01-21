@@ -60,6 +60,7 @@ exports = module.exports = function(app) {
 	app.get('/users/:username.:format?/profile', authz, function(req, res) {
 		res.render('user/profile', {user: req.user});
 	});
+	app.post('/users/:username/upload', authz, user.upload);
 
 	//group view
 	app.get('/users/:username/groups/:group_id', authz, group.show);
