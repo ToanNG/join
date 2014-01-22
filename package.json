@@ -19,6 +19,7 @@
     "connect-flash": "*",
     "socket.io": "*",
     "grunt": "~0.4.2",
-    "aws-sdk": "*"
+    "aws-sdk": "*",
+    "imagemagick": "*"
   }
 }

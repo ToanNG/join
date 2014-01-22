@@ -1,26 +1,36 @@
-var AWS = require('aws-sdk');
+var AWS = require('aws-sdk'),
+  im = require('imagemagick');
 
 AWS.config.loadFromPath('./aws.json');
 
 exports.upload = function(req, res){
   var s3 = new AWS.S3(),
-    image = req.files.image;
+    image = req.files.image,
+    cropPath = "public/images/avatar/"+image.name;
 
-  require('fs').readFile(image.path, function(err, file_buffer){
-    var params = {
-      Bucket: 'join-development',
-      Key: 'images/avatar/'+image.name,
-      Body: file_buffer,
-      ACL: 'public-read'
-    };
+  im.crop({
+    srcPath: image.path,
+    dstPath: cropPath,
+    width: 200,
+    height: 200,
+    quality: 1
+  }, function(err, stdout, stderr){
+    require('fs').readFile(cropPath, function(err, file_buffer){
+      var params = {
+        Bucket: 'join-development',
+        Key: 'images/avatar/'+image.name,
+        Body: file_buffer,
+        ACL: 'public-read'
+      };
 
-    s3.putObject(params, function(err, data) {
-      var aws_url = 'https://'+params.Bucket+'.s3.amazonaws.com/'+params.Key;
-      res.app.db.models.User.update(
-        { username: req.params.username },
-        { $set: { avatar: aws_url }},
-        function(){
-          res.redirect('/users/'+req.params.username+'/profile');
+      s3.putObject(params, function(err, data) {
+        var aws_url = 'https://'+params.Bucket+'.s3.amazonaws.com/'+params.Key;
+        res.app.db.models.User.update(
+          { username: req.params.username },
+          { $set: { avatar: aws_url }},
+          function(){
+            res.redirect('/users/'+req.params.username+'/profile');
+        });
       });
     });
   });
