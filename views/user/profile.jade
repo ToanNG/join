@@ -12,8 +12,8 @@ block content
     p
       img.profile__image(src="#{user.avatar}")
     p
-      form(id="upload-avatar-form", method="POST", action="/users/#{user.username}/upload")
-        input(type="file", name="avatar")
+      form(id="upload-avatar-form", method="POST", action="/users/#{user.username}/upload", enctype="multipart/form-data")
+        input(type="file", name="image")
         input(type="submit")
   script(src='/javascripts/application.js')
   script(src='/javascripts/profile.js')

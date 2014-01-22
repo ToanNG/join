@@ -1,14 +1,28 @@
 var AWS = require('aws-sdk');
+
 AWS.config.loadFromPath('./aws.json');
 
 exports.upload = function(req, res){
-  var s3 = new AWS.S3();
-  s3.putObject({
-    Bucket: 'join-development',
-    Key: req.body.key,
-    Body: 'Hello!'
-  }, function() {
-    res.send("Successfully uploaded "+req.body.key+" to join-development");
+  var s3 = new AWS.S3(),
+    image = req.files.image;
+
+  require('fs').readFile(image.path, function(err, file_buffer){
+    var params = {
+      Bucket: 'join-development',
+      Key: 'images/avatar/'+image.name,
+      Body: file_buffer,
+      ACL: 'public-read'
+    };
+
+    s3.putObject(params, function(err, data) {
+      var aws_url = 'https://'+params.Bucket+'.s3.amazonaws.com/'+params.Key;
+      res.app.db.models.User.update(
+        { username: req.params.username },
+        { $set: { avatar: aws_url }},
+        function(){
+          res.redirect('/users/'+req.params.username+'/profile');
+        });
+    });
   });
 };
 
