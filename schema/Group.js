@@ -3,13 +3,7 @@ var mongoose = require('mongoose'),
 
 var groupSchema = new Schema({
 	group_name: { type: String, required: true },
-	users: [
-		{
-			_id: { type: Schema.Types.ObjectId, ref: 'users' },
-			fullname: String,
-      avatar: String
-		}
-	]
+	users: [{ type: Schema.Types.ObjectId, ref: 'users' }]
 });
 
 exports = module.exports = mongoose.model('groups', groupSchema);

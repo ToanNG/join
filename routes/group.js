@@ -8,13 +8,7 @@ exports.post = function(req, res){
 	res.app.db.models.User.findOne({username: req.params.username}, function(err, user){
   	new res.app.db.models.Group({
 			group_name: req.body.group_name,
-			users: [
-				{
-					_id: user._id,
-					fullname: user.fullname,
-					avatar: user.avatar
-				}
-			]
+			users: [ user._id ]
 		}).save(function(err, group){
 			//update current user
 			user.groups.push(group._id);
@@ -33,11 +27,7 @@ exports.add = function(req, res){
 		user.groups.push(req.body.group_id);
 		user.save(function(err, user){
 			res.app.db.models.Group.findOne({_id: req.body.group_id}, function(err, group){
-				group.users.push({
-					_id: user._id,
-					fullname: user.fullname,
-					avatar: user.avatar
-				});
+				group.users.push(user._id);
 				group.save(function(err, group){
 					res.send(group);
 					// res.redirect('/users/' + user.username);

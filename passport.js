@@ -38,7 +38,7 @@ exports = module.exports = function(app, passport) {
 				    password: "",     
 				    fullname: (profile.name.givenName+" "+profile.name.familyName+" "+profile.name.middleName).replace(/undefined/g, "").trim(),
 				    facebook_id: profile.id,
-				    avatar: "https://secure.gravatar.com/avatar/8ac18f1eccadee3bed611b0423126a66?s=75&r=any&d=mm&time=46322817",
+				    avatar: "https://graph.facebook.com/"+profile.username+"/picture",
 				    groups: []
 				  }).save(function(err, user){
 				  	if (err) { return done(err); }
@@ -57,7 +57,7 @@ exports = module.exports = function(app, passport) {
 	});
 
 	passport.deserializeUser(function(_id, done) {
-		app.db.models.User.findById(_id, function(err, user) {
+		app.db.models.User.findById(_id, 'username fullname avatar groups', function(err, user) {
 			done(err, user);
 		});
 	});
