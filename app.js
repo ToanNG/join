@@ -12,6 +12,9 @@ var express = require('express')
 var app = express(),
   server = http.createServer(app);
 
+//set environment variables
+app.config = require('./config');
+
 //setup mongoose
 app.db = mongoose.connect('mongodb://localhost/join_development');
 
@@ -36,7 +39,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser());
   app.use(express.bodyParser());
-  app.use(express.session({secret: "S3cr3tK3y"}));
+  app.use(express.session({secret: "5up3rS3cr3tK3y"}));
   app.use(flash());
   app.use(passport.initialize());
   app.use(passport.session());
@@ -58,6 +61,10 @@ app.configure('development', function(){
 app.configure('production', function(){
   app.enable('view cache');
 });
+//$ NODE_ENV=production node app.js
+//or you can export them into your shell environment:
+//$ export NODE_ENV=production
+//$ node app.js
 
 //route requests
 require('./routes')(app);
