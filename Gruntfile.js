@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/join_development');
+mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost/join_development');
 
 var User = require('./schema/User'),
   Group = require('./schema/Group');
