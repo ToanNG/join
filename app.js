@@ -16,7 +16,7 @@ var app = express(),
 app.config = require('./config');
 
 //setup mongoose
-app.db = mongoose.connect('mongodb://localhost/join_development');
+app.db = mongoose.connect('mongodb://nodejitsu:bbfae2db700ad583eab992dbc0f6c655@troup.mongohq.com:10005/nodejitsudb9860562363');
 
 //config data models
 require('./models')(app);

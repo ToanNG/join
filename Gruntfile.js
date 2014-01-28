@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/join_development');
+mongoose.connect('mongodb://nodejitsu:bbfae2db700ad583eab992dbc0f6c655@troup.mongohq.com:10005/nodejitsudb9860562363');
 
 var User = require('./schema/User'),
   Group = require('./schema/Group');
