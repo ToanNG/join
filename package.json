@@ -1,9 +1,9 @@
 {
-  "name": "join",
-  "version": "0.0.1-4",
+  "name": "application-name",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "nodemon app.js"
   },
   "dependencies": {
     "express": "3.4.4",
@@ -21,9 +21,5 @@
     "grunt": "~0.4.2",
     "aws-sdk": "*",
     "imagemagick": "*"
-  },
-  "subdomain": "join-staging",
-  "engines": {
-    "node": "0.10.x"
   }
 }
