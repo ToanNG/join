@@ -57,6 +57,10 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
+//config stage
+app.configure('staging', function(){
+});
+
 //config prod
 app.configure('production', function(){
   app.enable('view cache');
