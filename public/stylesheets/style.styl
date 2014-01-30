@@ -229,7 +229,7 @@ sidebar-width = 200px
 	top: 10px
 	left: 10px
 	width: sidebar-width
-	background-color: #f8f8f8
+	background-color: #fff
 	.form
 		.form__control
 			float: left
@@ -371,6 +371,48 @@ sidebar-width = 200px
 			width: 100%
 			height: 17px
 			padding: 14px 8px
+
+.chat-line--me
+	position: relative
+	margin: 20px
+	.avatar
+		position: absolute
+		top: 1px
+		right: 0px
+	.chat-box
+		dialog-box(auto,auto,secondary-color,8px)
+		position: relative
+		float: right
+		min-width: 25%
+		max-width: 50%
+		margin-right: 50px
+		padding: 10px
+		font-size: 0.857142em
+		color: white
+		&:after
+			left: auto
+			right: -20px
+			border-top: solid 10px transparent
+			border-right: solid 10px transparent
+			border-bottom: solid 10px transparent
+			border-left: solid 10px secondary-color
+
+.chat-line--guest
+	position: relative
+	margin: 20px
+	.avatar
+		position: absolute
+		top: 1px
+		left: 0px
+	.chat-box
+		dialog-box(auto,auto,site-bg-color,8px)
+		position: relative
+		float: left
+		min-width: 25%
+		max-width: 50%
+		margin-left: 50px
+		padding: 10px
+		font-size: 0.857142em
 
 /*------------------------------------*\
     $401

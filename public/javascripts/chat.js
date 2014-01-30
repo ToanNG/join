@@ -1,5 +1,5 @@
 (function(){
-  var server = io.connect('http://localhost');
+  var server = io.connect('http://localhost:3000');
 
   server.on('connect', function(){
     server.emit('user join', currentUser);
@@ -58,6 +58,15 @@
       $("#group-tab-"+group).css("background-color", "red");
       $("#group-"+group).find(".helper--buzz>i").addClass("ding-dong");
     }
-    $("#group-"+group).find(".chat-window__room").append("<div>"+user.fullname+": "+message+"</div>");
+
+    var userType = user.username === currentUser.username ? "me" : "guest";
+    $("#group-"+group).find(".chat-window__room").append(
+      "<div class='chat-line--"+userType+" jelly-show'>"+
+        "<img class='avatar small' src='"+user.avatar+"'/>"+
+        "<div class='chat-box'>"+
+          message+
+        "</div>"+
+        "<div class='clear'></div>"+
+      "</div>");
   });
 }());
