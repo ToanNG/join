@@ -11,7 +11,8 @@ var userSchema = new Schema({
   facebook_id: { type: String, required: false },
   avatar: String,
   created_at: { type: Date, default: Date.now },
-  groups: [{ type: Schema.Types.ObjectId, ref: 'groups' }]
+  groups: [{ type: Schema.Types.ObjectId, ref: 'groups' }],
+  tasks: [{ type: Schema.Types.ObjectId, ref: 'tasks' }]
 });
 
 userSchema.methods.validPassword = function(password){

@@ -59,14 +59,17 @@
       $("#group-"+group).find(".helper--buzz>i").addClass("ding-dong");
     }
 
-    var userType = user.username === currentUser.username ? "me" : "guest";
-    $("#group-"+group).find(".chat-window__room").append(
-      "<div class='chat-line--"+userType+" jelly-show'>"+
-        "<img class='avatar small' src='"+user.avatar+"'/>"+
-        "<div class='chat-box'>"+
-          message+
-        "</div>"+
-        "<div class='clear'></div>"+
-      "</div>");
+    var userType = user.username === currentUser.username ? "me" : "guest",
+      $chatRoom = $("#group-"+group).find(".chat-window__room");
+    $chatRoom
+      .append(
+        "<div class='chat-line--"+userType+" jelly-show'>"+
+          "<img class='avatar small' src='"+user.avatar+"'/>"+
+          "<div class='chat-box'>"+
+            message+
+          "</div>"+
+          "<div class='clear'></div>"+
+        "</div>")
+      .scrollTop($chatRoom.prop("scrollHeight") - $chatRoom.height());
   });
 }());
