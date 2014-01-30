@@ -3,17 +3,23 @@ div.top-header
     img(src="/images/logo_white.svg")
   ul.user-wrapper
     li.user__avatar
-      div.avatar.small(style="background-image: url(#{user.avatar});")
+      div.avatar(style="background-image: url(#{user.avatar});")
     li.user__account
       a(href="/users/#{user.username}/profile")
         = user.fullname
     li.user__chat
+      i.fa.fa-comments
       a(href="/users/#{user.username}/chat")
         | Chat Groups
-    li.user__notification
+    li.user__task
+      i.fa.fa-check-square
       a(href="")
-        | Notification
-    //- li.seperate-line
+        | Tasks List
+    li.user__setting
+      i.fa.fa-gear
+      a(href="")
+        | Setting
     li.user__logout
+      i.fa.fa-sign-out
       a(href="/logout")
         | Logout

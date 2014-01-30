@@ -169,44 +169,51 @@ a:hover {
 /*------------------------------------*     $HEADER_BAR
 \*------------------------------------*/
 .top-header {
-  height: 45px;
-  line-height: 45px;
-  padding: 0 5px 0 20px;
-  background-color: #64b6b1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 160px;
+  background-color: #222;
 }
 .top-header .logo-small {
-  float: left;
+  padding: 10px;
+  text-align: center;
 }
 .top-header .logo-small img {
   width: 35px;
   height: 35px;
-  margin: 5px 0;
 }
 .top-header ul.user-wrapper {
-  float: right;
-  height: 100%;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 .top-header ul.user-wrapper li {
-  float: left;
-  height: 100%;
-  padding: 0 15px;
+  padding: 10px;
+  color: #888;
 }
 .top-header ul.user-wrapper li .avatar {
-  margin: 5px 0;
+  margin: 0 auto;
+}
+.top-header ul.user-wrapper li i {
+  padding-right: 10px;
 }
 .top-header ul.user-wrapper li a {
-  color: #fff;
+  color: #888;
 }
 .top-header ul.user-wrapper li.selected {
-  background-color: #53aea8;
+  background-color: #151515;
 }
-.top-header ul.user-wrapper li.seperate-line {
-  padding: 0;
-  border-right: solid thin #87c6c2;
-  border-left: solid thin #4a9d98;
+.top-header ul.user-wrapper li.selected i {
+  color: #ce534d;
+}
+.top-header ul.user-wrapper li.user__account {
+  padding: 0 0 20px;
+  text-align: center;
+}
+.top-header ul.user-wrapper li.user__account a {
+  color: #ce534d;
 }
 /*------------------------------------*     $PROFILE
 \*------------------------------------*/
@@ -218,10 +225,10 @@ a:hover {
 \*------------------------------------*/
 .user-content {
   position: absolute;
-  top: 55px;
+  top: 10px;
   right: 10px;
   bottom: 10px;
-  left: 10px;
+  left: 170px;
   color: #333;
 }
 .groups-list {
