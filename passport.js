@@ -57,7 +57,7 @@ exports = module.exports = function(app, passport) {
 	});
 
 	passport.deserializeUser(function(_id, done) {
-		app.db.models.User.findById(_id, 'username fullname avatar groups', function(err, user) {
+		app.db.models.User.findById(_id, 'username fullname avatar groups tasks', function(err, user) {
 			done(err, user);
 		});
 	});

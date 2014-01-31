@@ -1,6 +1,7 @@
 var passport = require('passport'),
 	user = require('./routes/user'),
-	group = require('./routes/group');
+	group = require('./routes/group'),
+	task = require('./routes/task');
 
 var auth = function(req, res, next) {
 	if (!req.isAuthenticated())
@@ -66,4 +67,8 @@ exports = module.exports = function(app) {
 	app.get('/users/:username/groups/:group_id', authz, group.show);
 	app.post('/users/:username/groups', group.post);
 	app.post('/users/:username/groups/add', group.add);
+
+	//task view
+	app.get('/users/:username/tasks', authz, task.list);
+	app.post('/users/:username/tasks', authz, task.post);
 };

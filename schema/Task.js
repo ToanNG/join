@@ -3,6 +3,7 @@ var mongoose = require('mongoose'),
 
 var taskSchema = new Schema({
   giver: { type: Schema.Types.ObjectId, ref: 'users' },
+  receiver: { type: Schema.Types.ObjectId, ref: 'users' },
   content: { type: String, required: true },
   status: { type: Boolean, default: false }
 });

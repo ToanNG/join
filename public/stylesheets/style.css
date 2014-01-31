@@ -169,7 +169,7 @@ a:hover {
 /*------------------------------------*     $HEADER_BAR
 \*------------------------------------*/
 .top-header {
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -203,7 +203,7 @@ a:hover {
   color: #888;
 }
 .top-header ul.user-wrapper li.selected {
-  background-color: #151515;
+  background-color: #000;
 }
 .top-header ul.user-wrapper li.selected i {
   color: #ce534d;
@@ -348,11 +348,11 @@ a:hover {
   margin: 2px 2px 0 0;
 }
 #chat-windows-container {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  bottom: 5px;
-  left: 225px;
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  bottom: 15px;
+  left: 395px;
 }
 .chat-window {
   position: absolute;

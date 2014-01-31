@@ -32,6 +32,8 @@
 
   $(document).on("keypress", ".chat-input", function(e){
     if (e.keyCode === 13) {
+      if ($(this).val() === "") {return false;}
+      
       $(this).closest(".chat-form").submit();
       $(this).val("");
       e.preventDefault();
