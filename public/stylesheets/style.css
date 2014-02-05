@@ -498,6 +498,25 @@ a:hover {
   border-bottom: solid 10px transparent;
   border-left: solid 10px transparent;
 }
+.guide-dialog-box {
+  color: #c50f13;
+  font-size: 0.857142em;
+  position: absolute;
+  width: auto;
+  height: auto;
+  padding: 15px;
+  background-color: #fff;
+}
+.guide-dialog-box:after {
+  content: "";
+  position: absolute;
+  top: 13px;
+  left: -20px;
+  border-top: solid 10px transparent;
+  border-right: solid 10px #fff;
+  border-bottom: solid 10px transparent;
+  border-left: solid 10px transparent;
+}
 /*------------------------------------*     $401
 \*------------------------------------*/
 .gandalf {

@@ -5,15 +5,21 @@ block content
   div.user-content
     h1
       | This is task page
+
     h2 Your tasks
-    each task in receivedTasks
-      div
-        = task.content
-      div
-        | from #{task.giver.fullname}
+    ul
+      each task in receivedTasks
+        li
+          = task.content
+          br
+          | from #{task.giver.fullname}
+
     h2 Track other's tasks
-    each task in givenTasks
-      div
-        = task.content
-      div
-        | to #{task.receiver.fullname}
+    ul
+      each task in givenTasks
+        li
+          = task.content
+          br
+          | to #{task.receiver.fullname}
+  script(type='text/javascript').
+    $(".user__task").addClass("selected");
