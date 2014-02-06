@@ -20,7 +20,8 @@
     "socket.io": "*",
     "grunt": "~0.4.2",
     "aws-sdk": "*",
-    "imagemagick": "*"
+    "imagemagick": "*",
+    "nightwatch": "*"
   },
   "subdomain": "join-staging",
   "engines": {
