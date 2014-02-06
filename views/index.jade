@@ -2,10 +2,10 @@ extends layout
 
 block content
 	div.section-wrapper--home
+		div.logo
+			img(src="images/logo.svg")
+				
 		div.form-wrapper
-			div.logo
-				img(src="images/logo.svg")
-
 			form(id="login-form", class="form", method="POST", action="/login", autocomplete="off")
 				div.form__control
 					if loginErr != ""
