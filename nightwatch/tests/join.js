@@ -9,6 +9,9 @@ module.exports = {
       .click('#login-form #submit-button')
       .pause(1000)
       .assert.containsText('body', 'Toan Nguyen')
+      .pause(1000)
+      .click('#group-tab-52c7a1e76125d412e0000008 .group__name')
+      .pause(3000)
       .end();
   }
 };

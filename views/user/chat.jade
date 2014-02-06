@@ -25,11 +25,11 @@ block content
             = group.group_name
           div.group__list
             each user in group.users
-              //- - var acronym = user.fullname.match(/\b(\w)/g).join('')
-              //- - var char = acronym.charAt(0).toLowerCase()
-              //- div(class="member #{char}")
-              //-   = acronym
-              img(src="#{user.avatar}", class="member-avatar", title="#{user.fullname}")
+              - var acronym = user.fullname.match(/\b(\w)/g).join('')
+              - var char = acronym.charAt(0).toLowerCase()
+              div(class="member #{char}")
+                = acronym
+              //- img(src="#{user.avatar}", class="member-avatar", title="#{user.fullname}")
           div.clear
 
     div#chat-windows-container

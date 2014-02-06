@@ -1,5 +1,5 @@
 (function(){
-  var server = io.connect('http://localhost:3000');
+  var server = io.connect(window.location.origin);
 
   server.on('connect', function(){
     server.emit('user join', currentUser);

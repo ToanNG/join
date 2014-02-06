@@ -364,6 +364,7 @@ a:hover {
   right: 15px;
   bottom: 15px;
   left: 395px;
+  min-width: 550px;
 }
 .chat-window {
   position: absolute;
@@ -436,7 +437,7 @@ a:hover {
 }
 .chat-line--me {
   position: relative;
-  margin: 20px;
+  margin: 15px 20px;
 }
 .chat-line--me .avatar {
   position: absolute;
@@ -462,14 +463,6 @@ a:hover {
   content: "";
   position: absolute;
   top: 8px;
-  left: -20px;
-  border-top: solid 10px transparent;
-  border-right: solid 10px #64b6b1;
-  border-bottom: solid 10px transparent;
-  border-left: solid 10px transparent;
-}
-.chat-line--me .chat-box:after {
-  left: auto;
   right: -20px;
   border-top: solid 10px transparent;
   border-right: solid 10px transparent;
@@ -478,7 +471,7 @@ a:hover {
 }
 .chat-line--guest {
   position: relative;
-  margin: 20px;
+  margin: 15px 20px;
 }
 .chat-line--guest .avatar {
   position: absolute;
