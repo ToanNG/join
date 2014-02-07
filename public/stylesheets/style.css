@@ -70,7 +70,7 @@ a {
 a:hover {
   text-decoration: underline;
 }
-.wrapper {
+#wrapper {
   position: relative;
   width: 100%;
   height: 100%;
@@ -94,7 +94,7 @@ a:hover {
   margin-left: -40px;
   width: 80px;
   height: 80px;
-  z-index: 2;
+  z-index: 1;
 }
 .form-wrapper {
   position: absolute;
@@ -359,12 +359,11 @@ a:hover {
   margin: 2px 2px 0 0;
 }
 #chat-windows-container {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  bottom: 15px;
-  left: 395px;
-  min-width: 550px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  bottom: 5px;
+  left: 225px;
 }
 .chat-window {
   position: absolute;
@@ -387,10 +386,19 @@ a:hover {
   float: left;
   font-weight: 600;
 }
+.chat-window .chat-window__helper .helper--share {
+  float: right;
+  font-size: 1.142857em;
+  color: #ccc;
+}
+.chat-window .chat-window__helper .helper--share:hover {
+  color: #64b6b1;
+  cursor: pointer;
+}
 .chat-window .chat-window__helper .helper--buzz {
   float: right;
   font-size: 1.142857em;
-  color: #eee;
+  color: #ccc;
 }
 .chat-window .chat-window__helper .helper--close-button {
   float: right;
@@ -521,6 +529,12 @@ a:hover {
   border-bottom: solid 10px transparent;
   border-left: solid 10px transparent;
 }
+#share-wrapper {
+  display: inline-block;
+  width: 900px;
+  height: 600px;
+  background-color: #fff;
+}
 /*------------------------------------*     $401
 \*------------------------------------*/
 .gandalf {
@@ -597,6 +611,22 @@ a:hover {
 .avatar.small {
   width: 35px;
   height: 35px;
+}
+.overlay {
+  display: table;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-width: 960px;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 10;
+}
+.overlay .center {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
 }
 /*------------------------------------*     $ANIMATIONS
 \*------------------------------------*/

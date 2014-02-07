@@ -74,4 +74,92 @@
         "</div>")
       .scrollTop($chatRoom.prop("scrollHeight") - $chatRoom.height());
   });
+
+  //share feature
+  $(document).on("click", ".helper--share", function(){
+    window.sharingGroup = $(this).closest(".chat-window").attr("id").split("-")[1];
+
+    $.when( Template.getTemplate("_share-popup") ).done(function(){
+      var html = Template.render({username: currentUser.username}, "_share-popup");
+
+      $(html)
+        .hide()
+        .appendTo("#wrapper")
+        .fadeIn("fast");
+
+      $("#share-form").ajaxForm({
+        beforeSend: function(){
+          console.log("Begin upload");
+        },
+        success: function(url){
+          server.emit('user share', url, window.sharingGroup);
+        },
+        error: function(e){
+          alert("Upload fails!");
+        }
+      });
+    });
+  });
+
+  server.on('user share', function(url, group, user){
+    if ($("#share-wrapper").length) {
+      loadCanvas(url);
+    }
+  });
+
+  server.on('update share', function(url, group, user, x, y){
+    if ($("#share-wrapper").length) {
+      console.log("receive "+x+","+y);
+      loadCanvas(url, x, y);
+    }
+  });
+
+  function loadCanvas(dataURL, posX, posY) {
+    var imageObj = new Image();
+
+    imageObj.onload = function() {
+      var stage = new Kinetic.Stage({
+        container: "share-canvas",
+        width: 900,
+        height: 600
+      });
+      var layer = new Kinetic.Layer();
+
+      // darth vader
+      if (posX) {
+        var darthVaderImg = new Kinetic.Image({
+          image: imageObj,
+          x: posX,
+          y: posY,
+          draggable: true
+        });
+      } else {
+        var darthVaderImg = new Kinetic.Image({
+          image: imageObj,
+          x: 0,
+          y: 0,
+          draggable: true
+        });
+      }
+
+      // add cursor styling
+      darthVaderImg.on('mouseover', function() {
+        document.body.style.cursor = 'pointer';
+      });
+      darthVaderImg.on('mouseout', function() {
+        document.body.style.cursor = 'default';
+      });
+
+      darthVaderImg.on("dragend", function() {
+        var points = darthVaderImg.getPosition();
+        server.emit('update share', dataURL, window.sharingGroup, points.x, points.y);
+        console.log(points.x + ',' + points.y);
+      }); 
+
+      layer.add(darthVaderImg);
+      stage.add(layer);
+    };
+
+    imageObj.src = dataURL;
+  }
 }());

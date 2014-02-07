@@ -62,6 +62,7 @@ exports = module.exports = function(app) {
 		res.render('user/profile', {user: req.user});
 	});
 	app.post('/users/:username/upload', authz, user.upload);
+	app.post('/users/:username/share', authz, user.share);
 
 	//group view
 	app.get('/users/:username/groups/:group_id', authz, group.show);

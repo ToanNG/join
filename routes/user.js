@@ -36,6 +36,24 @@ exports.upload = function(req, res){
   });
 };
 
+exports.share = function(req, res){
+  var s3 = new AWS.S3(),
+    image = req.files.image;
+  require('fs').readFile(image.path, function(err, file_buffer){
+    var params = {
+      Bucket: 'join-development',
+      Key: 'images/share/'+image.name,
+      Body: file_buffer,
+      ACL: 'public-read'
+    };
+
+    s3.putObject(params, function(err, data) {
+      var aws_url = 'https://'+params.Bucket+'.s3.amazonaws.com/'+params.Key;
+      res.send(aws_url);
+    });
+  });
+};
+
 exports.list = function(req, res){
 	res.app.db.models.User.find(function(err, users){
 		res.send(users);
