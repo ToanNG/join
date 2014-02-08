@@ -17,12 +17,8 @@ exports = module.exports = function(socket, server) {
       io.sockets.in(room).emit("update chat", message, room, socket.user);
     });
 
-    socket.on('user share', function (url, room) {
-      io.sockets.in(room).emit("user share", url, room, socket.user);
-    });
-
-    socket.on('update share', function (url, room, x, y) {
-      io.sockets.in(room).emit("update share", url, room, socket.user, x, y);
+    socket.on('update share', function (image, room) {
+      socket.broadcast.to(room).emit("update share", image, room, socket.user);
     });
 
     socket.on('disconnect', function() {

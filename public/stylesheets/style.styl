@@ -432,8 +432,9 @@ sidebar-width = 200px
 	font-size: 0.857142em
 	dialog-box(auto,auto,#fff,'left',13px)
 
-#share-wrapper
+#share-popup
 	display: inline-block
+	position: relative
 	width: 900px
 	height: 600px
 	// width: 80%
@@ -441,6 +442,16 @@ sidebar-width = 200px
 	// height: 80%
 	// max-height: 600px
 	background-color: white
+	#share-popup__canvas
+		position: absolute
+		top: 10px
+		right: 10px
+		bottom: 50px
+		left: 10px
+		background-color: gray
+	#share-form
+		position: absolute
+		bottom: 0
 
 /*------------------------------------*\
     $401
@@ -515,9 +526,8 @@ sidebar-width = 200px
 	top: 0
 	left: 0
 	width: 100%
-	min-width: 960px
 	height: 100%
-	background-color: rgba(black, .5)
+	background-color: rgba(black, .75)
 	z-index: 10
 	.center
 		display: table-cell

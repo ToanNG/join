@@ -80,7 +80,12 @@
     window.sharingGroup = $(this).closest(".chat-window").attr("id").split("-")[1];
 
     $.when( Template.getTemplate("_share-popup") ).done(function(){
-      var html = Template.render({username: currentUser.username}, "_share-popup");
+      var html = Template.render({username: currentUser.username}, "_share-popup"),
+        image = {
+          url: "",
+          posTop: 0,
+          posLeft: 0
+        };
 
       $(html)
         .hide()
@@ -89,10 +94,12 @@
 
       $("#share-form").ajaxForm({
         beforeSend: function(){
-          console.log("Begin upload");
+          console.log("Uploading...");
         },
         success: function(url){
-          server.emit('user share', url, window.sharingGroup);
+          image.url = url;
+          loadCanvas(image);
+          server.emit('update share', image, window.sharingGroup);
         },
         error: function(e){
           alert("Upload fails!");
@@ -101,65 +108,51 @@
     });
   });
 
-  server.on('user share', function(url, group, user){
-    if ($("#share-wrapper").length) {
-      loadCanvas(url);
+  server.on('update share', function(image, group, user){
+    if ($("#share-popup").length) {
+      loadCanvas(image);
     }
   });
 
-  server.on('update share', function(url, group, user, x, y){
-    if ($("#share-wrapper").length) {
-      console.log("receive "+x+","+y);
-      loadCanvas(url, x, y);
-    }
-  });
-
-  function loadCanvas(dataURL, posX, posY) {
+  function loadCanvas(image) {
     var imageObj = new Image();
 
     imageObj.onload = function() {
+      var $container = $("#share-popup__canvas");
+
       var stage = new Kinetic.Stage({
-        container: "share-canvas",
-        width: 900,
-        height: 600
+        container: "share-popup__canvas",
+        width: $container.width(),
+        height: $container.height()
       });
       var layer = new Kinetic.Layer();
 
-      // darth vader
-      if (posX) {
-        var darthVaderImg = new Kinetic.Image({
-          image: imageObj,
-          x: posX,
-          y: posY,
-          draggable: true
-        });
-      } else {
-        var darthVaderImg = new Kinetic.Image({
-          image: imageObj,
-          x: 0,
-          y: 0,
-          draggable: true
-        });
-      }
+      var drawnImage = new Kinetic.Image({
+        image: imageObj,
+        x: image.posTop,
+        y: image.posLeft,
+        draggable: true
+      });
 
-      // add cursor styling
-      darthVaderImg.on('mouseover', function() {
+      //add cursor styling
+      drawnImage.on('mouseover', function() {
         document.body.style.cursor = 'pointer';
       });
-      darthVaderImg.on('mouseout', function() {
+      drawnImage.on('mouseout', function() {
         document.body.style.cursor = 'default';
       });
 
-      darthVaderImg.on("dragend", function() {
-        var points = darthVaderImg.getPosition();
-        server.emit('update share', dataURL, window.sharingGroup, points.x, points.y);
-        console.log(points.x + ',' + points.y);
+      drawnImage.on("dragend", function() {
+        var points = drawnImage.getPosition();
+        image.posTop = points.x;
+        image.posLeft = points.y;
+        server.emit('update share', image, window.sharingGroup);
       }); 
 
-      layer.add(darthVaderImg);
+      layer.add(drawnImage);
       stage.add(layer);
     };
 
-    imageObj.src = dataURL;
+    imageObj.src = image.url;
   }
 }());
