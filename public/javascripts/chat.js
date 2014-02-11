@@ -13,8 +13,6 @@
 
     if (openedChat.indexOf(groupId) != -1) return;
 
-    openedChat.push(groupId);
-
     var currentGroup = {
       id: groupId,
       name: $(this).text().trim()
@@ -22,7 +20,15 @@
     
     $.when( Template.getTemplate("_chat-window") ).done(function(){
       var html = Template.render(currentGroup, "_chat-window");
-      chatGrid.add(html, function(){});
+      chatGrid.add(html, function(){
+        openedChat.push(groupId);
+      });
+    });
+  });
+  $(document).on("click", ".helper--close-button", function(){
+    var groupId = $(this).closest(".chat-window").attr("id").split("-")[1];
+    chatGrid.remove($(this).closest(".fitgrid-slot"), function(){
+      openedChat.remove(groupId);
     });
   });
 
@@ -51,7 +57,7 @@
 
   server.on('update chat', function(message, group, user){
     if (typeof user === "undefined") {
-      $("#group-"+group).find(".chat-window__room").append("<div>"+message+"</div>");
+      $("#group-"+group).find(".chat-window__room").append("<div class='notice'>"+message+"</div>");
       return;
     }
 

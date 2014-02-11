@@ -154,7 +154,7 @@ a:hover {
 }
 .form-wrapper .error-dialog-box {
   position: absolute;
-  top: 0;
+  top: 11px;
   right: -235px;
   color: #c50f13;
   font-size: 0.857142em;
@@ -414,6 +414,7 @@ a:hover {
   float: right;
   font-size: 1.142857em;
   color: #c50f13;
+  cursor: pointer;
 }
 .chat-window .chat-window__room {
   position: absolute;
@@ -422,6 +423,12 @@ a:hover {
   bottom: 46px;
   left: 0;
   overflow: auto;
+}
+.chat-window .chat-window__room .notice {
+  margin: 15px;
+  font-size: 0.857142em;
+  text-align: center;
+  color: #808080;
 }
 .chat-window .chat-window__type {
   position: absolute;

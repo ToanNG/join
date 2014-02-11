@@ -37,15 +37,22 @@
           $("<div class='fitgrid-slot'></div>")
             .appendTo(gridContainer)
             .append(html);
-          $(".fitgrid-slot").each(function(index) {
-            $(this).removeClass().addClass("fitgrid-slot slot--"+grid.scenario[grid.addedElem]["s"+(index+1)]);
-          });
-          callback();
           grid.addedElem++;
+          grid.setClassesToSlots();
+          callback();
         },
 
-        remove: function(callback) {
-          console.log(grid.maxElem);
+        remove: function($elem, callback) {
+          $elem.remove();
+          grid.addedElem--;
+          grid.setClassesToSlots();
+          callback();
+        },
+
+        setClassesToSlots: function() {
+          $(".fitgrid-slot").each(function(index) {
+            $(this).removeClass().addClass("fitgrid-slot slot--"+grid.scenario[grid.addedElem-1]["s"+(index+1)]);
+          });
         }
       };
 
