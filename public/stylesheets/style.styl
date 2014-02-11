@@ -21,33 +21,25 @@
     $DEFAULTS
 \*------------------------------------*/
 
-/**
- * used color palette
- * http://www.colourlovers.com/palette/1393494/Brooklyn
- *
- * other palettes:
- * http://www.colourlovers.com/palette/1411495/Color_Oddity
- * http://www.colourlovers.com/palette/1236225/0011
- */
-
-primary-color = #CE534D
-secondary-color = #64B6B1
-home-bg-color = #eee
+primary-color = #dd4814
+home-bg-color = #fff
 home-text-color = #333
 home-field-bg-color = #fff
 home-field-text-color = #333
 
-header-bg-color = #222
-header-text-color = #888
-header-selected-color = darken(header-bg-color, 50)
+header-bg-color = #dd4814
+header-text-color = #fff
+header-selected-color = darken(header-bg-color, 10%)
 
 site-bg-color = #eee
 site-text-color = #333
 site-field-bg-color = #fff
 site-field-text-color = #333
+window-bg-color = #fff
 
 alert-color = #c50f13
 success-color = #5da423
+line-color = #ccc
 
 html, body
 	height: 100%
@@ -62,23 +54,22 @@ input, textarea
 	padding: 0
 	font-family: 'Open Sans', sans-serif
 	font-size: 0.857142em
-	outline: none
 	border: 0
-
-textarea
-	resize: none
+	outline: none
+	box-sizing: border-box
+	-moz-box-sizing: border-box
 
 ::-webkit-input-placeholder /* WebKit browsers */
-	color: home-text-color
+	color: #ccc
 
 :-moz-placeholder /* Mozilla Firefox 4 to 18 */
-	color: home-text-color
+	color: #ccc
 
 ::-moz-placeholder /* Mozilla Firefox 19+ */
-	color: home-text-color
+	color: #ccc
 
 :-ms-input-placeholder /* Internet Explorer 10+ */
-	color: home-text-color
+	color: #ccc
 
 a
 	color: primary-color
@@ -122,36 +113,40 @@ a
 	margin-left: -145px
 	width: 290px
 	text-align: center
+	background-color: home-bg-color
 	.form
 		padding: 10px 20px 20px
-		background-color: home-bg-color
 		.form__control
 			position: relative
-			margin-top: 10px
+			padding-top: 10px
 			input[type="text"], input[type="password"]
-				width: 230px
+				width: 100%
 				padding: 15px 10px
 				color: home-field-text-color
 				background-color: home-field-bg-color
+				border: solid thin line-color
+				box-shadow(inset 0 1px 2px rgba(0,0,0,.15))
 
 	#login-form, #signup-form
 		display: none
 
 	.button
-		width: 250px
+		width: 100%
 
 	#submit-button
 		background-color: primary-color
+		border-bottom-color: darken(primary-color, 20%)
 
 	a.login-fb-button
 		height: 17px
 		line-height: 47px
 		font-size: 0.857142em
 		background-color: #4c66a4
+		border-bottom-color: darken(#4c66a4, 20%)
 		.fb-icon
 			position: absolute
 			top: 0
-			bottom: 0
+			bottom: -4px
 			left: 0
 			width: 47px
 			font-size: 1.5em
@@ -162,8 +157,8 @@ a
 			right: 0
 			bottom: 0
 			left: 47px
-		&:active > *
-			padding-top: 3px
+		&:active>.fb-icon
+			bottom: 0
 
 	.error-dialog-box
 		position: absolute
@@ -177,43 +172,48 @@ a
     $HEADER_BAR
 \*------------------------------------*/
 
-header-width = 160px
+header-height = 45px
 
 .top-header
 	position: fixed
 	top: 0
-	bottom: 0
+	right: 0
 	left: 0
-	width: header-width
+	height: header-height
 	background-color: header-bg-color
+	border-bottom: solid thin #fff
 	.logo-small
-		padding: 10px;
-		text-align: center
+		float: left
+		margin: 5px 0 5px 20px
 		img
+			display: block
 			width: 35px
 			height: 35px
 	ul.user-wrapper
-		margin: 0
+		float: right
+		height: 100%
+		margin: 0 10px 0 0
 		padding: 0
 		list-style: none
 		li
-			padding: 10px
+			float: left
+			height: 100%
+			line-height: header-height
+			padding: 0 10px
 			color: header-text-color
 			.avatar
-				margin: 0 auto
+				float: left
+				margin: 5px 10px 5px 0
 			i
-				padding-right: 10px
+				padding-right: 5px
 			a
 				color: header-text-color
 			&.selected
 				background-color: header-selected-color
-				i
-					color: primary-color
-		li.user__account
-			padding: 0 0 20px
-			text-align: center
-			a
-				color: primary-color
+		.seperate-line
+			padding: 0
+			border-right: solid thin rgba(255,255,255,.2)
+			border-left: solid thin rgba(0,0,0,.1)
 
 /*------------------------------------*\
     $PROFILE
@@ -229,55 +229,57 @@ header-width = 160px
 
 .user-content
 	position: absolute
-	top: 10px
+	top: header-height + 10
 	right: 10px
 	bottom: 10px
-	left: header-width + 10
+	left: 10px
 	color: site-text-color
 
-sidebar-width = 200px
+sidebar-width = 217px
 	
 .groups-list
 	position: absolute
 	top: 10px
+	bottom: 10px
 	left: 10px
 	width: sidebar-width
-	background-color: #fff
+	background-color: window-bg-color
+	overflow-y: auto
 	.form
+		padding: 10px
+		border-bottom: solid thin site-bg-color
 		.form__control
-			float: left
+			position: relative
 			input[type="text"]
-				width: sidebar-width - (8*2) - 33
+				width: 100%
 				padding: 8px
 				color: site-field-text-color
 				background-color: site-field-bg-color
-				border-top-right-radius: 0
-				border-bottom-right-radius: 0
-			.button
-				width: 33px
-				height: 33px
+				border: solid thin line-color
+				box-shadow(inset 0 1px 2px rgba(0,0,0,.15))
+			#submit-button
+				display: block
+				position: absolute
+				top: 0
+				right: 0
+				width: 35px
+				height: 35px
 				padding: 0
-				color: secondary-color
-				background-color: white
-				border-top-left-radius: 0
-				border-bottom-left-radius: 0
-				.fa
-					position: absolute
-					top: 0
-					right: 0
-					bottom: 0
-					left: 0
-					line-height: 33px
-				&:active > .fa
-					padding-top: 3px
+				color: primary-color
+				background-color: transparent
+				border: 0
+				outline: none
 
 .group
-	padding: 10px
-	border-bottom: solid thin site-bg-color
+	margin: 0 10px
+	padding: 10px 0
+	border-bottom: dotted thin line-color
+	&:last-child
+		border-bottom: none
 	.group__name
 		margin-bottom: 5px
 		font-weight: 600
-		color: secondary-color
+		color: primary-color
 		cursor: pointer
 	.group__list
 		.member
@@ -327,6 +329,8 @@ sidebar-width = 200px
 	right: 5px
 	bottom: 5px
 	left: sidebar-width + 25
+	.guide-dialog-box
+		top: 9px
 
 .chat-window
 	position: absolute
@@ -334,11 +338,10 @@ sidebar-width = 200px
 	right: 5px
 	bottom: 5px
 	left: 5px
-	background-color: white
-	box-shadow: 0 1px 0 rgba(0,0,0,.2)
+	background-color: window-bg-color
 	.chat-window__helper
-		height: 33px
-		line-height: 33px
+		height: 35px
+		line-height: 35px
 		border-bottom: solid thin site-bg-color
 		&>*
 			padding: 0 8px
@@ -350,7 +353,7 @@ sidebar-width = 200px
 			font-size: 1.142857em
 			color: #ccc
 			&:hover
-				color: secondary-color
+				color: primary-color
 				cursor: pointer
 		.helper--buzz
 			float: right
@@ -362,11 +365,11 @@ sidebar-width = 200px
 			color: alert-color
 	.chat-window__room
 		position: absolute
-		top: 34px
+		top: 36px
 		right: 0
 		bottom: 46px
 		left: 0
-		overflow: auto;
+		overflow: auto
 	.chat-window__type
 		position: absolute
 		right: 0
@@ -380,17 +383,20 @@ sidebar-width = 200px
 		.chat-submit-button
 			width: 45px
 			height: 45px
-			font-size: 1.5em
-			color: secondary-color
-			background-color: white
-			&:active
-				box-shadow: none
+			padding: 0
+			font-size: 1.142857em
+			color: #ccc
+			background-color: transparent
+			border: 0
+			outline: none
 		.form__control:nth-of-type(2)
-			margin-right: 45px + 16px
+			margin-right: 45px
 		.chat-input
 			width: 100%
-			height: 17px
+			height: 45px
 			padding: 14px 8px
+			background-color: transparent
+			resize: none
 
 .chat-line--me
 	position: relative
@@ -400,7 +406,7 @@ sidebar-width = 200px
 		top: 1px
 		right: 0px
 	.chat-box
-		dialog-box(auto,auto,secondary-color,'right',8px)
+		dialog-box(auto,auto,#eee,'right',8px)
 		position: relative
 		float: right
 		min-width: 25%
@@ -408,7 +414,6 @@ sidebar-width = 200px
 		margin-right: 50px
 		padding: 10px
 		font-size: 0.857142em
-		color: white
 
 .chat-line--guest
 	position: relative
@@ -418,7 +423,7 @@ sidebar-width = 200px
 		top: 1px
 		left: 0px
 	.chat-box
-		dialog-box(auto,auto,site-bg-color,'left',8px)
+		dialog-box(auto,auto,#eee,'left',8px)
 		position: relative
 		float: left
 		min-width: 25%
@@ -441,7 +446,7 @@ sidebar-width = 200px
 	// max-width: 900px
 	// height: 80%
 	// max-height: 600px
-	background-color: white
+	background-color: window-bg-color
 	#share-popup__canvas
 		position: absolute
 		top: 10px
@@ -486,28 +491,24 @@ sidebar-width = 200px
 	text-transform: uppercase
 	border: 0
 	outline: none
+	border-bottom-style: solid
+	border-bottom-width: 4px
 	&:hover
 		text-decoration: none
 	&:active
-		box-shadow: inset 0 3px 5px rgba(0,0,0,.5)
+		margin-top: 4px
+		border-bottom: none
 
 .button.large
 	@extend .button
 	padding: 15px 0
-	&:active
-		padding: 18px 0 12px
 
 .button.small
 	@extend .button
 	padding: 8px 0
-	&:active
-		padding: 11px 0 5px
 
 .clear
 	clear: both
-
-.bot-line
-	border-bottom: solid thin site-bg-color
 
 .avatar
 	width: 100px
@@ -533,6 +534,12 @@ sidebar-width = 200px
 		display: table-cell
 		vertical-align: middle
 		text-align: center
+
+.drop-shadow
+	box-shadow(0 2px 2px rgba(0,0,0,.15))
+
+.round-corner
+	border-radius(4px)
 
 /*------------------------------------*\
     $ANIMATIONS

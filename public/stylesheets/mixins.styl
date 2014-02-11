@@ -16,6 +16,7 @@ dialog-box(w,h,bg-clr,type,pos)
 	height: h
 	padding: 15px
 	background-color: bg-clr
+	border-radius(4px)
 	&:after
 		content: ""
 		position: absolute
@@ -38,3 +39,8 @@ bg-sprite(bg_url,w,h,l,t)
 	width: w
 	height: h
 	background-position: l t
+
+box-shadow(content)
+	-webkit-box-shadow: content;
+	-moz-box-shadow: content;
+	box-shadow: content;

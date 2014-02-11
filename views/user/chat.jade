@@ -3,33 +3,25 @@ extends ../layout
 block content
   include ../includes/_header
   div.user-content
-    div.groups-list
-      form(id="new-group-form", class="form bot-line", method="POST", action="/users/#{user.username}/groups", autocomplete="off")
+    div.groups-list.drop-shadow.round-corner
+      form(id="new-group-form", class="form", method="POST", action="/users/#{user.username}/groups", autocomplete="off")
         div.form__control
           input(name="group_name", type="text", placeholder="New group")
-        div.form__control
-          button(class="button", id="submit-button", type="submit")
+          button(id="submit-button", type="submit")
             i.fa.fa-plus
         div.clear
-      //- div
-      //-   - var friends = 0
-      //-   - each group in groups
-      //-     - friends += group.users.length-1
-      //-   i.fa.fa-comments
-      //-   = groups.length
-      //-   i.fa.fa-users
-      //-   = friends
+
       each group in groups
         div.group(id="group-tab-#{group._id}")
           div.group__name(data-groupid="#{group._id}")
             = group.group_name
           div.group__list
             each user in group.users
-              - var acronym = user.fullname.match(/\b(\w)/g).join('')
-              - var char = acronym.charAt(0).toLowerCase()
-              div(class="member #{char}")
-                = acronym
-              //- img(src="#{user.avatar}", class="member-avatar", title="#{user.fullname}")
+              //- - var acronym = user.fullname.match(/\b(\w)/g).join('')
+              //- - var char = acronym.charAt(0).toLowerCase()
+              //- div(class="member #{char}")
+              //-   = acronym
+              img(src="#{user.avatar}", class="member-avatar", title="#{user.fullname}")
           div.clear
 
     div#chat-windows-container

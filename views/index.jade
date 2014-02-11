@@ -5,7 +5,7 @@ block content
 		div.logo
 			img(src="images/logo.svg")
 				
-		div.form-wrapper
+		div.form-wrapper.round-corner
 			form(id="login-form", class="form", method="POST", action="/login", autocomplete="off")
 				div.form__control
 					if loginErr != ""

@@ -14,14 +14,6 @@
  */
 /*------------------------------------*     $DEFAULTS
 \*------------------------------------*/
-/**
- * used color palette
- * http://www.colourlovers.com/palette/1393494/Brooklyn
- *
- * other palettes:
- * http://www.colourlovers.com/palette/1411495/Color_Oddity
- * http://www.colourlovers.com/palette/1236225/0011
- */
 html,
 body {
   height: 100%;
@@ -44,26 +36,25 @@ textarea {
   padding: 0;
   font-family: 'Open Sans', sans-serif;
   font-size: 0.857142em;
-  outline: none;
   border: 0;
-}
-textarea {
-  resize: none;
+  outline: none;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }
 ::-webkit-input-placeholder /* WebKit browsers */ {
-  color: #333;
+  color: #ccc;
 }
 :-moz-placeholder /* Mozilla Firefox 4 to 18 */ {
-  color: #333;
+  color: #ccc;
 }
 ::-moz-placeholder /* Mozilla Firefox 19+ */ {
-  color: #333;
+  color: #ccc;
 }
 :-ms-input-placeholder /* Internet Explorer 10+ */ {
-  color: #333;
+  color: #ccc;
 }
 a {
-  color: #ce534d;
+  color: #dd4814;
   text-decoration: none;
   cursor: pointer;
 }
@@ -104,42 +95,48 @@ a:hover {
   margin-left: -145px;
   width: 290px;
   text-align: center;
+  background-color: #fff;
 }
 .form-wrapper .form {
   padding: 10px 20px 20px;
-  background-color: #eee;
 }
 .form-wrapper .form .form__control {
   position: relative;
-  margin-top: 10px;
+  padding-top: 10px;
 }
 .form-wrapper .form .form__control input[type="text"],
 .form-wrapper .form .form__control input[type="password"] {
-  width: 230px;
+  width: 100%;
   padding: 15px 10px;
   color: #333;
   background-color: #fff;
+  border: solid thin #ccc;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.15);
+  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.15);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.15);
 }
 .form-wrapper #login-form,
 .form-wrapper #signup-form {
   display: none;
 }
 .form-wrapper .button {
-  width: 250px;
+  width: 100%;
 }
 .form-wrapper #submit-button {
-  background-color: #ce534d;
+  background-color: #dd4814;
+  border-bottom-color: #b13a10;
 }
 .form-wrapper a.login-fb-button {
   height: 17px;
   line-height: 47px;
   font-size: 0.857142em;
   background-color: #4c66a4;
+  border-bottom-color: #3d5283;
 }
 .form-wrapper a.login-fb-button .fb-icon {
   position: absolute;
   top: 0;
-  bottom: 0;
+  bottom: -4px;
   left: 0;
   width: 47px;
   font-size: 1.5em;
@@ -152,8 +149,8 @@ a:hover {
   bottom: 0;
   left: 47px;
 }
-.form-wrapper a.login-fb-button:active > * {
-  padding-top: 3px;
+.form-wrapper a.login-fb-button:active>.fb-icon {
+  bottom: 0;
 }
 .form-wrapper .error-dialog-box {
   position: absolute;
@@ -166,6 +163,9 @@ a:hover {
   height: auto;
   padding: 15px;
   background-color: #fff;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
 }
 .form-wrapper .error-dialog-box:after {
   content: "";
@@ -182,49 +182,52 @@ a:hover {
 .top-header {
   position: fixed;
   top: 0;
-  bottom: 0;
+  right: 0;
   left: 0;
-  width: 160px;
-  background-color: #222;
+  height: 45px;
+  background-color: #dd4814;
+  border-bottom: solid thin #fff;
 }
 .top-header .logo-small {
-  padding: 10px;
-  text-align: center;
+  float: left;
+  margin: 5px 0 5px 20px;
 }
 .top-header .logo-small img {
+  display: block;
   width: 35px;
   height: 35px;
 }
 .top-header ul.user-wrapper {
-  margin: 0;
+  float: right;
+  height: 100%;
+  margin: 0 10px 0 0;
   padding: 0;
   list-style: none;
 }
 .top-header ul.user-wrapper li {
-  padding: 10px;
-  color: #888;
+  float: left;
+  height: 100%;
+  line-height: 45px;
+  padding: 0 10px;
+  color: #fff;
 }
 .top-header ul.user-wrapper li .avatar {
-  margin: 0 auto;
+  float: left;
+  margin: 5px 10px 5px 0;
 }
 .top-header ul.user-wrapper li i {
-  padding-right: 10px;
+  padding-right: 5px;
 }
 .top-header ul.user-wrapper li a {
-  color: #888;
+  color: #fff;
 }
 .top-header ul.user-wrapper li.selected {
-  background-color: #000;
+  background-color: #c74112;
 }
-.top-header ul.user-wrapper li.selected i {
-  color: #ce534d;
-}
-.top-header ul.user-wrapper li.user__account {
-  padding: 0 0 20px;
-  text-align: center;
-}
-.top-header ul.user-wrapper li.user__account a {
-  color: #ce534d;
+.top-header ul.user-wrapper .seperate-line {
+  padding: 0;
+  border-right: solid thin rgba(255,255,255,0.2);
+  border-left: solid thin rgba(0,0,0,0.1);
 }
 /*------------------------------------*     $PROFILE
 \*------------------------------------*/
@@ -236,58 +239,63 @@ a:hover {
 \*------------------------------------*/
 .user-content {
   position: absolute;
-  top: 10px;
+  top: 55px;
   right: 10px;
   bottom: 10px;
-  left: 170px;
+  left: 10px;
   color: #333;
 }
 .groups-list {
   position: absolute;
   top: 10px;
+  bottom: 10px;
   left: 10px;
-  width: 200px;
+  width: 217px;
   background-color: #fff;
+  overflow-y: auto;
+}
+.groups-list .form {
+  padding: 10px;
+  border-bottom: solid thin #eee;
 }
 .groups-list .form .form__control {
-  float: left;
+  position: relative;
 }
 .groups-list .form .form__control input[type="text"] {
-  width: 151px;
+  width: 100%;
   padding: 8px;
   color: #333;
   background-color: #fff;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+  border: solid thin #ccc;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.15);
+  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.15);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.15);
 }
-.groups-list .form .form__control .button {
-  width: 33px;
-  height: 33px;
-  padding: 0;
-  color: #64b6b1;
-  background-color: #fff;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.groups-list .form .form__control .button .fa {
+.groups-list .form .form__control #submit-button {
+  display: block;
   position: absolute;
   top: 0;
   right: 0;
-  bottom: 0;
-  left: 0;
-  line-height: 33px;
-}
-.groups-list .form .form__control .button:active > .fa {
-  padding-top: 3px;
+  width: 35px;
+  height: 35px;
+  padding: 0;
+  color: #dd4814;
+  background-color: transparent;
+  border: 0;
+  outline: none;
 }
 .group {
-  padding: 10px;
-  border-bottom: solid thin #eee;
+  margin: 0 10px;
+  padding: 10px 0;
+  border-bottom: dotted thin #ccc;
+}
+.group:last-child {
+  border-bottom: none;
 }
 .group .group__name {
   margin-bottom: 5px;
   font-weight: 600;
-  color: #64b6b1;
+  color: #dd4814;
   cursor: pointer;
 }
 .group .group__list .member {
@@ -363,7 +371,10 @@ a:hover {
   top: 5px;
   right: 5px;
   bottom: 5px;
-  left: 225px;
+  left: 242px;
+}
+#chat-windows-container .guide-dialog-box {
+  top: 9px;
 }
 .chat-window {
   position: absolute;
@@ -372,11 +383,10 @@ a:hover {
   bottom: 5px;
   left: 5px;
   background-color: #fff;
-  box-shadow: 0 1px 0 rgba(0,0,0,0.2);
 }
 .chat-window .chat-window__helper {
-  height: 33px;
-  line-height: 33px;
+  height: 35px;
+  line-height: 35px;
   border-bottom: solid thin #eee;
 }
 .chat-window .chat-window__helper>* {
@@ -392,7 +402,7 @@ a:hover {
   color: #ccc;
 }
 .chat-window .chat-window__helper .helper--share:hover {
-  color: #64b6b1;
+  color: #dd4814;
   cursor: pointer;
 }
 .chat-window .chat-window__helper .helper--buzz {
@@ -407,7 +417,7 @@ a:hover {
 }
 .chat-window .chat-window__room {
   position: absolute;
-  top: 34px;
+  top: 36px;
   right: 0;
   bottom: 46px;
   left: 0;
@@ -428,20 +438,22 @@ a:hover {
 .chat-window .chat-window__type .chat-submit-button {
   width: 45px;
   height: 45px;
-  font-size: 1.5em;
-  color: #64b6b1;
-  background-color: #fff;
-}
-.chat-window .chat-window__type .chat-submit-button:active {
-  box-shadow: none;
+  padding: 0;
+  font-size: 1.142857em;
+  color: #ccc;
+  background-color: transparent;
+  border: 0;
+  outline: none;
 }
 .chat-window .chat-window__type .form__control:nth-of-type(2) {
-  margin-right: 61px;
+  margin-right: 45px;
 }
 .chat-window .chat-window__type .chat-input {
   width: 100%;
-  height: 17px;
+  height: 45px;
   padding: 14px 8px;
+  background-color: transparent;
+  resize: none;
 }
 .chat-line--me {
   position: relative;
@@ -457,7 +469,10 @@ a:hover {
   width: auto;
   height: auto;
   padding: 15px;
-  background-color: #64b6b1;
+  background-color: #eee;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
   position: relative;
   float: right;
   min-width: 25%;
@@ -465,7 +480,6 @@ a:hover {
   margin-right: 50px;
   padding: 10px;
   font-size: 0.857142em;
-  color: #fff;
 }
 .chat-line--me .chat-box:after {
   content: "";
@@ -475,7 +489,7 @@ a:hover {
   border-top: solid 10px transparent;
   border-right: solid 10px transparent;
   border-bottom: solid 10px transparent;
-  border-left: solid 10px #64b6b1;
+  border-left: solid 10px #eee;
 }
 .chat-line--guest {
   position: relative;
@@ -492,6 +506,9 @@ a:hover {
   height: auto;
   padding: 15px;
   background-color: #eee;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
   position: relative;
   float: left;
   min-width: 25%;
@@ -518,6 +535,9 @@ a:hover {
   height: auto;
   padding: 15px;
   background-color: #fff;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
 }
 .guide-dialog-box:after {
   content: "";
@@ -582,6 +602,8 @@ a:hover {
   text-transform: uppercase;
   border: 0;
   outline: none;
+  border-bottom-style: solid;
+  border-bottom-width: 4px;
 }
 .button:hover,
 .button.large:hover,
@@ -591,25 +613,17 @@ a:hover {
 .button:active,
 .button.large:active,
 .button.small:active {
-  box-shadow: inset 0 3px 5px rgba(0,0,0,0.5);
+  margin-top: 4px;
+  border-bottom: none;
 }
 .button.large {
   padding: 15px 0;
 }
-.button.large:active {
-  padding: 18px 0 12px;
-}
 .button.small {
   padding: 8px 0;
 }
-.button.small:active {
-  padding: 11px 0 5px;
-}
 .clear {
   clear: both;
-}
-.bot-line {
-  border-bottom: solid thin #eee;
 }
 .avatar {
   width: 100px;
@@ -639,6 +653,16 @@ a:hover {
   display: table-cell;
   vertical-align: middle;
   text-align: center;
+}
+.drop-shadow {
+  -webkit-box-shadow: 0 2px 2px rgba(0,0,0,0.15);
+  -moz-box-shadow: 0 2px 2px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 2px rgba(0,0,0,0.15);
+}
+.round-corner {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
 }
 /*------------------------------------*     $ANIMATIONS
 \*------------------------------------*/

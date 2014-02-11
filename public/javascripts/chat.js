@@ -57,7 +57,6 @@
 
     //[TASK] parse message to create notification
     if (message.indexOf("@"+currentUser.username) != -1) {
-      $("#group-tab-"+group).css("background-color", "red");
       $("#group-"+group).find(".helper--buzz>i").addClass("ding-dong");
     }
 
