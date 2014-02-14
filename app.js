@@ -13,22 +13,22 @@ var app = express(),
   server = http.createServer(app);
 
 //set environment variables
-app.config = require('./config');
+app.config = require('./app/config');
 
 //setup mongoose
 app.db = mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost/join_development');
 
 //config data models
-require('./models')(app);
+require('./app/models')(app);
 
 //config passport
-require('./passport')(app, passport);
+require('./app/passport')(app, passport);
 
 //config all
 app.configure(function(){
   //setting
   app.set('port', process.env.PORT || 3000);
-  app.set('views', path.join(__dirname, 'views'));
+  app.set('views', path.join(__dirname, 'app/views'));
   app.set('view engine', 'jade');
 
   //middleware
@@ -71,9 +71,9 @@ app.configure('production', function(){
 //$ node app.js
 
 //route requests
-require('./routes')(app);
+require('./app/routes')(app);
 
-require('./socketio')(socket, server);
+require('./app/socketio')(socket, server);
 
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
