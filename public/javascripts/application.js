@@ -9,31 +9,6 @@ Array.prototype.remove = function() {
   return this;
 };
 
-window.App = {
-	Models: {},
-	Collections: {},
-	Views: {},
-	Router: {}
-};
-
-App.Router = Backbone.Router.extend({
-	routes: {
-		'': 'index',
-		'a': 'test'
-	},
-
-	index: function() {
-		console.log("Backbone is ready!");
-	},
-
-	test: function() {
-		console.log("This is test page");
-	}
-});
-
-new App.Router;
-Backbone.history.start();
-
 function AppModel(url) {
 	this.url = url;
 }

@@ -1,3 +1,12 @@
+exports.list = function(req, res){
+	res.app.db.models.Group
+    .find({'users': req.user._id})
+    .populate('users', 'fullname avatar')
+    .exec(function(err, groups){
+      res.send(groups);
+    });
+};
+
 exports.show = function(req, res){
 	res.app.db.models.Group.findOne({_id: req.params.group_id}, function(err, group){
 		res.send({user: req.user, group: group});

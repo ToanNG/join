@@ -34,7 +34,7 @@ exports = module.exports = function(app) {
 	  passport.authenticate('local', { failureRedirect: '/',
 	                                   failureFlash: 'Invalid username or password.' }),
 	  function(req, res) {
-	    res.redirect('/users/' + req.user.username + '/chat');
+	    res.redirect('/users/' + req.user.username);
 	});
 	app.get('/logout', function(req, res){
 	  req.logout();
@@ -48,13 +48,13 @@ exports = module.exports = function(app) {
 	app.get('/auth/facebook/callback', 
 	  passport.authenticate('facebook', { failureRedirect: '/' }),
 	  function(req, res) {
-	    res.redirect('/users/' + req.user.username + '/chat');
+	    res.redirect('/users/' + req.user.username);
 	});
 
 	//user view
 	app.get('/users', auth, user.list);
 	app.get('/users/:username.:format?', authz, function(req, res) {
-		res.redirect('/users/' + req.user.username + '/chat');
+		res.render('user', {user: req.user});
 	});
 	app.post('/users', user.post);
 	app.get('/users/:username.:format?/chat', authz, user.show);
@@ -65,6 +65,7 @@ exports = module.exports = function(app) {
 	app.post('/users/:username/share', authz, user.share);
 
 	//group view
+	app.get('/users/:username/groups', authz, group.list);
 	app.get('/users/:username/groups/:group_id', authz, group.show);
 	app.post('/users/:username/groups', group.post);
 	app.post('/users/:username/groups/add', group.add);
