@@ -4,11 +4,11 @@ App.Router = Backbone.Router.extend({
     'profile': 'showUser',
     'chat': 'listGroups',
     'tasks': 'listTasks',
-    'setting': 'setting'
+    'setting': 'setting',
+    '*other': 'index'
   },
 
   index: function() {
-    console.log('Backbone is ready!');
     Backbone.history.navigate('/chat', true);
   },
 

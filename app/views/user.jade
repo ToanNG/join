@@ -4,34 +4,44 @@ block content
   include includes/_header
   div.user-content
 
-  script(id="allGroupsTemplate", type="text/x-handlebars-template").
-    <form id="new-group-form" class="form" method="POST" action="/users/{{user.username}}/groups", autocomplete="off">
-      <div class="form__control">
-        <input name="group_name" type="text" placeholder="New group"/>
-        <button id="submit-button" type="submit">
-          <i class="fa fa-plus"></i>
-        </button>
-      </div>
-      <div class="clear"></div>
-    </form>
-    
-    {{#each this}}
-      <div id="group-tab-{{_id}}" class="group">
-        <div class="group__name" data-groupid="{{_id}}">
-          {{group_name}}
-        </div>
-        <div class="group__list">
-          {{#each users}}
-            <!-- - var acronym = user.fullname.match(/\b(\w)/g).join('')
-            - var char = acronym.charAt(0).toLowerCase()
-            div(class="member #{char}")
-              = acronym -->
-            <img src="{{avatar}}" class="member-avatar" title="{{fullname}}"/>
-          {{/each}}
+  script(id="chatTemplate", type="text/x-handlebars-template").
+    <div class="groups-list drop-shadow round-corner">
+      <form id="new-group-form" class="form" method="POST" action="/users/{{user.username}}/groups", autocomplete="off">
+        <div class="form__control">
+          <input id="group_name" name="group_name" type="text" placeholder="New group"/>
+          <button id="submit-button" type="submit">
+            <i class="fa fa-plus"></i>
+          </button>
         </div>
         <div class="clear"></div>
-      </div>
-    {{/each}}
+      </form>
+
+      {{#each this}}
+        <div id="group-tab-{{_id}}" class="group">
+          <div class="group__name" data-groupid="{{_id}}">
+            {{group_name}}
+          </div>
+          <div class="group__list">
+            {{#each users}}
+              <!-- - var acronym = user.fullname.match(/\b(\w)/g).join('')
+              - var char = acronym.charAt(0).toLowerCase()
+              div(class="member #{char}")
+                = acronym -->
+              <img src="{{avatar}}" class="member-avatar" title="{{fullname}}"/>
+            {{/each}}
+          </div>
+          <div class="clear"></div>
+        </div>
+      {{/each}}
+    </div>
+
+    <div id="chat-windows-container">
+      {{#unless this.length}}
+        <div class="guide-dialog-box">
+          Welcome to Join! Lets start by create some groups and invite your friend.
+        </div>
+      {{/unless}}
+    </div>
 
   script(src='/javascripts/main.js')
   script(src='/javascripts/models.js')

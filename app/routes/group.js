@@ -25,7 +25,18 @@ exports.post = function(req, res){
 				if (err)
 					res.send(err);
 				else
-					res.redirect('/users/' + user.username + '/chat');
+					var result = {
+						_id: group._id,
+						group_name: group.group_name,
+						users: [
+							{
+								_id: user._id,
+								fullname: user.fullname,
+								avatar: user.avatar
+							}
+						]
+					};
+					res.send(result);
 			});
 		});
 	});
