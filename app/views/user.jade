@@ -43,6 +43,41 @@ block content
       {{/unless}}
     </div>
 
+  script(id="chatWindowTemplate", type="text/x-handlebars-template").
+    <div id="group-{{id}}" class="chat-window drop-shadow round-corner zoom-in">
+      <div class="chat-window__helper">
+        <div class="helper--title">
+          {{name}}
+        </div>
+        <div class="helper--close-button">
+          <i class="fa fa-times"></i>
+        </div>
+        <div class="helper--buzz">
+          <i class="fa fa-bell"></i>
+        </div>
+        <div class="helper--share">
+          <i class="fa fa-picture-o"></i>
+        </div>
+      </div>
+
+      <div class="chat-window__room"></div>
+
+      <div class="chat-window__type">
+        <form class="chat-form" data-groupid="{{id}}" method="POST" autocomplete="off">
+          <div class="form__control">
+            <button class="chat-submit-button" type="submit">
+              <i class="fa fa-pencil"></i>
+            </button>
+          </div>
+          <div class="form__control">
+            <textarea class="chat-input" name="chat-input" placeholder="What is your idea..."></textarea>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  script(src='/javascripts/application.js')
+  script(src='/javascripts/fitgrid.jquery.js')
   script(src='/javascripts/main.js')
   script(src='/javascripts/models.js')
   script(src='/javascripts/collections.js')
@@ -50,5 +85,6 @@ block content
   script(src='/javascripts/router.js')
   script(type='text/javascript').
     window.currentUser = !{JSON.stringify(user)};
+    new App.Views.App();
     new App.Router;
     Backbone.history.start();

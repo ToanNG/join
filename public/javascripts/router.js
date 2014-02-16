@@ -13,19 +13,15 @@ App.Router = Backbone.Router.extend({
   },
 
   showUser: function() {
-    
+    vent.trigger('user:show');
   },
 
   listGroups: function() {
-    App.groups = new App.Collections.Groups;
-    App.groups.fetchByUsername(window.currentUser.username).then(function() {
-      var allGroupsView = new App.Views.Groups({ collection: App.groups }).render();
-      $('.user-content').append(allGroupsView.el);
-    });
+    vent.trigger('group:list');
   },
 
   listTasks: function() {
-    
+    vent.trigger('task:list');
   },
 
   setting: function() {
