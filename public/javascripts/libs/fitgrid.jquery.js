@@ -57,8 +57,8 @@
       };
 
     return {
-        add: grid.add,
-        remove: grid.remove
+      add: grid.add,
+      remove: grid.remove
     };
   };
 })(jQuery);

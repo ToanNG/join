@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost/join_development');
 
 var User = require('./app/schema/User'),
-  Group = require('./app/schema/Group');
+  Group = require('./app/schema/Group'),
+  Task = require('./app/schema/Task');
 
 module.exports = function(grunt) {
   grunt.registerTask('db-reset', function() {
@@ -14,7 +15,11 @@ module.exports = function(grunt) {
 
       Group.collection.remove(function() {
         console.log("Empty groups collection");
-        done();
+
+        Task.collection.remove(function() {
+          console.log("Empty tasks collection");          
+          done();
+        });
       });
     });
   });
@@ -38,8 +43,20 @@ module.exports = function(grunt) {
     .then(
       function() {
         console.log('Inserted all groups');
+        return Task.create(require('./samples/tasks-data.json'));
+      },
+      function(err) {
+        console.log('Error: '+err.err);
+        done(false);
+    })
+    .then(
+      function() {
+        console.log('Inserted all tasks');
         done();
-      }
-    );
+      },
+      function(err) {
+        console.log('Error: '+err.err);
+        done(false);
+    });
   });
 };
