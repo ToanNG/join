@@ -39,7 +39,8 @@ exports = module.exports = function(app, passport) {
 				    fullname: (profile.name.givenName+" "+profile.name.familyName+" "+profile.name.middleName).replace(/undefined/g, "").trim(),
 				    facebook_id: profile.id,
 				    avatar: "https://graph.facebook.com/"+profile.username+"/picture",
-				    groups: []
+				    groups: [],
+				    tasks: []
 				  }).save(function(err, user){
 				  	if (err) { return done(err); }
 

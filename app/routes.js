@@ -19,7 +19,7 @@ var authz = function(req, res, next) {
 
 var checkLogin = function(req, res, next) {
 	if (req.isAuthenticated())
-		res.redirect('/users/' + req.user.username + '/chat');
+		res.redirect('/users/' + req.user.username + '#chat');
 	else
 		next();
 };
@@ -53,14 +53,8 @@ exports = module.exports = function(app) {
 
 	//user view
 	app.get('/users', auth, user.list);
-	app.get('/users/:username.:format?', authz, function(req, res) {
-		res.render('user', {user: req.user});
-	});
+	app.get('/users/:username.:format?', authz, user.show);
 	app.post('/users', user.post);
-	app.get('/users/:username.:format?/chat', authz, user.show);
-	app.get('/users/:username.:format?/profile', authz, function(req, res) {
-		res.render('user/profile', {user: req.user});
-	});
 	app.post('/users/:username/upload', authz, user.upload);
 	app.post('/users/:username/share', authz, user.share);
 

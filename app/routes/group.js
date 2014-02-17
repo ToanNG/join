@@ -1,7 +1,7 @@
 exports.list = function(req, res){
 	res.app.db.models.Group
     .find({'users': req.user._id})
-    .populate('users', 'fullname avatar')
+    .populate('users', 'fullname avatar') //I love this one
     .exec(function(err, groups){
       res.send(groups);
     });
@@ -9,7 +9,7 @@ exports.list = function(req, res){
 
 exports.show = function(req, res){
 	res.app.db.models.Group.findOne({_id: req.params.group_id}, function(err, group){
-		res.send({user: req.user, group: group});
+		res.send(group);
 	});
 };
 
@@ -50,7 +50,6 @@ exports.add = function(req, res){
 				group.users.push(user._id);
 				group.save(function(err, group){
 					res.send(group);
-					// res.redirect('/users/' + user.username);
 				});
 			});
 		});

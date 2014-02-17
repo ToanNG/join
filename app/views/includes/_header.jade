@@ -3,7 +3,7 @@ div.top-header
     img(src="/images/logo_white.svg")
   ul.user-wrapper
     li.user__account
-      div.avatar.small(style="background-image: url(#{user.avatar});")
+      div.avatar.small(style="background-image: url('#{user.avatar}');")
       a(href="/users/#{user.username}#profile")
         = user.fullname
     li.seperate-line

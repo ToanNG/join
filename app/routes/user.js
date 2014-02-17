@@ -29,7 +29,7 @@ exports.upload = function(req, res){
           { username: req.params.username },
           { $set: { avatar: aws_url }},
           function(){
-            res.redirect('/users/'+req.params.username+'/profile');
+            res.redirect('/users/'+req.params.username+'#profile');
         });
       });
     });
@@ -61,12 +61,7 @@ exports.list = function(req, res){
 };
 
 exports.show = function(req, res){
-	res.app.db.models.Group
-    .find({'users': req.user._id})
-    .populate('users', 'fullname avatar') //I love this one
-    .exec(function(err, groups){
-      res.render('user/chat', {user: req.user, groups: groups});
-    });
+	res.render('user', {user: req.user});
 };
 
 exports.post = function(req, res){
