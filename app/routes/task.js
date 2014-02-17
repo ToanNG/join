@@ -7,18 +7,7 @@ exports.list = function(req, res){
       ]})
     .populate('giver receiver', 'fullname')
     .exec(function(err, tasks){
-      var receivedTasks = [],
-        givenTasks = [];
-
-      tasks.forEach(function(task){
-        if (task.receiver._id == req.user._id.toString()) {
-          receivedTasks.push(task);
-        } else {
-          givenTasks.push(task);
-        }
-      });
-
-      res.render('user/tasks', {user: req.user, receivedTasks: receivedTasks, givenTasks: givenTasks});
+      res.send(tasks);
     });
 };
 

@@ -23,10 +23,6 @@ block content
           </div>
           <div class="group__list">
             {{#each users}}
-              <!-- - var acronym = user.fullname.match(/\b(\w)/g).join('')
-              - var char = acronym.charAt(0).toLowerCase()
-              div(class="member #{char}")
-                = acronym -->
               <img src="{{avatar}}" class="member-avatar" title="{{fullname}}"/>
             {{/each}}
           </div>
@@ -76,8 +72,59 @@ block content
       </div>
     </div>
 
-  script(src='/javascripts/application.js')
-  script(src='/javascripts/fitgrid.jquery.js')
+  script(id="sharePopupTemplate", type="text/x-handlebars-template").
+    <div class="overlay">
+      <div class="center">
+        <div id="share-popup">
+          <div id="share-popup__canvas"></div>
+
+          <form id="share-form" method="POST" action="/users/{{username}}/share" enctype="multipart/form-data">
+              <input type="file" name="image"/>
+              <input type="submit"/>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  script(id="profileTemplate", type="text/x-handlebars-template").
+    <h1> This is profile page </h1>
+    <p> {{this.username}} </p>
+    <p> {{this.fullname}} </p>
+    <p>
+      <img class="profile__image" src="{{this.avatar}}"/>
+    </p>
+    <p>
+      <form id="upload-avatar-form" method="POST" action="/users/{{this.username}}/upload" enctype="multipart/form-data">
+        <input type="file" name="image"/>
+        <input type="submit"/>
+      </form>
+    </p>
+
+  script(id="tasksTemplate", type="text/x-handlebars-template").
+    <h1> This is task page </h1>
+
+    <h2> Your tasks </h2>
+    <ul>
+      {{#each this.receivedTasks}}
+        <li>
+          {{content}} <br/>
+          from {{giver.fullname}}
+        </li>
+      {{/each}}
+    </ul>
+
+    <h2> Track other tasks </h2>
+    <ul>
+      {{#each this.givenTasks}}
+        <li>
+          {{content}} <br/>
+          to {{receiver.fullname}}
+        </li>
+      {{/each}}
+    </ul>
+
+  script(src='/javascripts/util.js')
+  script(src='/javascripts/libs/fitgrid.jquery.js')
   script(src='/javascripts/main.js')
   script(src='/javascripts/models.js')
   script(src='/javascripts/collections.js')

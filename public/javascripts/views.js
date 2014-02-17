@@ -4,36 +4,15 @@
 
 App.Views.App = Backbone.View.extend({
   initialize: function() {
+    vent.on('user:show', this.showUser, this);
     vent.on('group:list', this.listGroups, this);
+    vent.on('task:list', this.listTasks, this);
 
     App.server = io.connect(window.location.origin);
 
     App.server.on('connect', function(){
       App.server.emit('user join', currentUser);
     });
-  },
-
-  listGroups: function() {
-    App.groups = new App.Collections.Groups;
-    App.groups.fetchByUsername(window.currentUser.username).then(function() {
-      new App.Views.Groups({ collection: App.groups }).render();
-    });
-  }
-});
-
-/*------------------------------------*\
-    Chat View
-\*------------------------------------*/
-
-App.Views.Groups = Backbone.View.extend({
-  el: '.user-content',
-
-  template: template('chatTemplate'),
-
-  initialize: function() {
-    this.collection.on('add', this.render, this);
-    this.chatGrid = $.fitgrid("#chat-windows-container");
-    this.openedChat = [];
 
     App.server.on('update chat', function(message, group, user){
       if (typeof user === "undefined") {
@@ -58,6 +37,42 @@ App.Views.Groups = Backbone.View.extend({
           "</div>")
         .scrollTop($chatRoom.prop("scrollHeight") - $chatRoom.height());
     });
+  },
+
+  showUser: function() {
+    new App.Views.User({ model: currentUser }).render();
+  },
+
+  listGroups: function() {
+    var groups = new App.Collections.Groups;
+    groups.fetchByUsername(window.currentUser.username).then(function() {
+      new App.Views.Groups({ collection: groups }).render();
+    });
+  },
+
+  listTasks: function() {
+    var tasks = new App.Collections.Tasks;
+    tasks.fetchByUsername(window.currentUser.username).then(function() {
+      new App.Views.Tasks({ collection: tasks }).render();
+    });
+  }
+});
+
+/*------------------------------------*\
+    Chat View
+\*------------------------------------*/
+
+App.Views.Groups = Backbone.View.extend({
+  el: '.user-content',
+
+  template: template('chatTemplate'),
+
+  initialize: function() {
+    this.$el.off(); //this prevents zombie view
+
+    this.collection.on('add', this.render, this);
+    this.chatGrid = $.fitgrid("#chat-windows-container");
+    this.openedChat = [];
   },
 
   events: {
@@ -97,7 +112,7 @@ App.Views.Groups = Backbone.View.extend({
     this.$el
       .html( this.template( this.collection.toJSON() ) );
     return this;
-  },
+  }
 });
 
 /*------------------------------------*\
@@ -152,6 +167,60 @@ App.Views.Group = Backbone.View.extend({
   render: function() {
     var html = this.template( this.model );
     this.setElement(html);
+    return this;
+  }
+});
+
+/*------------------------------------*\
+    Profile View
+\*------------------------------------*/
+
+App.Views.User = Backbone.View.extend({
+  el: '.user-content',
+
+  template: template('profileTemplate'),
+
+  initialize: function() {
+    this.$el.off();
+  },
+
+  render: function() {
+    this.$el
+      .html( this.template( this.model ) );
+    return this;
+  }
+});
+
+/*------------------------------------*\
+    Tasks List View
+\*------------------------------------*/
+
+App.Views.Tasks = Backbone.View.extend({
+  el: '.user-content',
+
+  template: template('tasksTemplate'),
+
+  initialize: function() {
+    this.$el.off();
+  },
+
+  render: function() {
+    var receivedTasks = [],
+        givenTasks = [];
+
+    this.collection.toJSON().forEach(function(task){
+      if (task.receiver._id == currentUser._id.toString()) {
+        receivedTasks.push(task);
+      } else {
+        givenTasks.push(task);
+      }
+    });
+
+    this.$el
+      .html( this.template( {
+        receivedTasks: receivedTasks,
+        givenTasks: givenTasks
+      } ) );
     return this;
   }
 });
