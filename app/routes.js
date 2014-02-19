@@ -62,7 +62,7 @@ exports = module.exports = function(app) {
 	//group view
 	app.get('/users/:username/groups', authz, group.list);
 	app.get('/users/:username/groups/:group_id', authz, group.show);
-	app.post('/users/:username/groups', group.post);
+	app.post('/users/:username/groups', authz, group.post);
 	app.post('/users/:username/groups/add', group.add);
 
 	//task view

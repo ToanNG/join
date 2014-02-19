@@ -141,7 +141,7 @@ App.Views.Group = Backbone.View.extend({
 
   openAddMemberPopup: function(e) {
     var addMemberPopupView = new App.Views.AddPopup({ model: this.model }).render();
-    this.$el.append(addMemberPopupView.el);
+    $('body').append(addMemberPopupView.el);
   },
 
   render: function() {
@@ -160,33 +160,73 @@ App.Views.AddPopup = Backbone.View.extend({
 
   initialize: function() {
     this.users = new App.Collections.Users;
+    this.existedMembers = this.model.toJSON().users.map(function(user) {
+      return user.username;
+    });
+    this.chosenMembers = [];
   },
 
   events: {
-    'keyup #search-users-form': 'fetchUsers'
+    'keyup #search-users-form': 'fetchUsers',
+    'submit #search-users-form': function() { return false; },
+    'click .cancel-button': 'closePopup',
+    'click .confirm-button': 'submit',
+    'click .not-a-member': 'addToChosenMembers'
   },
 
   fetchUsers: function(e) {
     delay(function(){
       var keyword = $(e.target).val(),
-        $resultsContainer = $('#add-member-popup__results');
+        $resultsContainer = $('#popup__results');
 
       this.users.fetch({ data: $.param({ name: keyword}) }).then(function() {
         $resultsContainer.empty();
 
         this.users.toJSON().forEach(function(user) {
-          user.fullname = user.fullname.highlight(keyword);
-          user.username = user.username.highlight(keyword);
-          $resultsContainer.append('<p>'+user.fullname+' ('+user.username+')'+'</p>');
-        });
+          var fullname = user.fullname.highlight(keyword),
+            username = user.username.highlight(keyword);
+
+          if (this.existedMembers.indexOf(user.username) != -1) {
+            $resultsContainer.append('<div class="single-result"><i class="fa fa-check-square"></i>'+fullname+' ('+username+')'+'</div>');
+          } else {
+            $resultsContainer.append('<div class="single-result not-a-member" data-userid="'+user._id+'"><i class="fa fa-plus-square"></i>'+fullname+' ('+username+')'+'</div>');
+          }
+        }.bind(this));
       }.bind(this));
     }.bind(this), 1000 );
+  },
+
+  closePopup: function() {
+    this.unrender();
+  },
+
+  submit: function() {
+    this.chosenMembers = this.chosenMembers.remove(undefined).uniq();
+    console.log(this.chosenMembers);
+  },
+
+  addToChosenMembers: function(e) {
+    var $target = $(e.target);
+
+    if ($target.hasClass('chosen')) {
+      $target.removeClass('chosen');
+      this.chosenMembers.remove($target.data('userid'));
+    } else {
+      $target.addClass('chosen');
+      this.chosenMembers.push($target.data('userid'));
+    }
   },
 
   render: function() {
     var html = this.template( this.model.toJSON() );
     this.setElement(html);
+    $('#wrapper').addClass('ios7-effect');
     return this;
+  },
+
+  unrender: function() {
+    this.$el.remove();
+    $('#wrapper').removeClass('ios7-effect');
   }
 });
 

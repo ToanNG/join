@@ -66,7 +66,7 @@ exports.search = function(req, res){
       $or:[
         { username: new RegExp(req.query.name, "i") },
         { fullname: new RegExp(req.query.name, "i") },
-      ]})
+      ]}, 'username fullname avatar')
     .exec(function(err, users){
       res.send(users);
     });

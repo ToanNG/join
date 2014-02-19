@@ -254,14 +254,17 @@ a:hover {
   background-color: #fff;
   overflow-y: auto;
 }
-.groups-list .form {
+.groups-list .form,
+#add-member-popup #popup__search .form {
   padding: 10px;
   border-bottom: solid thin #eee;
 }
-.groups-list .form .form__control {
+.groups-list .form .form__control,
+#add-member-popup #popup__search .form .form__control {
   position: relative;
 }
-.groups-list .form .form__control input[type="text"] {
+.groups-list .form .form__control input[type="text"],
+#add-member-popup #popup__search .form .form__control input[type="text"] {
   width: 100%;
   padding: 8px;
   color: #333;
@@ -271,7 +274,8 @@ a:hover {
   -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.15);
   box-shadow: inset 0 1px 2px rgba(0,0,0,0.15);
 }
-.groups-list .form .form__control #submit-button {
+.groups-list .form .form__control .submit-button,
+#add-member-popup #popup__search .form .form__control .submit-button {
   display: block;
   position: absolute;
   top: 0;
@@ -592,6 +596,62 @@ a:hover {
   height: 600px;
   background-color: #fff;
 }
+#add-member-popup #popup__search .form .form__control>.submit-button {
+  color: #ccc;
+}
+#add-member-popup #popup__results {
+  position: absolute;
+  top: 56px;
+  right: 0;
+  bottom: 60px;
+  left: 0;
+  overflow-y: auto;
+}
+#add-member-popup #popup__results .single-result {
+  margin: 0 10px;
+  padding: 10px 0;
+  text-align: left;
+  border-bottom: dotted thin #ccc;
+}
+#add-member-popup #popup__results .single-result:last-child {
+  border-bottom: none;
+}
+#add-member-popup #popup__results .single-result .fa {
+  margin-right: 10px;
+}
+#add-member-popup #popup__results .single-result .fa-check-square {
+  color: #5da423;
+}
+#add-member-popup #popup__results .single-result .fa-plus-square {
+  color: #808080;
+}
+#add-member-popup #popup__results .single-result.not-a-member {
+  cursor: pointer;
+}
+#add-member-popup #popup__results .single-result.chosen .fa-plus-square {
+  color: #dd4814;
+}
+#add-member-popup #popup__buttons {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 10px;
+  border-top: solid thin #eee;
+}
+#add-member-popup #popup__buttons .cancel-button {
+  float: left;
+  width: 185px;
+  margin-right: 10px;
+  background-color: #808080;
+  border-bottom-color: #666;
+}
+#add-member-popup #popup__buttons .confirm-button {
+  float: left;
+  width: 185px;
+  background-color: #dd4814;
+  border-bottom-color: #b13a10;
+}
 /*------------------------------------*     $401
 \*------------------------------------*/
 .gandalf {
@@ -670,7 +730,7 @@ a:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.75);
+  background-color: rgba(0,0,0,0.5);
   z-index: 10;
 }
 .overlay .center {
@@ -687,6 +747,10 @@ a:hover {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
+}
+.ios7-effect {
+  opacity: 0.7;
+  -webkit-filter: grayscale(100%) blur(5px);
 }
 /*------------------------------------*     $ANIMATIONS
 \*------------------------------------*/

@@ -10,6 +10,17 @@ Array.prototype.remove = function() {
   return this;
 };
 
+Array.prototype.uniq = function() {
+  var prim = {"boolean":{}, "number":{}, "string":{}}, obj = [];
+
+  return this.filter(function(x) {
+    var t = typeof x;
+    return (t in prim) ? 
+      !prim[t][x] && (prim[t][x] = 1) :
+      obj.indexOf(x) < 0 && obj.push(x);
+  });
+};
+
 String.prototype.highlight = function(key) {
   var temp = this.substr(this.toLowerCase().indexOf(key.toLowerCase()), key.length);
   return this.replace(new RegExp(key, "i"), '<span style="background-color: yellow;">'+temp+'</span>');

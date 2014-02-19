@@ -1,3 +1,7 @@
+/**
+ * [Require authorization] Show a list of groups of the current user
+ * @return {Array} groups
+ */
 exports.list = function(req, res){
 	res.app.db.models.Group
     .find({'users': req.user._id})
@@ -7,12 +11,23 @@ exports.list = function(req, res){
     });
 };
 
+/**
+ * [Require authorization] Show a single group
+ * @param {String} group_id
+ * @return {JSON} group
+ */
 exports.show = function(req, res){
 	res.app.db.models.Group.findOne({_id: req.params.group_id}, function(err, group){
 		res.send(group);
 	});
 };
 
+/**
+ * [Require authorization] Create new group
+ * @param {String} username
+ * @param {String} group_name
+ * @return {JSON} result
+ */
 exports.post = function(req, res){
 	res.app.db.models.User.findOne({username: req.params.username}, function(err, user){
   	new res.app.db.models.Group({
@@ -31,6 +46,7 @@ exports.post = function(req, res){
 						users: [
 							{
 								_id: user._id,
+								username: user.username,
 								fullname: user.fullname,
 								avatar: user.avatar
 							}
@@ -42,6 +58,12 @@ exports.post = function(req, res){
 	});
 };
 
+/**
+ * Add users to one group (without invitations)
+ * @param {Array} user_id_array 
+ * @param {String} group_id
+ * @return {JSON} raw
+ */
 exports.add = function(req, res){
 	res.app.db.models.User.update(
 		{ _id: {$in:req.body.user_id_array} },
