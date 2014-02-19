@@ -60,6 +60,18 @@ exports.list = function(req, res){
 	});
 };
 
+exports.search = function(req, res){
+  res.app.db.models.User
+    .find({
+      $or:[
+        { username: new RegExp(req.query.name, "i") },
+        { fullname: new RegExp(req.query.name, "i") },
+      ]})
+    .exec(function(err, users){
+      res.send(users);
+    });
+};
+
 exports.show = function(req, res){
 	res.render('user', {user: req.user});
 };

@@ -1,7 +1,7 @@
 exports.list = function(req, res){
 	res.app.db.models.Group
     .find({'users': req.user._id})
-    .populate('users', 'fullname avatar') //I love this one
+    .populate('users', 'username fullname avatar') //I love this one
     .exec(function(err, groups){
       res.send(groups);
     });
@@ -43,15 +43,20 @@ exports.post = function(req, res){
 };
 
 exports.add = function(req, res){
-	res.app.db.models.User.findOne({username: req.body.username}, function(err, user){
-		user.groups.push(req.body.group_id);
-		user.save(function(err, user){
-			res.app.db.models.Group.findOne({_id: req.body.group_id}, function(err, group){
-				group.users.push(user._id);
-				group.save(function(err, group){
-					res.send(group);
+	res.app.db.models.User.update(
+		{ _id: {$in:req.body.user_id_array} },
+		{ $push: {groups:req.body.group_id} },
+		{ multi: true },
+		function(err, numberAffected, raw){
+			console.log('The number of updated users was %d', numberAffected);
+
+			res.app.db.models.Group.update(
+				{ _id: req.body.group_id },
+				{ $pushAll: {users:req.body.user_id_array} },
+				function(err, numberAffected, raw){
+					console.log('The number of updated groups was %d', numberAffected);
+
+					res.send(raw);
 				});
-			});
 		});
-	});
 };

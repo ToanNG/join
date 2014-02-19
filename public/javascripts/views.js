@@ -10,11 +10,11 @@ App.Views.App = Backbone.View.extend({
 
     App.server = io.connect(window.location.origin);
 
-    App.server.on('connect', function(){
+    App.server.on('connect', function() {
       App.server.emit('user join', currentUser);
     });
 
-    App.server.on('update chat', function(message, group, user){
+    App.server.on('update chat', function(message, group, user) {
       if (typeof user === "undefined") {
         $("#group-"+group).find(".chat-window__room").append("<div class='notice'>"+message+"</div>");
         return;
@@ -70,14 +70,13 @@ App.Views.Groups = Backbone.View.extend({
   initialize: function() {
     this.$el.off(); //this prevents zombie view
 
-    this.collection.on('add', this.render, this);
+    this.collection.on('add', this.addOne, this);
     this.chatGrid = $.fitgrid("#chat-windows-container");
     this.openedChat = [];
   },
 
   events: {
-    'submit #new-group-form': 'submit',
-    'click .group__name': 'openChatWindow'
+    'submit #new-group-form': 'submit'
   },
 
   submit: function(e) {
@@ -88,29 +87,105 @@ App.Views.Groups = Backbone.View.extend({
     }, { wait: true });
   },
 
+  render: function() {
+    this.$el
+      .html( this.template( this.collection.toJSON() ) );
+    this.collection.each( this.addOne, this );
+    return this;
+  },
+
+  addOne: function(group) {
+    var groupView = new App.Views.Group({
+      model: group,
+      parent: this
+    });
+    this.$el.find('.groups-list').append(groupView.render().el);
+  }
+});
+
+/*------------------------------------*\
+    Group View
+\*------------------------------------*/
+
+App.Views.Group = Backbone.View.extend({
+  template: template('groupTemplate'),
+
+  initialize: function(options) {
+    this.parent = options.parent;
+  },
+
+  events: {
+    'click .group__name': 'openChatWindow',
+    'click .add-member-button': 'openAddMemberPopup'
+  },
+
   openChatWindow: function(e) {
     var groupId = $(e.target).data("groupid");
 
-    if (this.openedChat.indexOf(groupId) != -1) return;
+    if (this.parent.openedChat.indexOf(groupId) != -1) return;
 
     var currentGroup = {
       id: groupId,
       name: $(e.target).text().trim()
     };
     
-    var chatWindowView = new App.Views.Group({
+    var chatWindowView = new App.Views.Window({
       model: currentGroup,
-      parent: this
+      parent: this.parent
     }).render();
 
-    this.chatGrid.add(chatWindowView.el, function(){
-      this.openedChat.push(groupId);
+    this.parent.chatGrid.add(chatWindowView.el, function() {
+      this.parent.openedChat.push(groupId);
     }.bind(this));
   },
 
+  openAddMemberPopup: function(e) {
+    var addMemberPopupView = new App.Views.AddPopup({ model: this.model }).render();
+    this.$el.append(addMemberPopupView.el);
+  },
+
   render: function() {
-    this.$el
-      .html( this.template( this.collection.toJSON() ) );
+    var html = this.template( this.model.toJSON() );
+    this.setElement(html);
+    return this;
+  }
+});
+
+/*------------------------------------*\
+    Add Member Popup View
+\*------------------------------------*/
+
+App.Views.AddPopup = Backbone.View.extend({
+  template: template('addMemberPopupTemplate'),
+
+  initialize: function() {
+    this.users = new App.Collections.Users;
+  },
+
+  events: {
+    'keyup #search-users-form': 'fetchUsers'
+  },
+
+  fetchUsers: function(e) {
+    delay(function(){
+      var keyword = $(e.target).val(),
+        $resultsContainer = $('#add-member-popup__results');
+
+      this.users.fetch({ data: $.param({ name: keyword}) }).then(function() {
+        $resultsContainer.empty();
+
+        this.users.toJSON().forEach(function(user) {
+          user.fullname = user.fullname.highlight(keyword);
+          user.username = user.username.highlight(keyword);
+          $resultsContainer.append('<p>'+user.fullname+' ('+user.username+')'+'</p>');
+        });
+      }.bind(this));
+    }.bind(this), 1000 );
+  },
+
+  render: function() {
+    var html = this.template( this.model.toJSON() );
+    this.setElement(html);
     return this;
   }
 });
@@ -119,7 +194,7 @@ App.Views.Groups = Backbone.View.extend({
     Chat Window View
 \*------------------------------------*/
 
-App.Views.Group = Backbone.View.extend({
+App.Views.Window = Backbone.View.extend({
   template: template('chatWindowTemplate'),
 
   initialize: function(options) {
@@ -136,7 +211,7 @@ App.Views.Group = Backbone.View.extend({
   closeChatWindow: function(e) {
     var groupId = $(e.target).closest(".chat-window").attr("id").split("-")[1];
 
-    this.parent.chatGrid.remove($(e.target).closest(".fitgrid-slot"), function(){
+    this.parent.chatGrid.remove($(e.target).closest(".fitgrid-slot"), function() {
       this.parent.openedChat.remove(groupId);
     }.bind(this));
   },
@@ -208,7 +283,7 @@ App.Views.Tasks = Backbone.View.extend({
     var receivedTasks = [],
         givenTasks = [];
 
-    this.collection.toJSON().forEach(function(task){
+    this.collection.toJSON().forEach(function(task) {
       if (task.receiver._id == currentUser._id.toString()) {
         receivedTasks.push(task);
       } else {

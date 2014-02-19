@@ -321,7 +321,15 @@ sidebar-width = 217px
 			float: left
 			width: 24px
 			height: 24px
+			line-height: 22px
 			margin: 2px 2px 0 0
+			text-align: center
+			background-color: #ccc
+			.fa
+				font-size: 0.714285em
+				color: white
+		.add-member-button
+			cursor: pointer
 
 #chat-windows-container
 	position: absolute
@@ -464,6 +472,13 @@ sidebar-width = 217px
 		position: absolute
 		bottom: 0
 
+#add-member-popup
+	display: inline-block
+	position: relative
+	width: 400px
+	height: 600px
+	background-color: window-bg-color
+
 /*------------------------------------*\
     $401
 \*------------------------------------*/
@@ -529,7 +544,7 @@ sidebar-width = 217px
 
 .overlay
 	display: table
-	position: absolute
+	position: fixed
 	top: 0
 	left: 0
 	width: 100%

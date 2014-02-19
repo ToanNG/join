@@ -13,7 +13,7 @@ var userSchema = new Schema({
   created_at: { type: Date, default: Date.now },
   groups: [{ type: Schema.Types.ObjectId, ref: 'groups' }],
   tasks: [{ type: Schema.Types.ObjectId, ref: 'tasks' }]
-});
+}, { autoIndex: true });
 
 userSchema.methods.validPassword = function(password){
 	return bcrypt.compareSync(password, this.password);

@@ -53,6 +53,7 @@ exports = module.exports = function(app) {
 
 	//user view
 	app.get('/users', auth, user.list);
+	app.get('/users/search', auth, user.search);
 	app.get('/users/:username.:format?', authz, user.show);
 	app.post('/users', user.post);
 	app.post('/users/:username/upload', authz, user.upload);

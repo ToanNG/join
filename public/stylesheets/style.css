@@ -364,7 +364,17 @@ a:hover {
   float: left;
   width: 24px;
   height: 24px;
+  line-height: 22px;
   margin: 2px 2px 0 0;
+  text-align: center;
+  background-color: #ccc;
+}
+.group .group__list .member-avatar .fa {
+  font-size: 0.714285em;
+  color: #fff;
+}
+.group .group__list .add-member-button {
+  cursor: pointer;
 }
 #chat-windows-container {
   position: absolute;
@@ -575,6 +585,13 @@ a:hover {
   position: absolute;
   bottom: 0;
 }
+#add-member-popup {
+  display: inline-block;
+  position: relative;
+  width: 400px;
+  height: 600px;
+  background-color: #fff;
+}
 /*------------------------------------*     $401
 \*------------------------------------*/
 .gandalf {
@@ -648,7 +665,7 @@ a:hover {
 }
 .overlay {
   display: table;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
