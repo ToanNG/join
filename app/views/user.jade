@@ -125,7 +125,7 @@ block content
       <img class="profile__image" src="{{this.avatar}}"/>
     </p>
     <p>
-      <form id="upload-avatar-form" method="POST" action="/users/{{this.username}}/upload" enctype="multipart/form-data">
+      <form id="upload-avatar-form" method="POST" action="/users/{{this.username}}/upload?crop=true" enctype="multipart/form-data">
         <input type="file" name="image"/>
         <input type="submit"/>
       </form>

@@ -1,11 +1,11 @@
 /**
- * [Require authorization] Show a list of groups of the current user
+ * [Require authorization] List all groups of current user
  * @return {Array} groups
  */
 exports.list = function(req, res){
 	res.app.db.models.Group
-    .find({'users': req.user._id})
-    .populate('users', 'username fullname avatar') //I love this one
+    .find({ '_id': {$in:req.user.groups} })
+    .populate('users', 'username fullname avatar')
     .exec(function(err, groups){
       res.send(groups);
     });
@@ -17,68 +17,60 @@ exports.list = function(req, res){
  * @return {JSON} group
  */
 exports.show = function(req, res){
-	res.app.db.models.Group.findOne({_id: req.params.group_id}, function(err, group){
-		res.send(group);
-	});
+	res.app.db.models.Group
+		.findOne({_id: req.params.group_id})
+		.populate('users', 'username fullname avatar')
+		.exec(function(err, group){
+      res.send(group);
+    });
 };
 
 /**
  * [Require authorization] Create new group
- * @param {String} username
  * @param {String} group_name
- * @return {JSON} result
+ * @return {JSON} group
  */
 exports.post = function(req, res){
-	res.app.db.models.User.findOne({username: req.params.username}, function(err, user){
-  	new res.app.db.models.Group({
-			group_name: req.body.group_name,
-			users: [ user._id ]
-		}).save(function(err, group){
-			//update current user
-			user.groups.push(group._id);
-			user.save(function(err, user){
-				if (err)
-					res.send(err);
-				else
-					var result = {
-						_id: group._id,
-						group_name: group.group_name,
-						users: [
-							{
-								_id: user._id,
-								username: user.username,
-								fullname: user.fullname,
-								avatar: user.avatar
-							}
-						]
-					};
-					res.send(result);
+	new res.app.db.models.Group({
+		group_name: req.body.group_name,
+		users: [ req.user._id ]
+	}).save(function(err, group){
+		res.app.db.models.User.update(
+			{ _id: req.user._id },
+			{ $push: {groups:group._id} },
+			function(err, numberAffected, raw){
+				group.populate({
+				  path: 'users',
+				  select: 'username fullname avatar'
+				}, function (err, group){
+				  res.send(group);
+				})
 			});
-		});
 	});
 };
 
 /**
- * Add users to one group (without invitations)
+ * [Require authorization] Update a group of current user
+ * @param {String} group_name
  * @param {Array} user_id_array 
- * @param {String} group_id
- * @return {JSON} raw
+ * @return {JSON} group
  */
-exports.add = function(req, res){
-	res.app.db.models.User.update(
-		{ _id: {$in:req.body.user_id_array} },
-		{ $push: {groups:req.body.group_id} },
-		{ multi: true },
-		function(err, numberAffected, raw){
-			console.log('The number of updated users was %d', numberAffected);
-
-			res.app.db.models.Group.update(
-				{ _id: req.body.group_id },
-				{ $pushAll: {users:req.body.user_id_array} },
-				function(err, numberAffected, raw){
-					console.log('The number of updated groups was %d', numberAffected);
-
-					res.send(raw);
-				});
+exports.update = function(req, res){
+	var p = req.params,
+		b = req.body;
+	if (req.user.groups.indexOf(p.group_id) == -1) {
+		res.send("Can not modify group "+p.group_id);
+	} else {
+		res.app.db.models.Group.findById(p.group_id, function(err, group){
+			group.group_name = b.group_name || group.group_name;
+			group.users = b.user_id_array || group.users;
+			group.save(function(err){
+				if (!err) {
+					res.send(group);
+				} else {
+					res.send(err);
+				}
+			});
 		});
+	}
 };

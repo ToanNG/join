@@ -40,5 +40,4 @@ userSchema.pre('save', function(next) {
   });
 });
 
-//app.db.model('users', userSchema);
 exports = module.exports = mongoose.model('users', userSchema);

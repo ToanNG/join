@@ -29,7 +29,7 @@ exports = module.exports = function(app) {
 	app.get('/', checkLogin, require('./routes/index').index);
 	app.get('/register', checkLogin, require('./routes/index').index);
 
-	//login/out
+	//login/logout
 	app.post('/login',
 	  passport.authenticate('local', { failureRedirect: '/',
 	                                   failureFlash: 'Invalid username or password.' }),
@@ -53,17 +53,17 @@ exports = module.exports = function(app) {
 
 	//user view
 	app.get('/users', auth, user.list);
-	app.get('/users/search', auth, user.search);
 	app.get('/users/:username.:format?', authz, user.show);
 	app.post('/users', user.post);
+	app.put('/users/:username', authz, user.update);
+	app.get('/users/search', auth, user.search);
 	app.post('/users/:username/upload', authz, user.upload);
-	app.post('/users/:username/share', authz, user.share);
 
 	//group view
 	app.get('/users/:username/groups', authz, group.list);
 	app.get('/users/:username/groups/:group_id', authz, group.show);
 	app.post('/users/:username/groups', authz, group.post);
-	app.post('/users/:username/groups/add', group.add);
+	app.put('/users/:username/groups/:group_id', authz, group.update);
 
 	//task view
 	app.get('/users/:username/tasks', authz, task.list);

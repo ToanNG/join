@@ -32,7 +32,7 @@ module.exports = function(grunt) {
       function() {
         for (var i=1; i<arguments.length; ++i) {
           var user = arguments[i];
-          console.log('Inserted user '+user.username);
+          console.log(user);
         }
         return Group.create(require('./samples/groups-data.json'));
       },
