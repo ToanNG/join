@@ -90,10 +90,11 @@ a
 \*------------------------------------*/
 
 .section-wrapper--home
+	position: relative
 	width: 100%;
 	height: 100%;
 	color: home-text-color
-	background: #222 url('/images/login_bg.png') center no-repeat
+	// background: #222 url('/images/login_bg_1.png') center no-repeat
 	background-size: cover
 	.logo
 		position: absolute
@@ -104,6 +105,19 @@ a
 		width: 80px
 		height: 80px
 		z-index: 1
+	.explore
+		position: absolute
+		right: 0
+		bottom: 0
+		left: 0
+		height: 80px
+		line-height: 80px
+		text-align: center
+		background-color: #FFBE40
+		color: #333
+		font-size: 1.5em
+		b
+			font-weight: 700
 
 .form-wrapper
 	position: absolute
@@ -167,6 +181,12 @@ a
 		color: alert-color
 		font-size: 0.857142em
 		dialog-box(170px,auto,#fff,'left',13px)
+
+.section-wrapper--intro
+	position: relative
+	width: 100%;
+	height: 100%;
+	background-color: #333
 
 /*------------------------------------*\
     $HEADER_BAR
@@ -585,7 +605,7 @@ sidebar-width = 217px
 	background-repeat: no-repeat
 	background-position: center
 	background-size: cover
-	border-radius: 50%
+	border-radius(50%)
 	&.small
 		width: 35px
 		height: 35px
@@ -611,76 +631,61 @@ sidebar-width = 217px
 	border-radius(4px)
 
 .ios7-effect
-	opacity: 0.7;
-	-webkit-filter: grayscale(100%)blur(5px);
+	opacity: 0.7
+	-webkit-filter: grayscale(100%)blur(5px)
 
 /*------------------------------------*\
     $ANIMATIONS
 \*------------------------------------*/
 
 .fade-in
-	-webkit-animation: fade-in 500ms
-	-webkit-animation-iteration-count: 1
-	-webkit-animation-fill-mode: forwards
-	-webkit-animation-timing-function: ease-out
-@-webkit-keyframes fade-in
+	animation(fade-in 500ms 1 forwards ease-out)
+@keyframes fade-in
 	0%
 		opacity: 0
 	100%
 		opacity: 1
 
 .jelly-show
-	-webkit-animation: jelly-show 500ms
-	-webkit-animation-iteration-count: 1
-	-webkit-animation-fill-mode: forwards
-	-webkit-animation-timing-function: ease-out
+	animation(jelly-show 500ms 1 forwards ease-out)
 .jelly-hide
-	-webkit-animation: jelly-hide 250ms
-	-webkit-animation-iteration-count: 1
-	-webkit-animation-fill-mode: forwards
-	-webkit-animation-timing-function: ease-out
-@-webkit-keyframes jelly-show
+	animation(jelly-hide 250ms 1 forwards ease-out)
+@keyframes jelly-show
 	0%
-		-webkit-transform: scale(0.0)
+		transform(scale(0.0))
 	50%
-		-webkit-transform: scale(1.0)
+		transform(scale(1.0))
 	75%
-		-webkit-transform: scale(0.95)
+		transform(scale(0.95))
 	100%
-		-webkit-transform: scale(1.0)
-@-webkit-keyframes jelly-hide
+		transform(scale(1.0))
+@keyframes jelly-hide
 	0%
-		-webkit-transform: scale(1.0)
+		transform(scale(1.0))
 	100%
-		-webkit-transform: scale(0.0)
+		transform(scale(0.0))
 
 .zoom-in
-	-webkit-animation: zoom-in 200ms
-	-webkit-animation-iteration-count: 1
-	-webkit-animation-fill-mode: forwards
-	-webkit-animation-timing-function: ease-out
-@-webkit-keyframes zoom-in
+	animation(zoom-in 200ms 1 forwards ease-out)
+@keyframes zoom-in
 	0%
-		-webkit-transform: scale(0.0)
+		transform(scale(0.0))
 	100%
-		-webkit-transform: scale(1.0)
+		transform(scale(1.0))
 
 .ding-dong
 	color: alert-color
-	-webkit-animation: ding-dong 500ms
-	-webkit-animation-iteration-count: 1
-	-webkit-animation-fill-mode: forwards
-	-webkit-animation-timing-function: ease
-	-webkit-transform-origin: 50% 0%
-@-webkit-keyframes ding-dong
+	animation(ding-dong 500ms 1 forwards ease)
+	transform-origin(50% 0%)
+@keyframes ding-dong
 	0%
-		-webkit-transform: rotate(30deg)
+		transform(rotate(30deg))
 	50%
-		-webkit-transform: rotate(-30deg)
+		transform(rotate(-30deg))
 	75%
-		-webkit-transform: rotate(30deg)
+		transform(rotate(30deg))
 	100%
-		-webkit-transform: rotate(0deg)
+		transform(rotate(0deg))
 
 /*------------------------------------*\
     $FITGRID_STYLES

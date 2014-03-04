@@ -1,14 +1,30 @@
-prevent-doubleclick()
-	-webkit-user-select: none; /* Chrome/Safari */        
-	-moz-user-select: none; /* Firefox */
-	-ms-user-select: none; /* IE10+ */
-	-o-user-select: none;
-	user-select: none;
+vendor(prop, args)
+	-webkit-{prop} args /* Chrome/Safari */
+	-moz-{prop} args /* Firefox */
+	-ms-{prop} args /* IE10+ */
+	-o-{prop} args
+	{prop} args
 
-border-radius(n)
-	-webkit-border-radius n
-	-moz-border-radius n
-	border-radius n
+border-radius()
+	vendor('border-radius', arguments)
+
+box-shadow()
+	vendor('box-shadow', arguments)
+
+animation()
+	vendor('animation', arguments)
+
+transition()
+	vendor('transition', arguments)
+
+transform()
+	vendor('transform', arguments)
+
+transform-origin()
+	vendor('transform-origin', arguments)
+
+prevent-doubleclick()
+	vendor('user-select', none)
 
 dialog-box(w,h,bg-clr,type,pos)
 	position: absolute
@@ -39,8 +55,3 @@ bg-sprite(bg_url,w,h,l,t)
 	width: w
 	height: h
 	background-position: l t
-
-box-shadow(content)
-	-webkit-box-shadow: content;
-	-moz-box-shadow: content;
-	box-shadow: content;
