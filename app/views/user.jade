@@ -5,7 +5,7 @@ block content
   div.user-content
 
   script(id="chatTemplate", type="text/x-handlebars-template").
-    <div class="groups-list drop-shadow round-corner">
+    <div class="groups-list">
       <form id="new-group-form" class="form" method="POST" autocomplete="off">
         <div class="form__control">
           <input id="group_name" name="group_name" type="text" placeholder="New group"/>
@@ -30,13 +30,17 @@ block content
       <div class="group__name" data-groupid="{{_id}}">
         {{group_name}}
       </div>
-      <div class="group__list">
+      <!-- <div class="group__list">
         {{#each users}}
           <img src="{{avatar}}" class="member-avatar" title="{{fullname}}"/>
         {{/each}}
         <div class="member-avatar add-member-button">
           <i class="fa fa-plus"></i>
         </div>
+      </div> -->
+      <div class="group__count">
+        {{users.length}}
+        <i class="fa fa-plus-circle"></i>
       </div>
       <div class="clear"></div>
     </div>

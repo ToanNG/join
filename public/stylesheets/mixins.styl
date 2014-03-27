@@ -1,7 +1,7 @@
 vendor(prop, args)
-	-webkit-{prop} args /* Chrome/Safari */
-	-moz-{prop} args /* Firefox */
-	-ms-{prop} args /* IE10+ */
+	-webkit-{prop} args
+	-moz-{prop} args
+	-ms-{prop} args
 	-o-{prop} args
 	{prop} args
 
@@ -10,6 +10,12 @@ border-radius()
 
 box-shadow()
 	vendor('box-shadow', arguments)
+
+text-shadow()
+	vendor('text-shadow', arguments)
+
+box-sizing()
+	vendor('box-sizing', arguments)
 
 animation()
 	vendor('animation', arguments)
@@ -55,3 +61,12 @@ bg-sprite(bg_url,w,h,l,t)
 	width: w
 	height: h
 	background-position: l t
+
+makeLongShadow(color)
+	val = s('0px 0px %s', color)
+	for i in (1..200)
+		val = s('%s, %spx %spx %s', val, i, i, color)
+	return unquote(val)
+
+long-shadow(color)
+	text-shadow(makeLongShadow(color))

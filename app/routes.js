@@ -1,7 +1,8 @@
-var passport = require('passport'),
-	user = require('./routes/user'),
-	group = require('./routes/group'),
-	task = require('./routes/task');
+var passport = require('passport')
+	, home = require('./routes/home')
+	, user = require('./routes/user')
+	, group = require('./routes/group')
+	, task = require('./routes/task');
 
 var auth = function(req, res, next) {
 	if (!req.isAuthenticated())
@@ -26,12 +27,13 @@ var checkLogin = function(req, res, next) {
 
 exports = module.exports = function(app) {
 	//front end
-	app.get('/', checkLogin, require('./routes/index').index);
-	app.get('/register', checkLogin, require('./routes/index').index);
+	app.get('/', checkLogin, home.index);
+	app.get('/login', checkLogin, home.login);
+	app.get('/register', checkLogin, home.register);
 
 	//login/logout
 	app.post('/login',
-	  passport.authenticate('local', { failureRedirect: '/',
+	  passport.authenticate('local', { failureRedirect: '/login',
 	                                   failureFlash: 'Invalid username or password.' }),
 	  function(req, res) {
 	    res.redirect('/users/' + req.user.username);
@@ -46,7 +48,7 @@ exports = module.exports = function(app) {
 	  passport.authenticate('facebook', { scope: ['read_stream', 'publish_actions'] })
 	);
 	app.get('/auth/facebook/callback', 
-	  passport.authenticate('facebook', { failureRedirect: '/' }),
+	  passport.authenticate('facebook', { failureRedirect: '/login' }),
 	  function(req, res) {
 	    res.redirect('/users/' + req.user.username);
 	});

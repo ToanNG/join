@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  div.section-wrapper.register
+    div.header
+      img.logo(src="images/logo_color.png")
+      h1
+        | join
+    form(id="signup-form", class="form", method="POST", action="/users", autocomplete="off")
+      div.form__control
+        h2 Register
+      div.form__control
+        if usernameErr != ""
+          div.error-dialog-box.jelly-show
+            = usernameErr
+        input(name="username", type="text", placeholder="Username")
+      div.form__control
+        if fullnameErr != ""
+          div.error-dialog-box.jelly-show
+            = fullnameErr
+        input(name="fullname", type="text", placeholder="Fullname")
+      div.form__control
+        if passwordErr != ""
+          div.error-dialog-box.jelly-show
+            = passwordErr
+        input(name="password", type="password", placeholder="Password")
+      div.form__control
+        if confirmPasswordErr != ""
+          div.error-dialog-box.jelly-show
+            = confirmPasswordErr
+        input(name="confirm_password", type="password", placeholder="Confirm password")
+      div.form__control
+        input(class="button large", id="submit-button", type="submit", value="Sign up")
+      div.form__control
+        | have an account? 
+        a#switch-login-link(href="/login") Login

@@ -40,10 +40,14 @@ App.Views.App = Backbone.View.extend({
   },
 
   showUser: function() {
+    $('li[class^=user__]').removeClass("selected");
+    $(".user__account").addClass("selected");
     new App.Views.User({ model: currentUser }).render();
   },
 
   listGroups: function() {
+    $('li[class^=user__]').removeClass("selected");
+    $(".user__chat").addClass("selected");
     var groups = new App.Collections.Groups;
     groups.fetchByUsername(window.currentUser.username).then(function() {
       new App.Views.Groups({ collection: groups }).render();
@@ -51,6 +55,8 @@ App.Views.App = Backbone.View.extend({
   },
 
   listTasks: function() {
+    $('li[class^=user__]').removeClass("selected");
+    $(".user__task").addClass("selected");
     var tasks = new App.Collections.Tasks;
     tasks.fetchByUsername(window.currentUser.username).then(function() {
       new App.Views.Tasks({ collection: tasks }).render();

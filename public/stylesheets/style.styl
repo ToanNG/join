@@ -1,4 +1,5 @@
 @import "mixins.styl"
+@import "fitgrid.styl"
 
 /*------------------------------------*\
     $CONTENTS
@@ -7,31 +8,38 @@
 /**
  * CONTENTS............You’re reading it!
  * DEFAULTS............Set defaults
- * HOME................Styles for login/signup forms
- * HEADER_BAR..........
- * PROFILE.............
- * CHAT................
- * SETTING.............
+ * HOME................Home page
+ * LOGIN/SIGN_UP.......Login/signup forms
+ * NAVIGATION_BAR......Navigation bar
+ * CHAT................Chat page
+ * TASKS...............Tasks list page
+ * PROFILE.............Profile page
+ * SETTING.............Setting panel
  * 401.................Unauthorized page
  * 404.................File not found page
- * COMPONENTS..........
+ * COMPONENTS..........Buttons, overlay, etc.
+ * ANIMATIONS..........Define all animations
  */
 
 /*------------------------------------*\
     $DEFAULTS
 \*------------------------------------*/
 
-primary-color = #dd4814
-home-bg-color = #fff
-home-text-color = #333
+primary-color = #efb324
+
+home-bg-color = #4d5a60
+home-text-color = #f0f0f0
 home-field-bg-color = #fff
 home-field-text-color = #333
 
-header-bg-color = #dd4814
-header-text-color = #fff
-header-selected-color = darken(header-bg-color, 10%)
+navbar-bg-color = #efb324
+navbar-text-color = lighten(navbar-bg-color, 20%)
+navbar-selected-color = darken(navbar-bg-color, 20%)
 
-site-bg-color = #eee
+sidebar-bg-color = #33404b
+sidebar-text-color = lighten(sidebar-bg-color, 50%)
+
+site-bg-color = #f0f0f0
 site-text-color = #333
 site-field-bg-color = #fff
 site-field-text-color = #333
@@ -39,7 +47,7 @@ window-bg-color = #fff
 
 alert-color = #c50f13
 success-color = #5da423
-line-color = #ccc
+line-color = #e0e0e0
 
 html, body
 	height: 100%
@@ -56,8 +64,7 @@ input, textarea
 	font-size: 0.857142em
 	border: 0
 	outline: none
-	box-sizing: border-box
-	-moz-box-sizing: border-box
+	box-sizing(border-box)
 
 ::-webkit-input-placeholder /* WebKit browsers */
 	color: #ccc
@@ -75,8 +82,6 @@ a
 	color: primary-color
 	text-decoration: none
 	cursor: pointer
-	&:hover 
-		text-decoration: underline
 
 #wrapper
 	position: relative
@@ -89,151 +94,176 @@ a
     $HOME
 \*------------------------------------*/
 
-.section-wrapper--home
+.section-wrapper
 	position: relative
-	width: 100%;
-	height: 100%;
-	color: home-text-color
-	// background: #222 url('/images/login_bg_1.png') center no-repeat
-	background-size: cover
-	.logo
-		position: absolute
-		top: 50%
-		margin-top: -300px
-		left: 50%
-		margin-left: -40px
-		width: 80px
-		height: 80px
-		z-index: 1
-	.explore
-		position: absolute
-		right: 0
-		bottom: 0
-		left: 0
-		height: 80px
-		line-height: 80px
-		text-align: center
-		background-color: #FFBE40
-		color: #333
-		font-size: 1.5em
-		b
-			font-weight: 700
+	width: 100%
+	height: 100%
 
-.form-wrapper
-	position: absolute
-	top: 50%
-	margin-top: -175px
-	left: 50%
-	margin-left: -145px
-	width: 290px
-	text-align: center
-	background-color: home-bg-color
+	&.welcome
+		color: home-text-color
+		background: home-bg-color url('/images/stuffs.png') center 80% no-repeat
+		.header
+			position: absolute
+			top: 0
+			left: 50%
+			margin-left: -(960/2)px
+			width: 960px
+			#login-button
+				float: right
+				margin: 20px
+				padding: 8px 10px
+				font-weight: 600
+				color: home-text-color
+				border: solid 2px home-text-color
+				border-radius(10px)
+				opacity: 0.4
+				cursor: pointer
+				transition(all 500ms)
+				&:hover
+					opacity: 1
+		.intro
+			position: absolute
+			top: 10%
+			width: 100%
+			text-align: center
+			img.logo
+				height: 60px
+			h1
+				margin: 0
+				font-size: 2.5em
+				font-weight: 600
+				text-shadow(0 4px 0 rgba(0,0,0,.2))
+			p
+				font-size: 1.28571em
+		.explore
+			position: absolute
+			right: 0
+			bottom: 0
+			left: 0
+			height: 80px
+			line-height: 80px
+			font-size: 1.28571em
+			font-weight: 600
+			text-align: center
+			color: rgba(home-text-color, 0.4)
+
+	&.overview
+		// placeholder
+
+/*------------------------------------*\
+    $LOGIN/SIGN_UP
+\*------------------------------------*/
+
+.section-wrapper.login, .section-wrapper.register
+	color: #333
+	background-color: #fff
+	overflow: auto
+	.header
+		width: 960px
+		margin: 40px auto
+		img.logo
+			vertical-align: middle
+			height: 35px
+		h1
+			display: inline
+			vertical-align: middle
+			margin: 0 10px
+			font-size: 2.5em
+			font-weight: 600
 	.form
+		width: 250px
+		margin: 0 auto
 		padding: 10px 20px 20px
+		text-align: center
 		.form__control
 			position: relative
 			padding-top: 10px
+			h2
+				margin: 0
 			input[type="text"], input[type="password"]
 				width: 100%
 				padding: 15px 10px
 				color: home-field-text-color
 				background-color: home-field-bg-color
 				border: solid thin line-color
-				box-shadow(inset 0 1px 2px rgba(0,0,0,.15))
-
-	#login-form, #signup-form
-		display: none
-
-	.button
-		width: 100%
-
-	#submit-button
-		background-color: primary-color
-		border-bottom-color: darken(primary-color, 20%)
-
-	a.login-fb-button
-		height: 17px
-		line-height: 47px
-		font-size: 0.857142em
-		background-color: #4c66a4
-		border-bottom-color: darken(#4c66a4, 20%)
-		.fb-icon
+		.button
+			width: 100%
+		#submit-button
+			background-color: primary-color
+		a.login-fb-button
+			height: 17px
+			line-height: 47px
+			font-size: 0.857142em
+			background-color: #4c66a4
+			.fb-icon
+				position: absolute
+				top: 0
+				bottom: 0
+				left: 0
+				width: 47px
+				font-size: 1.5em
+				background-color: rgba(0,0,0,.15)
+			.fb-text
+				position: absolute
+				top: 0
+				right: 0
+				bottom: 0
+				left: 47px
+			&:active>*
+				padding-top: 3px
+		.error-dialog-box
 			position: absolute
-			top: 0
-			bottom: -4px
-			left: 0
-			width: 47px
-			font-size: 1.5em
-			background-color: rgba(0,0,0,.15)
-		.fb-text
-			position: absolute
-			top: 0
-			right: 0
-			bottom: 0
-			left: 47px
-		&:active>.fb-icon
-			bottom: 0
-
-	.error-dialog-box
-		position: absolute
-		top: 11px
-		right: -235px
-		color: alert-color
-		font-size: 0.857142em
-		dialog-box(170px,auto,#fff,'left',13px)
-
-.section-wrapper--intro
-	position: relative
-	width: 100%;
-	height: 100%;
-	background-color: #333
+			top: 11px
+			right: -220px
+			color: alert-color
+			font-size: 0.857142em
+			dialog-box(170px,auto,#eee,'left',13px)
 
 /*------------------------------------*\
-    $HEADER_BAR
+    $NAVIGATION_BAR
 \*------------------------------------*/
 
-header-height = 45px
+navbar-width = 55px
 
-.top-header
+.navbar
 	position: fixed
 	top: 0
-	right: 0
+	bottom: 0
 	left: 0
-	height: header-height
-	background-color: header-bg-color
-	border-bottom: solid thin #fff
+	width: navbar-width
+	background-color: navbar-bg-color
+
 	.logo-small
-		float: left
-		margin: 5px 0 5px 20px
+		height: navbar-width
+		background-color: primary-color
+		overflow: auto
 		img
 			display: block
 			width: 35px
 			height: 35px
+			margin: 10px
+
 	ul.user-wrapper
-		float: right
-		height: 100%
-		margin: 0 10px 0 0
+		margin: 0
 		padding: 0
 		list-style: none
 		li
-			float: left
-			height: 100%
-			line-height: header-height
-			padding: 0 10px
-			color: header-text-color
-			.avatar
-				float: left
-				margin: 5px 10px 5px 0
-			i
-				padding-right: 5px
+			width: 100%
+			height: navbar-width
+			line-height: navbar-width
+			text-align: center
+			box-sizing(border-box)
 			a
-				color: header-text-color
+				color: navbar-text-color
+			i
+				font-size: 1.2em
 			&.selected
-				background-color: header-selected-color
+				background-color: navbar-selected-color
 		.seperate-line
-			padding: 0
-			border-right: solid thin rgba(255,255,255,.2)
-			border-left: solid thin rgba(0,0,0,.1)
+			width: 100%
+			height: 0
+			border-top: solid thin rgba(0,0,0,.2)
+			border-bottom: solid thin rgba(255,255,255,.1)
 
 /*------------------------------------*\
     $PROFILE
@@ -249,25 +279,25 @@ header-height = 45px
 
 .user-content
 	position: absolute
-	top: header-height + 10
-	right: 10px
-	bottom: 10px
-	left: 10px
+	top: 0
+	right: 0
+	bottom: 0
+	left: navbar-width
 	color: site-text-color
 
 sidebar-width = 217px
 	
 .groups-list
 	position: absolute
-	top: 10px
-	bottom: 10px
-	left: 10px
+	top: 0
+	bottom: 0
+	left: 0
 	width: sidebar-width
-	background-color: window-bg-color
+	background-color: sidebar-bg-color
+	border-right: solid thin #eee
 	overflow-y: auto
 	.form
 		padding: 10px
-		border-bottom: solid thin site-bg-color
 		.form__control
 			position: relative
 			input[type="text"]
@@ -276,7 +306,6 @@ sidebar-width = 217px
 				color: site-field-text-color
 				background-color: site-field-bg-color
 				border: solid thin line-color
-				box-shadow(inset 0 1px 2px rgba(0,0,0,.15))
 			.submit-button
 				display: block
 				position: absolute
@@ -292,14 +321,13 @@ sidebar-width = 217px
 
 .group
 	margin: 0 10px
-	padding: 10px 0
-	border-bottom: dotted thin line-color
+	padding: 10px 0 0
 	&:last-child
 		border-bottom: none
 	.group__name
-		margin-bottom: 5px
+		// margin-bottom: 5px
 		font-weight: 600
-		color: primary-color
+		color: sidebar-text-color
 		cursor: pointer
 	.group__list
 		.member
@@ -353,10 +381,10 @@ sidebar-width = 217px
 
 #chat-windows-container
 	position: absolute
-	top: 5px
-	right: 5px
-	bottom: 5px
-	left: sidebar-width + 25
+	top: 15px
+	right: 15px
+	bottom: 15px
+	left: sidebar-width + 15
 	.guide-dialog-box
 		top: 9px
 
@@ -438,7 +466,7 @@ sidebar-width = 217px
 	.avatar
 		position: absolute
 		top: 1px
-		right: 0px
+		right: 0
 	.chat-box
 		dialog-box(auto,auto,#eee,'right',8px)
 		position: relative
@@ -455,7 +483,7 @@ sidebar-width = 217px
 	.avatar
 		position: absolute
 		top: 1px
-		left: 0px
+		left: 0
 	.chat-box
 		dialog-box(auto,auto,#eee,'left',8px)
 		position: relative
@@ -534,7 +562,7 @@ sidebar-width = 217px
 		bottom: 0
 		left: 0
 		padding: 10px
-		border-top: solid thin site-bg-color;
+		border-top: solid thin site-bg-color
 		.cancel-button
 			float: left
 			width: 185px
@@ -580,21 +608,20 @@ sidebar-width = 217px
 	text-transform: uppercase
 	border: 0
 	outline: none
-	border-bottom-style: solid
-	border-bottom-width: 4px
-	&:hover
-		text-decoration: none
 	&:active
-		margin-top: 4px
-		border-bottom: none
+		box-shadow(inset 0 3px 5px rgba(0,0,0,.5))
 
 .button.large
 	@extend .button
 	padding: 15px 0
+	&:active
+		padding: 18px 0 12px
 
 .button.small
 	@extend .button
 	padding: 8px 0
+	&:active
+		padding: 11px 0 5px
 
 .clear
 	clear: both
@@ -631,8 +658,9 @@ sidebar-width = 217px
 	border-radius(4px)
 
 .ios7-effect
-	opacity: 0.7
-	-webkit-filter: grayscale(100%)blur(5px)
+	-webkit-filter: blur(5px)brightness(50%)
+	// opacity: 0.7
+	// -webkit-filter: grayscale(100%)blur(5px)
 
 /*------------------------------------*\
     $ANIMATIONS
@@ -686,37 +714,3 @@ sidebar-width = 217px
 		transform(rotate(30deg))
 	100%
 		transform(rotate(0deg))
-
-/*------------------------------------*\
-    $FITGRID_STYLES
-\*------------------------------------*/
-
-.fitgrid-slot
-	position: absolute
-	top: 0
-	right: 0
-	bottom: 0
-	left: 0
-	-webkit-transition: all 200ms ease;
-	-moz-transition: all 200ms ease;
-	-o-transition: all 200ms ease;
-	-ms-transition: all 200ms ease;
-	transition: all 200ms ease;
-
-	&.slot--13
-		right: 50%
-	&.slot--24
-		left: 50%
-
-	&.slot--11
-		right: 50%
-		bottom: 50%
-	&.slot--22
-		left: 50%
-		bottom: 50%
-	&.slot--33
-		right: 50%
-		top: 50%
-	&.slot--44
-		left: 50%
-		top: 50%
