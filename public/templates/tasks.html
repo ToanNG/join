@@ -1,0 +1,21 @@
+<h1> This is task page </h1>
+
+<h2> Your tasks </h2>
+<ul>
+  {{#each this.receivedTasks}}
+    <li>
+      {{content}} <br/>
+      from {{giver.fullname}}
+    </li>
+  {{/each}}
+</ul>
+
+<h2> Track other tasks </h2>
+<ul>
+  {{#each this.givenTasks}}
+    <li>
+      {{content}} <br/>
+      to {{receiver.fullname}}
+    </li>
+  {{/each}}
+</ul>

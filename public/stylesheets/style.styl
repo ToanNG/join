@@ -32,12 +32,12 @@ home-text-color = #f0f0f0
 home-field-bg-color = #fff
 home-field-text-color = #333
 
-navbar-bg-color = #efb324
+navbar-bg-color = #33404b
 navbar-text-color = lighten(navbar-bg-color, 20%)
 navbar-selected-color = darken(navbar-bg-color, 20%)
 
-sidebar-bg-color = #33404b
-sidebar-text-color = lighten(sidebar-bg-color, 50%)
+sidebar-bg-color = #fff
+sidebar-text-color = #333
 
 site-bg-color = #f0f0f0
 site-text-color = #333
@@ -148,7 +148,7 @@ a
 			color: rgba(home-text-color, 0.4)
 
 	&.overview
-		// placeholder
+		//placeholder
 
 /*------------------------------------*\
     $LOGIN/SIGN_UP
@@ -160,7 +160,9 @@ a
 	overflow: auto
 	.header
 		width: 960px
-		margin: 40px auto
+		margin: 40px auto 20px
+		padding-bottom: 20px
+		border-bottom: solid thin line-color
 		img.logo
 			vertical-align: middle
 			height: 35px
@@ -190,6 +192,9 @@ a
 			width: 100%
 		#submit-button
 			background-color: primary-color
+		#switch-signup-link, #switch-login-link
+			font-weight: 600
+			color: #333
 		a.login-fb-button
 			height: 17px
 			line-height: 47px
@@ -232,16 +237,16 @@ navbar-width = 55px
 	left: 0
 	width: navbar-width
 	background-color: navbar-bg-color
+	box-shadow(3px 0 0 rgba(0,0,0,.1))
 
 	.logo-small
 		height: navbar-width
-		background-color: primary-color
+		background-color: navbar-selected-color
 		overflow: auto
 		img
 			display: block
-			width: 35px
 			height: 35px
-			margin: 10px
+			margin: 10px auto
 
 	ul.user-wrapper
 		margin: 0
@@ -254,16 +259,21 @@ navbar-width = 55px
 			text-align: center
 			box-sizing(border-box)
 			a
+				display: block
+				width: 100%
+				height: 100%
 				color: navbar-text-color
-			i
-				font-size: 1.2em
+				i
+					font-size: 1.2em
 			&.selected
 				background-color: navbar-selected-color
+				border-left: solid 2px primary-color
+				border-right: solid 2px transparent
 		.seperate-line
 			width: 100%
 			height: 0
-			border-top: solid thin rgba(0,0,0,.2)
-			border-bottom: solid thin rgba(255,255,255,.1)
+			border-top: solid thin rgba(0,0,0,.1)
+			border-bottom: solid thin rgba(255,255,255,.05)
 
 /*------------------------------------*\
     $PROFILE

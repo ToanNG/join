@@ -1,8 +1,8 @@
 var passport = require('passport')
-	, home = require('./routes/home')
-	, user = require('./routes/user')
-	, group = require('./routes/group')
-	, task = require('./routes/task');
+	, home = require('./controllers/home')
+	, user = require('./controllers/user')
+	, group = require('./controllers/group')
+	, task = require('./controllers/task');
 
 var auth = function(req, res, next) {
 	if (!req.isAuthenticated())

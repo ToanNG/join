@@ -1,171 +1,19 @@
 extends layout
 
 block content
-  include includes/_header
-  div.user-content
+	include includes/_navbar
+	div.user-content
 
-  script(id="chatTemplate", type="text/x-handlebars-template").
-    <div class="groups-list">
-      <form id="new-group-form" class="form" method="POST" autocomplete="off">
-        <div class="form__control">
-          <input id="group_name" name="group_name" type="text" placeholder="New group"/>
-          <button class="submit-button" type="submit">
-            <i class="fa fa-plus"></i>
-          </button>
-        </div>
-        <div class="clear"></div>
-      </form>
-    </div>
-
-    <div id="chat-windows-container">
-      {{#unless this.length}}
-        <div class="guide-dialog-box">
-          Welcome to Join! Lets start by create some groups and invite your friend.
-        </div>
-      {{/unless}}
-    </div>
-
-  script(id="groupTemplate", type="text/x-handlebars-template").
-    <div id="group-tab-{{_id}}" class="group">
-      <div class="group__name" data-groupid="{{_id}}">
-        {{group_name}}
-      </div>
-      <!-- <div class="group__list">
-        {{#each users}}
-          <img src="{{avatar}}" class="member-avatar" title="{{fullname}}"/>
-        {{/each}}
-        <div class="member-avatar add-member-button">
-          <i class="fa fa-plus"></i>
-        </div>
-      </div> -->
-      <div class="group__count">
-        {{users.length}}
-        <i class="fa fa-plus-circle"></i>
-      </div>
-      <div class="clear"></div>
-    </div>
-
-  script(id="chatWindowTemplate", type="text/x-handlebars-template").
-    <div id="group-{{id}}" class="chat-window drop-shadow round-corner zoom-in">
-      <div class="chat-window__helper">
-        <div class="helper--title">
-          {{name}}
-        </div>
-        <div class="helper--close-button">
-          <i class="fa fa-times"></i>
-        </div>
-        <div class="helper--buzz">
-          <i class="fa fa-bell"></i>
-        </div>
-        <div class="helper--share">
-          <i class="fa fa-picture-o"></i>
-        </div>
-      </div>
-
-      <div class="chat-window__room"></div>
-
-      <div class="chat-window__type">
-        <form class="chat-form" data-groupid="{{id}}" method="POST" autocomplete="off">
-          <div class="form__control">
-            <button class="chat-submit-button" type="submit">
-              <i class="fa fa-pencil"></i>
-            </button>
-          </div>
-          <div class="form__control">
-            <textarea class="chat-input" name="chat-input" placeholder="What is your idea..."></textarea>
-          </div>
-        </form>
-      </div>
-    </div>
-
-  script(id="addMemberPopupTemplate", type="text/x-handlebars-template").
-    <div class="overlay fade-in">
-      <div class="center">
-        <div id="add-member-popup" class="round-corner">
-
-          <div id="popup__search">
-            <form id="search-users-form" class="form" method="POST" autocomplete="off">
-              <div class="form__control">
-                <input id="keyword" name="keyword" type="text" placeholder="Search members for {{group_name}}..."/>
-                <button class="submit-button">
-                  <i class="fa fa-search"></i>
-                </button>
-              </div>
-              <div class="clear"></div>
-            </form>
-          </div>
-
-          <div id="popup__results">
-          </div>
-
-          <div id="popup__buttons">
-            <button class="button small cancel-button">Cancel</button>
-            <button class="button small confirm-button">Confirm</button>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-  script(id="sharePopupTemplate", type="text/x-handlebars-template").
-    <div class="overlay">
-      <div class="center">
-        <div id="share-popup">
-          <div id="share-popup__canvas"></div>
-
-          <form id="share-form" method="POST" action="/users/{{username}}/share" enctype="multipart/form-data">
-              <input type="file" name="image"/>
-              <input type="submit"/>
-          </form>
-        </div>
-      </div>
-    </div>
-
-  script(id="profileTemplate", type="text/x-handlebars-template").
-    <h1> This is profile page </h1>
-    <p> {{this.username}} </p>
-    <p> {{this.fullname}} </p>
-    <p>
-      <img class="profile__image" src="{{this.avatar}}"/>
-    </p>
-    <p>
-      <form id="upload-avatar-form" method="POST" action="/users/{{this.username}}/upload?crop=true" enctype="multipart/form-data">
-        <input type="file" name="image"/>
-        <input type="submit"/>
-      </form>
-    </p>
-
-  script(id="tasksTemplate", type="text/x-handlebars-template").
-    <h1> This is task page </h1>
-
-    <h2> Your tasks </h2>
-    <ul>
-      {{#each this.receivedTasks}}
-        <li>
-          {{content}} <br/>
-          from {{giver.fullname}}
-        </li>
-      {{/each}}
-    </ul>
-
-    <h2> Track other tasks </h2>
-    <ul>
-      {{#each this.givenTasks}}
-        <li>
-          {{content}} <br/>
-          to {{receiver.fullname}}
-        </li>
-      {{/each}}
-    </ul>
-
-  script(src='/javascripts/libs/fitgrid.jquery.js')
-  script(src='/javascripts/main.js')
-  script(src='/javascripts/models.js')
-  script(src='/javascripts/collections.js')
-  script(src='/javascripts/views.js')
-  script(src='/javascripts/router.js')
-  script(type='text/javascript').
-    window.currentUser = !{JSON.stringify(user)};
-    new App.Views.App();
-    new App.Router;
-    Backbone.history.start();
+	script(src='/javascripts/libs/fitgrid.jquery.js')
+	script(src='/javascripts/main.js')
+	script(src='/javascripts/models.js')
+	script(src='/javascripts/collections.js')
+	script(src='/javascripts/views.js')
+	script(src='/javascripts/router.js')
+	script(type='text/javascript').
+		window.currentUser = !{JSON.stringify(user)};
+		TemplateManager.preloadPartials(function () {
+			new App.Views.App();
+			new App.Router;
+			Backbone.history.start();
+		});

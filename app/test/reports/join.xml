@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="join"
+             errors="0"
+             failures="0"
+             tests="undefined">
+  
+  <testsuite errors="0" failures="0" hostname="" id=""
+    name="Test login" package="join" skipped="0" 
+    tests="3" time="" timestamp="">
+    
+    
+      <testcase name="Element &lt;body&gt; was visible after 86 milliseconds.">
+        
+      </testcase>  
+    
+      <testcase name="Element &lt;#login-form&gt; was visible after 58 milliseconds.">
+        
+      </testcase>  
+    
+      <testcase name="Testing if element &lt;body&gt; contains text: Group 1">
+        
+      </testcase>  
+    
+    
+    </testsuite>
+  
+  <testsuite errors="0" failures="0" hostname="" id=""
+    name="Test chat" package="join" skipped="0" 
+    tests="1" time="" timestamp="">
+    
+    
+      <testcase name="Testing if element &lt;.chat-line--me&gt; is present.">
+        
+      </testcase>  
+    
+    
+    </testsuite>
+  
+</testsuites>

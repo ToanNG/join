@@ -7,7 +7,7 @@ var User = require('./app/schema/User'),
 
 module.exports = function(grunt) {
   grunt.registerTask('db-reset', function() {
-    // Invoke async mode
+    //invoke async mode
     var done = this.async();
 
     User.collection.remove(function() {

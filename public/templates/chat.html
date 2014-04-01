@@ -1,0 +1,19 @@
+<div class="groups-list">
+	<form id="new-group-form" class="form" method="POST" autocomplete="off">
+		<div class="form__control">
+			<input id="group_name" name="group_name" type="text" placeholder="New group"/>
+			<button class="submit-button" type="submit">
+				<i class="fa fa-plus"></i>
+			</button>
+		</div>
+		<div class="clear"></div>
+	</form>
+</div>
+
+<div id="chat-windows-container">
+	{{#unless this.length}}
+		<div class="guide-dialog-box">
+			Welcome to Join! Lets start by create some groups and invite your friend.
+		</div>
+	{{/unless}}
+</div>

@@ -71,7 +71,7 @@ App.Views.App = Backbone.View.extend({
 App.Views.Groups = Backbone.View.extend({
   el: '.user-content',
 
-  template: template('chatTemplate'),
+  template: 'chat',
 
   initialize: function() {
     this.$el.off(); //this prevents zombie view
@@ -94,9 +94,12 @@ App.Views.Groups = Backbone.View.extend({
   },
 
   render: function() {
-    this.$el
-      .html( this.template( this.collection.toJSON() ) );
-    this.collection.each( this.addOne, this );
+    TemplateManager.get(this.template, function(tmp) {
+      var html = tmp( this.collection.toJSON() );
+      this.$el.html(html);
+      this.collection.each( this.addOne, this );
+    }.bind(this));
+
     return this;
   },
 
@@ -110,11 +113,11 @@ App.Views.Groups = Backbone.View.extend({
 });
 
 /*------------------------------------*\
-    Group View
+    Group Tab View
 \*------------------------------------*/
 
 App.Views.Group = Backbone.View.extend({
-  template: template('groupTemplate'),
+  template: 'group-tab',
 
   initialize: function(options) {
     this.parent = options.parent;
@@ -151,8 +154,11 @@ App.Views.Group = Backbone.View.extend({
   },
 
   render: function() {
-    var html = this.template( this.model.toJSON() );
-    this.setElement(html);
+    TemplateManager.get(this.template, function(tmp) {
+      var html = tmp( this.model.toJSON() );
+      this.setElement(html);
+    }.bind(this));
+
     return this;
   }
 });
@@ -162,7 +168,7 @@ App.Views.Group = Backbone.View.extend({
 \*------------------------------------*/
 
 App.Views.AddPopup = Backbone.View.extend({
-  template: template('addMemberPopupTemplate'),
+  template: 'add-member-popup',
 
   initialize: function() {
     this.users = new App.Collections.Users;
@@ -224,9 +230,13 @@ App.Views.AddPopup = Backbone.View.extend({
   },
 
   render: function() {
-    var html = this.template( this.model.toJSON() );
-    this.setElement(html);
+    TemplateManager.get(this.template, function(tmp) {
+      var html = tmp( this.model.toJSON() );
+      this.setElement(html);
+    }.bind(this));
+    
     $('#wrapper').addClass('ios7-effect');
+
     return this;
   },
 
@@ -241,7 +251,7 @@ App.Views.AddPopup = Backbone.View.extend({
 \*------------------------------------*/
 
 App.Views.Window = Backbone.View.extend({
-  template: template('chatWindowTemplate'),
+  template: 'chat-window',
 
   initialize: function(options) {
     this.parent = options.parent;
@@ -286,8 +296,11 @@ App.Views.Window = Backbone.View.extend({
   },
 
   render: function() {
-    var html = this.template( this.model );
-    this.setElement(html);
+    TemplateManager.get(this.template, function(tmp) {
+      var html = tmp( this.model );
+      this.setElement(html);
+    }.bind(this));
+
     return this;
   }
 });
@@ -299,15 +312,18 @@ App.Views.Window = Backbone.View.extend({
 App.Views.User = Backbone.View.extend({
   el: '.user-content',
 
-  template: template('profileTemplate'),
+  template: 'profile',
 
   initialize: function() {
     this.$el.off();
   },
 
   render: function() {
-    this.$el
-      .html( this.template( this.model ) );
+    TemplateManager.get(this.template, function(tmp) {
+      var html = tmp( this.model );
+      this.$el.html(html);
+    }.bind(this));
+
     return this;
   }
 });
@@ -319,7 +335,7 @@ App.Views.User = Backbone.View.extend({
 App.Views.Tasks = Backbone.View.extend({
   el: '.user-content',
 
-  template: template('tasksTemplate'),
+  template: 'tasks',
 
   initialize: function() {
     this.$el.off();
@@ -337,11 +353,14 @@ App.Views.Tasks = Backbone.View.extend({
       }
     });
 
-    this.$el
-      .html( this.template( {
+    TemplateManager.get(this.template, function(tmp) {
+      var html = tmp( {
         receivedTasks: receivedTasks,
         givenTasks: givenTasks
-      } ) );
+      } );
+      this.$el.html(html);
+    }.bind(this));
+
     return this;
   }
 });
