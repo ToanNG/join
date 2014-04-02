@@ -37,7 +37,8 @@
 
 		partials: [
 			'group-tab',
-			'chat-window'
+			'chat-window',
+			'add-member-popup'
 		],
 
 		// Pre-load partials when our app is initialized

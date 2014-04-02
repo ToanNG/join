@@ -1,5 +1,6 @@
+@import "font.styl"
 @import "mixins.styl"
-@import "fitgrid.styl"
+@import "libs/fitgrid.styl"
 
 /*------------------------------------*\
     $CONTENTS
@@ -34,10 +35,9 @@ home-field-text-color = #333
 
 navbar-bg-color = #33404b
 navbar-text-color = lighten(navbar-bg-color, 20%)
-navbar-selected-color = darken(navbar-bg-color, 20%)
 
 sidebar-bg-color = #fff
-sidebar-text-color = #333
+sidebar-text-color = #666
 
 site-bg-color = #f0f0f0
 site-text-color = #333
@@ -62,6 +62,7 @@ input, textarea
 	padding: 0
 	font-family: 'Open Sans', sans-serif
 	font-size: 0.857142em
+	font-weight: 300
 	border: 0
 	outline: none
 	box-sizing(border-box)
@@ -134,7 +135,7 @@ a
 				font-weight: 600
 				text-shadow(0 4px 0 rgba(0,0,0,.2))
 			p
-				font-size: 1.28571em
+				font-size: 1.285714em
 		.explore
 			position: absolute
 			right: 0
@@ -142,7 +143,7 @@ a
 			left: 0
 			height: 80px
 			line-height: 80px
-			font-size: 1.28571em
+			font-size: 1.285714em
 			font-weight: 600
 			text-align: center
 			color: rgba(home-text-color, 0.4)
@@ -241,7 +242,7 @@ navbar-width = 55px
 
 	.logo-small
 		height: navbar-width
-		background-color: navbar-selected-color
+		background-color: darken(navbar-bg-color, 20%)
 		overflow: auto
 		img
 			display: block
@@ -266,9 +267,11 @@ navbar-width = 55px
 				i
 					font-size: 1.2em
 			&.selected
-				background-color: navbar-selected-color
+				background-color: darken(navbar-bg-color, 20%)
 				border-left: solid 2px primary-color
 				border-right: solid 2px transparent
+				a
+					color: lighten(navbar-text-color, 40%)
 		.seperate-line
 			width: 100%
 			height: 0
@@ -303,9 +306,11 @@ sidebar-width = 217px
 	bottom: 0
 	left: 0
 	width: sidebar-width
+	color: sidebar-text-color
 	background-color: sidebar-bg-color
-	border-right: solid thin #eee
+	box-shadow(3px 0 0 rgba(0,0,0,.1))
 	overflow-y: auto
+
 	.form
 		padding: 10px
 		.form__control
@@ -324,70 +329,32 @@ sidebar-width = 217px
 				width: 35px
 				height: 35px
 				padding: 0
-				color: primary-color
+				color: line-color
 				background-color: transparent
 				border: 0
 				outline: none
 
-.group
-	margin: 0 10px
-	padding: 10px 0 0
-	&:last-child
-		border-bottom: none
-	.group__name
-		// margin-bottom: 5px
-		font-weight: 600
-		color: sidebar-text-color
-		cursor: pointer
-	.group__list
-		.member
-			float: left
-			height: 24px
-			line-height: 24px
-			margin: 2px 2px 0 0
-			padding: 0 6px
-			text-align: center
-			font-size: 0.714285em
-			font-weight: 700
-			color: rgba(255,255,255,.5)
-			&.a, &.m, &.y
-				background-color: #ec4b43
-			&.b, &.n, &.z
-				background-color: #8bb5a9
-			&.c, &.o
-				background-color: #bbad55
-			&.d, &.p
-				background-color: #e0b0ac
-			&.e, &.q
-				background-color: #e1ac2c
-			&.f, &.r
-				background-color: #21544f
-			&.g, &.s
-				background-color: #d1bfa9
-			&.h, &.t
-				background-color: #60754e
-			&.i, &.u
-				background-color: #6c3f46
-			&.j, &.v
-				background-color: #55897d
-			&.k, &.w
-				background-color: #c13929
-			&.l, &.x
-				background-color: #811b28
-		.member-avatar
-			display: block
-			float: left
-			width: 24px
-			height: 24px
-			line-height: 22px
-			margin: 2px 2px 0 0
-			text-align: center
-			background-color: #ccc
-			.fa
-				font-size: 0.714285em
-				color: white
-		.add-member-button
+	.group
+		padding: 5px 19px
+		.group__delete-button
+			display: none
+			float: right
+			color: sidebar-text-color
 			cursor: pointer
+		.group__name
+			margin-right: 31px
+			font-weight: 600
+			cursor: pointer
+		.group__count
+			font-size: 0.857142em
+			color: lighten(sidebar-text-color, 60%)
+			clear: both
+		&:nth-of-type(1)
+			margin-top: 5px
+		&:hover
+			background-color: darken(sidebar-bg-color, 2.5%)
+			.group__delete-button
+				display: block
 
 #chat-windows-container
 	position: absolute
@@ -395,8 +362,6 @@ sidebar-width = 217px
 	right: 15px
 	bottom: 15px
 	left: sidebar-width + 15
-	.guide-dialog-box
-		top: 9px
 
 .chat-window
 	position: absolute
@@ -505,7 +470,7 @@ sidebar-width = 217px
 		font-size: 0.857142em
 
 .guide-dialog-box
-	color: alert-color
+	color: success-color
 	font-size: 0.857142em
 	dialog-box(auto,auto,#fff,'left',13px)
 
@@ -632,6 +597,17 @@ sidebar-width = 217px
 	padding: 8px 0
 	&:active
 		padding: 11px 0 5px
+
+.alert-box, .notice-box
+	padding: 8px 10px
+	font-size: 0.857142em
+	font-weight: 400
+	color: #f0f0f0
+	border-radius(4px)
+	&.alert-box
+		background-color: alert-color
+	&.notice-box
+		background-color: success-color
 
 .clear
 	clear: both

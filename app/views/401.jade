@@ -1,10 +1,18 @@
-extends layout
+doctype html
+html
+	head
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+		title Join | 401
 
-block content
-	div.gandalf
-		div.gandalf__avatar.avatar
-		div.gandalf__quote
-			i
-				q You shall not pass
-		div.gandalf__author
-			| Gandalf The Grey
+		link(rel='stylesheet', href='/stylesheets/font-awesome.css')
+		link(rel='stylesheet', href='/stylesheets/normalize.css')
+		link(rel='stylesheet', href='/stylesheets/style.css')
+	body
+		div#wrapper
+			div.gandalf
+				div.gandalf__avatar.avatar
+				div.gandalf__quote
+					i
+						q You shall not pass
+				div.gandalf__author
+					| Gandalf The Grey

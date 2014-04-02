@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost/join_development');
 
-var User = require('./app/schema/User'),
-  Group = require('./app/schema/Group'),
-  Task = require('./app/schema/Task');
+var User = require('./app/schemas/User'),
+  Group = require('./app/schemas/Group'),
+  Task = require('./app/schemas/Task');
 
 module.exports = function(grunt) {
   grunt.registerTask('db-reset', function() {

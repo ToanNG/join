@@ -48,7 +48,7 @@ app.configure(function(){
   app.use(express.static(path.join(__dirname, 'public')));
   app.use(function(req, res){
     res.status(400);
-    res.render('404.jade');
+    res.render('404.jade', {layout: false});
   });
 });
 

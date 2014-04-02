@@ -6,7 +6,7 @@ var passport = require('passport')
 
 var auth = function(req, res, next) {
 	if (!req.isAuthenticated())
-		res.render('401.jade');
+		res.render('401.jade', { layout: false });
 	else
 		next();
 };
@@ -15,7 +15,7 @@ var authz = function(req, res, next) {
 	if (req.user && req.user.username == req.params.username)
 		next();
 	else
-		res.render('401.jade');
+		res.render('401.jade', { layout: false });
 };
 
 var checkLogin = function(req, res, next) {
