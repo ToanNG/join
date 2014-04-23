@@ -26,18 +26,18 @@
     $DEFAULTS
 \*------------------------------------*/
 
-primary-color = #efb324
+primary-color = #ffc600
 
 home-bg-color = #4d5a60
 home-text-color = #f0f0f0
 home-field-bg-color = #fff
 home-field-text-color = #333
 
-navbar-bg-color = #33404b
-navbar-text-color = lighten(navbar-bg-color, 20%)
+navbar-bg-color = #ffc600
+navbar-text-color = #ffe487
 
-sidebar-bg-color = #fff
-sidebar-text-color = #666
+sidebar-bg-color = #3d3d3d
+sidebar-text-color = #ccc
 
 site-bg-color = #f0f0f0
 site-text-color = #333
@@ -68,16 +68,16 @@ input, textarea
 	box-sizing(border-box)
 
 ::-webkit-input-placeholder /* WebKit browsers */
-	color: #ccc
+	color: gray
 
 :-moz-placeholder /* Mozilla Firefox 4 to 18 */
-	color: #ccc
+	color: gray
 
 ::-moz-placeholder /* Mozilla Firefox 19+ */
-	color: #ccc
+	color: gray
 
 :-ms-input-placeholder /* Internet Explorer 10+ */
-	color: #ccc
+	color: gray
 
 a
 	color: primary-color
@@ -199,7 +199,6 @@ a
 		a.login-fb-button
 			height: 17px
 			line-height: 47px
-			font-size: 0.857142em
 			background-color: #4c66a4
 			.fb-icon
 				position: absolute
@@ -242,18 +241,18 @@ navbar-width = 55px
 
 	.logo-small
 		height: navbar-width
-		background-color: darken(navbar-bg-color, 20%)
 		overflow: auto
 		img
 			display: block
-			height: 35px
-			margin: 10px auto
+			height: 30px
+			margin: 12.5px auto
 
 	ul.user-wrapper
 		margin: 0
 		padding: 0
 		list-style: none
 		li
+			position: relative
 			width: 100%
 			height: navbar-width
 			line-height: navbar-width
@@ -263,20 +262,12 @@ navbar-width = 55px
 				display: block
 				width: 100%
 				height: 100%
-				color: navbar-text-color
 				i
-					font-size: 1.2em
+					font-size: 1.285714em
+					color: navbar-text-color
 			&.selected
-				background-color: darken(navbar-bg-color, 20%)
-				border-left: solid 2px primary-color
-				border-right: solid 2px transparent
-				a
-					color: lighten(navbar-text-color, 40%)
-		.seperate-line
-			width: 100%
-			height: 0
-			border-top: solid thin rgba(0,0,0,.1)
-			border-bottom: solid thin rgba(255,255,255,.05)
+				i
+					color: #fff
 
 /*------------------------------------*\
     $PROFILE
@@ -318,9 +309,9 @@ sidebar-width = 217px
 			input[type="text"]
 				width: 100%
 				padding: 8px
-				color: site-field-text-color
-				background-color: site-field-bg-color
-				border: solid thin line-color
+				color: sidebar-text-color
+				background-color: darken(sidebar-bg-color, 20%)
+				border: solid thin darken(sidebar-bg-color, 20%)
 			.submit-button
 				display: block
 				position: absolute
@@ -329,32 +320,35 @@ sidebar-width = 217px
 				width: 35px
 				height: 35px
 				padding: 0
-				color: line-color
 				background-color: transparent
 				border: 0
 				outline: none
+				i
+					color: #3d3d3d
 
 	.group
-		padding: 5px 19px
-		.group__delete-button
-			display: none
-			float: right
-			color: sidebar-text-color
-			cursor: pointer
+		position: relative
+		padding: 5px 34px 5px 19px
+		overflow: hidden
 		.group__name
-			margin-right: 31px
 			font-weight: 600
 			cursor: pointer
 		.group__count
 			font-size: 0.857142em
-			color: lighten(sidebar-text-color, 60%)
-			clear: both
-		&:nth-of-type(1)
-			margin-top: 5px
+			font-weight: 400
+			color: #959595
+		.group__delete-button
+			position: absolute
+			top: 15px
+			right: -14px
+			cursor: pointer
+			transition(all 250ms)
+			i
+				color: #f05b51
 		&:hover
-			background-color: darken(sidebar-bg-color, 2.5%)
+			background-color: darken(sidebar-bg-color, 20%)
 			.group__delete-button
-				display: block
+				right: 10px
 
 #chat-windows-container
 	position: absolute
@@ -370,36 +364,47 @@ sidebar-width = 217px
 	bottom: 5px
 	left: 5px
 	background-color: window-bg-color
-	.chat-window__helper
-		height: 35px
-		line-height: 35px
-		border-bottom: solid thin site-bg-color
+	border: solid thin rgba(0,0,0,.1)
+	border-bottom: solid 3px rgba(0,0,0,.1)
+
+	.chat-window__head
 		&>*
-			padding: 0 8px
-		.helper--title
+			padding: 0 10px
+		.title
 			float: left
+			height: 35px
+			line-height: 35px
 			font-weight: 600
-		.helper--share
+		.close-button
 			float: right
-			font-size: 1.142857em
-			color: #ccc
-			&:hover
-				color: primary-color
-				cursor: pointer
-		.helper--buzz
-			float: right
-			font-size: 1.142857em
-			color: #ccc
-		.helper--close-button
-			float: right
-			font-size: 1.142857em
-			color: alert-color
+			height: 35px
 			cursor: pointer
+			i
+				line-height: 35px
+				font-size: 1.142857em
+				color: #ccc
+			&:hover
+				i
+					color: alert-color
+		.members-list
+			height: 35px
+			clear: both
+			.member-avatar
+				display: block
+				float: left
+				width: 24px
+				height: 24px
+				line-height: 22px
+				margin: 0 2px 0 0
+				text-align: center
+				background-color: #ccc
+				border-radius(4px)
+
 	.chat-window__room
 		position: absolute
-		top: 36px
+		top: 70px
 		right: 0
-		bottom: 46px
+		bottom: 91px
 		left: 0
 		overflow: auto
 		.notice
@@ -407,33 +412,53 @@ sidebar-width = 217px
 			font-size: 0.857142em
 			text-align: center
 			color: gray
-	.chat-window__type
+
+	.chat-window__actions
+		position: absolute
+		right: 0
+		bottom: 65px
+		left: 0
+		padding: 10px 10px 0 10px
+		.action--invite, .action--share
+			margin-right: 10px
+			&>*
+				font-size: 0.857142em
+				font-weight: 400
+				color: #2a80b9
+
+	.chat-window__input
 		position: absolute
 		right: 0
 		bottom: 0
 		left: 0
-		height: 45px
-		border-top: solid thin site-bg-color
-		.form__control:nth-of-type(1)
-			float: right
-			width: 45px
-		.chat-submit-button
-			width: 45px
-			height: 45px
-			padding: 0
-			font-size: 1.142857em
-			color: #ccc
-			background-color: transparent
-			border: 0
-			outline: none
-		.form__control:nth-of-type(2)
-			margin-right: 45px
-		.chat-input
-			width: 100%
-			height: 45px
-			padding: 14px 8px
-			background-color: transparent
-			resize: none
+		height: 65px
+		.chat-form
+			padding: 10px
+			.form__control
+				position: relative
+				height: 45px
+				border: solid thin line-color
+				box-sizing(border-box)
+			.chat-submit-button
+				position: absolute
+				top: 0
+				right: 0
+				width: 43px
+				height: 43px
+				padding: 0
+				background-color: transparent
+				border: 0
+				outline: none
+				i
+					line-height: 43px
+					font-size: 1.142857em
+					color: #ccc
+			.chat-input
+				width: 100%
+				height: 43px
+				padding: 13px 43px 13px 8px
+				background-color: transparent
+				resize: none
 
 .chat-line--me
 	position: relative
@@ -443,14 +468,25 @@ sidebar-width = 217px
 		top: 1px
 		right: 0
 	.chat-box
-		dialog-box(auto,auto,#eee,'right',8px)
-		position: relative
 		float: right
-		min-width: 25%
+		width: auto
 		max-width: 50%
+		height: auto
 		margin-right: 50px
 		padding: 10px
 		font-size: 0.857142em
+		font-weight: 400
+		background-color: #ffe487
+		border-radius(4px)
+		&:after
+			content: ""
+			position: absolute
+			top: 10px
+			right: 40px
+			border-top: solid 5px transparent
+			border-right: solid 5px transparent
+			border-bottom: solid 5px #ffe487
+			border-left: solid 5px #ffe487
 
 .chat-line--guest
 	position: relative
@@ -468,6 +504,7 @@ sidebar-width = 217px
 		margin-left: 50px
 		padding: 10px
 		font-size: 0.857142em
+		font-weight: 400
 
 .guide-dialog-box
 	color: success-color
@@ -579,6 +616,8 @@ sidebar-width = 217px
 .button
 	display: block
 	position: relative
+	font-size: 0.857142em
+	font-weight: 600
 	color: white
 	text-transform: uppercase
 	border: 0

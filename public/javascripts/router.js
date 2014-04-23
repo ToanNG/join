@@ -4,7 +4,7 @@ App.Router = Backbone.Router.extend({
     'profile': 'showUser',
     'chat': 'listGroups',
     'tasks': 'listTasks',
-    'setting': 'setting',
+    'settings': 'userSettings',
     '*other': 'index'
   },
 
@@ -24,7 +24,7 @@ App.Router = Backbone.Router.extend({
     vent.trigger('task:list');
   },
 
-  setting: function() {
-    
+  userSettings: function() {
+    vent.trigger('user:setting');
   }
 });

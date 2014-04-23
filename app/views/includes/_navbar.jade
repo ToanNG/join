@@ -1,26 +1,20 @@
 div.navbar
   div.logo-small
-    img(src="/images/logo_35.png")
+    img(src="/images/logo_w_30.png")
 
   ul.user-wrapper
-    li.seperate-line
     li.user__chat
       a(href="/users/#{user.username}#chat")
-        i.fa.fa-comment-o
-    li.seperate-line
+        i.glyphicons.chat
     li.user__task
       a(href="/users/#{user.username}#tasks")
-        i.fa.fa-check-square-o
-    li.seperate-line
+        i.glyphicons.check
     li.user__account
       a(href="/users/#{user.username}#profile")
-        i.fa.fa-user
-    li.seperate-line
+        i.glyphicons.user
     li.user__setting
-      a(href="")
-        i.fa.fa-gear
-    li.seperate-line
+      a(href="/users/#{user.username}#settings")
+        i.glyphicons.settings
     li.user__logout
       a(href="/logout")
-        i.fa.fa-sign-out
-    li.seperate-line
+        i.glyphicons.power

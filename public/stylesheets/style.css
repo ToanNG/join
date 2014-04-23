@@ -114,19 +114,19 @@ textarea {
   box-sizing: border-box;
 }
 ::-webkit-input-placeholder /* WebKit browsers */ {
-  color: #ccc;
+  color: #808080;
 }
 :-moz-placeholder /* Mozilla Firefox 4 to 18 */ {
-  color: #ccc;
+  color: #808080;
 }
 ::-moz-placeholder /* Mozilla Firefox 19+ */ {
-  color: #ccc;
+  color: #808080;
 }
 :-ms-input-placeholder /* Internet Explorer 10+ */ {
-  color: #ccc;
+  color: #808080;
 }
 a {
-  color: #efb324;
+  color: #ffc600;
   text-decoration: none;
   cursor: pointer;
 }
@@ -272,7 +272,7 @@ a {
 }
 .section-wrapper.login .form #submit-button,
 .section-wrapper.register .form #submit-button {
-  background-color: #efb324;
+  background-color: #ffc600;
 }
 .section-wrapper.login .form #switch-signup-link,
 .section-wrapper.register .form #switch-signup-link,
@@ -285,7 +285,6 @@ a {
 .section-wrapper.register .form a.login-fb-button {
   height: 17px;
   line-height: 47px;
-  font-size: 0.857142em;
   background-color: #4c66a4;
 }
 .section-wrapper.login .form a.login-fb-button .fb-icon,
@@ -347,7 +346,7 @@ a {
   bottom: 0;
   left: 0;
   width: 55px;
-  background-color: #33404b;
+  background-color: #ffc600;
   -webkit-box-shadow: 3px 0 0 rgba(0,0,0,0.1);
   -moz-box-shadow: 3px 0 0 rgba(0,0,0,0.1);
   -ms-box-shadow: 3px 0 0 rgba(0,0,0,0.1);
@@ -356,13 +355,12 @@ a {
 }
 .navbar .logo-small {
   height: 55px;
-  background-color: #29333c;
   overflow: auto;
 }
 .navbar .logo-small img {
   display: block;
-  height: 35px;
-  margin: 10px auto;
+  height: 30px;
+  margin: 12.5px auto;
 }
 .navbar ul.user-wrapper {
   margin: 0;
@@ -370,6 +368,7 @@ a {
   list-style: none;
 }
 .navbar ul.user-wrapper li {
+  position: relative;
   width: 100%;
   height: 55px;
   line-height: 55px;
@@ -384,24 +383,13 @@ a {
   display: block;
   width: 100%;
   height: 100%;
-  color: #526779;
 }
 .navbar ul.user-wrapper li a i {
-  font-size: 1.2em;
+  font-size: 1.285714em;
+  color: #ffe487;
 }
-.navbar ul.user-wrapper li.selected {
-  background-color: #29333c;
-  border-left: solid 2px #efb324;
-  border-right: solid 2px transparent;
-}
-.navbar ul.user-wrapper li.selected a {
-  color: #91a4b5;
-}
-.navbar ul.user-wrapper .seperate-line {
-  width: 100%;
-  height: 0;
-  border-top: solid thin rgba(0,0,0,0.1);
-  border-bottom: solid thin rgba(255,255,255,0.05);
+.navbar ul.user-wrapper li.selected i {
+  color: #fff;
 }
 /*------------------------------------*     $PROFILE
 \*------------------------------------*/
@@ -425,8 +413,8 @@ a {
   bottom: 0;
   left: 0;
   width: 217px;
-  color: #666;
-  background-color: #fff;
+  color: #ccc;
+  background-color: #3d3d3d;
   -webkit-box-shadow: 3px 0 0 rgba(0,0,0,0.1);
   -moz-box-shadow: 3px 0 0 rgba(0,0,0,0.1);
   -ms-box-shadow: 3px 0 0 rgba(0,0,0,0.1);
@@ -446,9 +434,9 @@ a {
 #add-member-popup #popup__search .form .form__control input[type="text"] {
   width: 100%;
   padding: 8px;
-  color: #333;
-  background-color: #fff;
-  border: solid thin #e0e0e0;
+  color: #ccc;
+  background-color: #313131;
+  border: solid thin #313131;
 }
 .groups-list .form .form__control .submit-button,
 #add-member-popup #popup__search .form .form__control .submit-button {
@@ -459,38 +447,47 @@ a {
   width: 35px;
   height: 35px;
   padding: 0;
-  color: #e0e0e0;
   background-color: transparent;
   border: 0;
   outline: none;
 }
-.groups-list .group {
-  padding: 5px 19px;
+.groups-list .form .form__control .submit-button i,
+#add-member-popup #popup__search .form .form__control .submit-button i {
+  color: #3d3d3d;
 }
-.groups-list .group .group__delete-button {
-  display: none;
-  float: right;
-  color: #666;
-  cursor: pointer;
+.groups-list .group {
+  position: relative;
+  padding: 5px 34px 5px 19px;
+  overflow: hidden;
 }
 .groups-list .group .group__name {
-  margin-right: 31px;
   font-weight: 600;
   cursor: pointer;
 }
 .groups-list .group .group__count {
   font-size: 0.857142em;
-  color: #c2c2c2;
-  clear: both;
+  font-weight: 400;
+  color: #959595;
 }
-.groups-list .group:nth-of-type(1) {
-  margin-top: 5px;
+.groups-list .group .group__delete-button {
+  position: absolute;
+  top: 15px;
+  right: -14px;
+  cursor: pointer;
+  -webkit-transition: all 250ms;
+  -moz-transition: all 250ms;
+  -ms-transition: all 250ms;
+  -o-transition: all 250ms;
+  transition: all 250ms;
+}
+.groups-list .group .group__delete-button i {
+  color: #f05b51;
 }
 .groups-list .group:hover {
-  background-color: #f9f9f9;
+  background-color: #313131;
 }
 .groups-list .group:hover .group__delete-button {
-  display: block;
+  right: 10px;
 }
 #chat-windows-container {
   position: absolute;
@@ -506,44 +503,55 @@ a {
   bottom: 5px;
   left: 5px;
   background-color: #fff;
+  border: solid thin rgba(0,0,0,0.1);
+  border-bottom: solid 3px rgba(0,0,0,0.1);
 }
-.chat-window .chat-window__helper {
+.chat-window .chat-window__head>* {
+  padding: 0 10px;
+}
+.chat-window .chat-window__head .title {
+  float: left;
   height: 35px;
   line-height: 35px;
-  border-bottom: solid thin #f0f0f0;
-}
-.chat-window .chat-window__helper>* {
-  padding: 0 8px;
-}
-.chat-window .chat-window__helper .helper--title {
-  float: left;
   font-weight: 600;
 }
-.chat-window .chat-window__helper .helper--share {
+.chat-window .chat-window__head .close-button {
   float: right;
-  font-size: 1.142857em;
-  color: #ccc;
-}
-.chat-window .chat-window__helper .helper--share:hover {
-  color: #efb324;
+  height: 35px;
   cursor: pointer;
 }
-.chat-window .chat-window__helper .helper--buzz {
-  float: right;
+.chat-window .chat-window__head .close-button i {
+  line-height: 35px;
   font-size: 1.142857em;
   color: #ccc;
 }
-.chat-window .chat-window__helper .helper--close-button {
-  float: right;
-  font-size: 1.142857em;
+.chat-window .chat-window__head .close-button:hover i {
   color: #c50f13;
-  cursor: pointer;
+}
+.chat-window .chat-window__head .members-list {
+  height: 35px;
+  clear: both;
+}
+.chat-window .chat-window__head .members-list .member-avatar {
+  display: block;
+  float: left;
+  width: 24px;
+  height: 24px;
+  line-height: 22px;
+  margin: 0 2px 0 0;
+  text-align: center;
+  background-color: #ccc;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
 }
 .chat-window .chat-window__room {
   position: absolute;
-  top: 36px;
+  top: 70px;
   right: 0;
-  bottom: 46px;
+  bottom: 91px;
   left: 0;
   overflow: auto;
 }
@@ -553,35 +561,63 @@ a {
   text-align: center;
   color: #808080;
 }
-.chat-window .chat-window__type {
+.chat-window .chat-window__actions {
+  position: absolute;
+  right: 0;
+  bottom: 65px;
+  left: 0;
+  padding: 10px 10px 0 10px;
+}
+.chat-window .chat-window__actions .action--invite,
+.chat-window .chat-window__actions .action--share {
+  margin-right: 10px;
+}
+.chat-window .chat-window__actions .action--invite>*,
+.chat-window .chat-window__actions .action--share>* {
+  font-size: 0.857142em;
+  font-weight: 400;
+  color: #2a80b9;
+}
+.chat-window .chat-window__input {
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
-  height: 45px;
-  border-top: solid thin #f0f0f0;
+  height: 65px;
 }
-.chat-window .chat-window__type .form__control:nth-of-type(1) {
-  float: right;
-  width: 45px;
+.chat-window .chat-window__input .chat-form {
+  padding: 10px;
 }
-.chat-window .chat-window__type .chat-submit-button {
-  width: 45px;
+.chat-window .chat-window__input .chat-form .form__control {
+  position: relative;
   height: 45px;
+  border: solid thin #e0e0e0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.chat-window .chat-window__input .chat-form .chat-submit-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 43px;
+  height: 43px;
   padding: 0;
-  font-size: 1.142857em;
-  color: #ccc;
   background-color: transparent;
   border: 0;
   outline: none;
 }
-.chat-window .chat-window__type .form__control:nth-of-type(2) {
-  margin-right: 45px;
+.chat-window .chat-window__input .chat-form .chat-submit-button i {
+  line-height: 43px;
+  font-size: 1.142857em;
+  color: #ccc;
 }
-.chat-window .chat-window__type .chat-input {
+.chat-window .chat-window__input .chat-form .chat-input {
   width: 100%;
-  height: 45px;
-  padding: 14px 8px;
+  height: 43px;
+  padding: 13px 43px 13px 8px;
   background-color: transparent;
   resize: none;
 }
@@ -595,33 +631,30 @@ a {
   right: 0;
 }
 .chat-line--me .chat-box {
-  position: absolute;
+  float: right;
   width: auto;
+  max-width: 50%;
   height: auto;
-  padding: 15px;
-  background-color: #eee;
+  margin-right: 50px;
+  padding: 10px;
+  font-size: 0.857142em;
+  font-weight: 400;
+  background-color: #ffe487;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px;
-  position: relative;
-  float: right;
-  min-width: 25%;
-  max-width: 50%;
-  margin-right: 50px;
-  padding: 10px;
-  font-size: 0.857142em;
 }
 .chat-line--me .chat-box:after {
   content: "";
   position: absolute;
-  top: 8px;
-  right: -20px;
-  border-top: solid 10px transparent;
-  border-right: solid 10px transparent;
-  border-bottom: solid 10px transparent;
-  border-left: solid 10px #eee;
+  top: 10px;
+  right: 40px;
+  border-top: solid 5px transparent;
+  border-right: solid 5px transparent;
+  border-bottom: solid 5px #ffe487;
+  border-left: solid 5px #ffe487;
 }
 .chat-line--guest {
   position: relative;
@@ -650,6 +683,7 @@ a {
   margin-left: 50px;
   padding: 10px;
   font-size: 0.857142em;
+  font-weight: 400;
 }
 .chat-line--guest .chat-box:after {
   content: "";
@@ -744,7 +778,7 @@ a {
   cursor: pointer;
 }
 #add-member-popup #popup__results .single-result.chosen .fa-plus-square {
-  color: #efb324;
+  color: #ffc600;
 }
 #add-member-popup #popup__buttons {
   position: absolute;
@@ -764,8 +798,8 @@ a {
 #add-member-popup #popup__buttons .confirm-button {
   float: left;
   width: 185px;
-  background-color: #efb324;
-  border-bottom-color: #cd950f;
+  background-color: #ffc600;
+  border-bottom-color: #cc9e00;
 }
 /*------------------------------------*     $401
 \*------------------------------------*/
@@ -797,6 +831,8 @@ a {
 .button.small {
   display: block;
   position: relative;
+  font-size: 0.857142em;
+  font-weight: 600;
   color: #fff;
   text-transform: uppercase;
   border: 0;

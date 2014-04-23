@@ -1,30 +1,44 @@
-<div id="group-{{id}}" class="chat-window drop-shadow round-corner zoom-in">
-  <div class="chat-window__helper">
-    <div class="helper--title">
-      {{name}}
+<div id="group-{{_id}}" class="chat-window round-corner zoom-in">
+  <div class="chat-window__head">
+    <div class="title">
+      {{group_name}}
     </div>
-    <div class="helper--close-button">
-      <i class="fa fa-times"></i>
+    <div class="close-button">
+      <i class="glyphicons remove_2"></i>
     </div>
-    <div class="helper--buzz">
+    <!-- <div class="helper--buzz">
       <i class="fa fa-bell"></i>
     </div>
     <div class="helper--share">
       <i class="fa fa-picture-o"></i>
+    </div> -->
+    <div class="members-list">
+      {{#each users}}
+        <img src="{{avatar}}" class="member-avatar" title="{{fullname}}"/>
+      {{/each}}
     </div>
   </div>
 
   <div class="chat-window__room"></div>
 
-  <div class="chat-window__type">
-    <form class="chat-form" data-groupid="{{id}}" method="POST" autocomplete="off">
-      <div class="form__control">
-        <button class="chat-submit-button" type="submit">
-          <i class="fa fa-pencil"></i>
-        </button>
-      </div>
+  <div class="chat-window__actions">
+    <span class="action--invite">
+      <i class="halflings envelope"></i>
+      <a href="">Invite members</a>
+    </span>
+    <span class="action--share">
+      <i class="halflings picture"></i>
+      <a href=""> Share image</a>
+    </span>
+  </div>
+
+  <div class="chat-window__input">
+    <form class="chat-form" data-groupid="{{_id}}" method="POST" autocomplete="off">
       <div class="form__control">
         <textarea class="chat-input" name="chat-input" placeholder="What is your idea..."></textarea>
+        <button class="chat-submit-button" type="submit">
+          <i class="glyphicons share"></i>
+        </button>
       </div>
     </form>
   </div>

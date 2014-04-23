@@ -15,7 +15,8 @@ var authz = function(req, res, next) {
 	if (req.user && req.user.username == req.params.username)
 		next();
 	else
-		res.render('401.jade', { layout: false });
+		// res.render('401.jade', { layout: false });
+		res.redirect('/login');
 };
 
 var checkLogin = function(req, res, next) {

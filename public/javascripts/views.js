@@ -7,6 +7,7 @@ App.Views.App = Backbone.View.extend({
     vent.on('user:show', this.showUser, this);
     vent.on('group:list', this.listGroups, this);
     vent.on('task:list', this.listTasks, this);
+    vent.on('user:setting', this.userSettings, this);
 
     App.server = io.connect(window.location.origin);
 
@@ -61,6 +62,12 @@ App.Views.App = Backbone.View.extend({
     tasks.fetchByUsername(window.currentUser.username).then(function() {
       new App.Views.Tasks({ collection: tasks }).render();
     });
+  },
+
+  userSettings: function() {
+    $('li[class^=user__]').removeClass("selected");
+    $(".user__setting").addClass("selected");
+    new App.Views.Settings({}).render();
   }
 });
 
@@ -139,7 +146,7 @@ App.Views.Group = Backbone.View.extend({
     };
     
     var chatWindowView = new App.Views.Window({
-      model: currentGroup,
+      model: this.model.toJSON(),
       parent: this.parent
     }).render();
 
@@ -358,6 +365,29 @@ App.Views.Tasks = Backbone.View.extend({
         receivedTasks: receivedTasks,
         givenTasks: givenTasks
       } );
+      this.$el.html(html);
+    }.bind(this));
+
+    return this;
+  }
+});
+
+/*------------------------------------*\
+    Setting View
+\*------------------------------------*/
+
+App.Views.Settings = Backbone.View.extend({
+  el: '.user-content',
+
+  template: 'settings',
+
+  initialize: function() {
+    this.$el.off();
+  },
+
+  render: function() {
+    TemplateManager.get(this.template, function(tmp) {
+      var html = tmp( {} );
       this.$el.html(html);
     }.bind(this));
 
