@@ -82,6 +82,51 @@ exports.update = function(req, res){
 };
 
 /**
+ * [Require authorization] Leave a group
+ * @param {String} group_id
+ * @return {JSON} group
+ */
+exports.leave = function(req, res){
+  var b = req.body;
+  if (req.user.groups.indexOf(b.group_id) == -1) {
+    res.send(500, "Group "+b.group_id+" not found");
+    return;
+  }
+  res.app.db.models.User.update(
+    { _id: req.user._id },
+    { $pull: {groups:b.group_id} },
+    { multi: true },
+    function(err, numberAffected, raw){
+      if (!err) {
+        res.app.db.models.Group.findById(b.group_id, function(err, group){
+          if (group.users.length == 1) {
+            group.remove(function(err, doc){
+              if (!err) {
+                res.send(doc);
+              } else {
+                res.send(err);
+              }
+            });
+          } else {
+            group.update(
+              { $pull: {users:req.user._id} },
+              { multi: true },
+              function(err, numberAffected, raw){
+                if (!err) {
+                  res.send(group);
+                } else {
+                  res.send(err);
+                }
+              });
+          }
+        });
+      } else {
+        res.send(err);
+      }
+    });
+};
+
+/**
  * [Require authentication] Search users by username or fullname
  * @return {Array} users
  */

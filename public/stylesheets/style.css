@@ -74,10 +74,10 @@
  * HOME................Home page
  * LOGIN/SIGN_UP.......Login/signup forms
  * NAVIGATION_BAR......Navigation bar
+ * PROFILE.............Profile page
  * CHAT................Chat page
  * TASKS...............Tasks list page
- * PROFILE.............Profile page
- * SETTING.............Setting panel
+ * SETTINGS............Settings panel
  * 401.................Unauthorized page
  * 404.................File not found page
  * COMPONENTS..........Buttons, overlay, etc.
@@ -368,16 +368,10 @@ a {
   list-style: none;
 }
 .navbar ul.user-wrapper li {
-  position: relative;
   width: 100%;
   height: 55px;
   line-height: 55px;
   text-align: center;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  -o-box-sizing: border-box;
-  box-sizing: border-box;
 }
 .navbar ul.user-wrapper li a {
   display: block;
@@ -453,7 +447,7 @@ a {
 }
 .groups-list .form .form__control .submit-button i,
 #add-member-popup #popup__search .form .form__control .submit-button i {
-  color: #3d3d3d;
+  color: #808080;
 }
 .groups-list .group {
   position: relative;
@@ -537,9 +531,7 @@ a {
   float: left;
   width: 24px;
   height: 24px;
-  line-height: 22px;
   margin: 0 2px 0 0;
-  text-align: center;
   background-color: #ccc;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -551,7 +543,7 @@ a {
   position: absolute;
   top: 70px;
   right: 0;
-  bottom: 91px;
+  bottom: 94px;
   left: 0;
   overflow: auto;
 }
@@ -632,6 +624,7 @@ a {
 }
 .chat-line--me .chat-box {
   float: right;
+  position: relative;
   width: auto;
   max-width: 50%;
   height: auto;
@@ -650,7 +643,7 @@ a {
   content: "";
   position: absolute;
   top: 10px;
-  right: 40px;
+  right: -10px;
   border-top: solid 5px transparent;
   border-right: solid 5px transparent;
   border-bottom: solid 5px #ffe487;
@@ -666,34 +659,31 @@ a {
   left: 0;
 }
 .chat-line--guest .chat-box {
-  position: absolute;
+  float: left;
+  position: relative;
   width: auto;
+  max-width: 50%;
   height: auto;
-  padding: 15px;
+  margin-left: 50px;
+  padding: 10px;
+  font-size: 0.857142em;
+  font-weight: 400;
   background-color: #eee;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px;
-  position: relative;
-  float: left;
-  min-width: 25%;
-  max-width: 50%;
-  margin-left: 50px;
-  padding: 10px;
-  font-size: 0.857142em;
-  font-weight: 400;
 }
 .chat-line--guest .chat-box:after {
   content: "";
   position: absolute;
-  top: 8px;
-  left: -20px;
-  border-top: solid 10px transparent;
-  border-right: solid 10px #eee;
-  border-bottom: solid 10px transparent;
-  border-left: solid 10px transparent;
+  top: 10px;
+  left: -10px;
+  border-top: solid 5px transparent;
+  border-right: solid 5px #eee;
+  border-bottom: solid 5px #eee;
+  border-left: solid 5px transparent;
 }
 .guide-dialog-box {
   color: #5da423;
@@ -912,13 +902,6 @@ a {
   display: table-cell;
   vertical-align: middle;
   text-align: center;
-}
-.drop-shadow {
-  -webkit-box-shadow: 0 2px 2px rgba(0,0,0,0.15);
-  -moz-box-shadow: 0 2px 2px rgba(0,0,0,0.15);
-  -ms-box-shadow: 0 2px 2px rgba(0,0,0,0.15);
-  -o-box-shadow: 0 2px 2px rgba(0,0,0,0.15);
-  box-shadow: 0 2px 2px rgba(0,0,0,0.15);
 }
 .round-corner {
   -webkit-border-radius: 4px;

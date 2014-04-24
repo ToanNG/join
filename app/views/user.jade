@@ -12,7 +12,7 @@ block content
 	script(src='/javascripts/router.js')
 	script(type='text/javascript').
 		window.currentUser = !{JSON.stringify(user)};
-		TemplateManager.preloadPartials(function () {
+		TemplateManager.preloadPartials(function() {
 			new App.Views.App();
 			new App.Router;
 			Backbone.history.start();

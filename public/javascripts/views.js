@@ -84,7 +84,7 @@ App.Views.Groups = Backbone.View.extend({
     this.$el.off(); //this prevents zombie view
 
     this.collection.on('add', this.addOne, this);
-    this.chatGrid = $.fitgrid("#chat-windows-container");
+    this.chatGrid = $.fitgrid('#chat-windows-container');
     this.openedChat = [];
   },
 
@@ -132,11 +132,12 @@ App.Views.Group = Backbone.View.extend({
 
   events: {
     'click .group__name': 'openChatWindow',
-    'click .add-member-button': 'openAddMemberPopup'
+    'click .add-member-button': 'openAddMemberPopup',
+    'click .group__delete-button': 'leaveGroup'
   },
 
   openChatWindow: function(e) {
-    var groupId = $(e.target).data("groupid");
+    var groupId = this.$el.data("groupid");
 
     if (this.parent.openedChat.indexOf(groupId) != -1) return;
 
@@ -158,6 +159,16 @@ App.Views.Group = Backbone.View.extend({
   openAddMemberPopup: function(e) {
     var addMemberPopupView = new App.Views.AddPopup({ model: this.model }).render();
     $('body').append(addMemberPopupView.el);
+  },
+
+  leaveGroup: function(e) {
+    // update current user's group list
+    // update that group's users list this.model.toJSON()
+    // close opened window
+    // leave room on socket
+    var groupId = this.$el.data("groupid");
+    console.log(groupId);
+    console.log(this.model.toJSON());
   },
 
   render: function() {

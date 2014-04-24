@@ -12,10 +12,10 @@
  * HOME................Home page
  * LOGIN/SIGN_UP.......Login/signup forms
  * NAVIGATION_BAR......Navigation bar
+ * PROFILE.............Profile page
  * CHAT................Chat page
  * TASKS...............Tasks list page
- * PROFILE.............Profile page
- * SETTING.............Setting panel
+ * SETTINGS............Settings panel
  * 401.................Unauthorized page
  * 404.................File not found page
  * COMPONENTS..........Buttons, overlay, etc.
@@ -43,6 +43,7 @@ site-bg-color = #f0f0f0
 site-text-color = #333
 site-field-bg-color = #fff
 site-field-text-color = #333
+
 window-bg-color = #fff
 
 alert-color = #c50f13
@@ -252,12 +253,10 @@ navbar-width = 55px
 		padding: 0
 		list-style: none
 		li
-			position: relative
 			width: 100%
 			height: navbar-width
 			line-height: navbar-width
 			text-align: center
-			box-sizing(border-box)
 			a
 				display: block
 				width: 100%
@@ -324,7 +323,7 @@ sidebar-width = 217px
 				border: 0
 				outline: none
 				i
-					color: #3d3d3d
+					color: gray
 
 	.group
 		position: relative
@@ -394,9 +393,7 @@ sidebar-width = 217px
 				float: left
 				width: 24px
 				height: 24px
-				line-height: 22px
 				margin: 0 2px 0 0
-				text-align: center
 				background-color: #ccc
 				border-radius(4px)
 
@@ -404,7 +401,7 @@ sidebar-width = 217px
 		position: absolute
 		top: 70px
 		right: 0
-		bottom: 91px
+		bottom: 94px
 		left: 0
 		overflow: auto
 		.notice
@@ -469,6 +466,7 @@ sidebar-width = 217px
 		right: 0
 	.chat-box
 		float: right
+		position: relative
 		width: auto
 		max-width: 50%
 		height: auto
@@ -482,7 +480,7 @@ sidebar-width = 217px
 			content: ""
 			position: absolute
 			top: 10px
-			right: 40px
+			right: -10px
 			border-top: solid 5px transparent
 			border-right: solid 5px transparent
 			border-bottom: solid 5px #ffe487
@@ -496,20 +494,35 @@ sidebar-width = 217px
 		top: 1px
 		left: 0
 	.chat-box
-		dialog-box(auto,auto,#eee,'left',8px)
-		position: relative
 		float: left
-		min-width: 25%
+		position: relative
+		width: auto
 		max-width: 50%
+		height: auto
 		margin-left: 50px
 		padding: 10px
 		font-size: 0.857142em
 		font-weight: 400
+		background-color: #eee
+		border-radius(4px)
+		&:after
+			content: ""
+			position: absolute
+			top: 10px
+			left: -10px
+			border-top: solid 5px transparent
+			border-right: solid 5px #eee
+			border-bottom: solid 5px #eee
+			border-left: solid 5px transparent
 
 .guide-dialog-box
 	color: success-color
 	font-size: 0.857142em
 	dialog-box(auto,auto,#fff,'left',13px)
+
+
+
+
 
 #share-popup
 	display: inline-block
@@ -675,9 +688,6 @@ sidebar-width = 217px
 		display: table-cell
 		vertical-align: middle
 		text-align: center
-
-.drop-shadow
-	box-shadow(0 2px 2px rgba(0,0,0,.15))
 
 .round-corner
 	border-radius(4px)

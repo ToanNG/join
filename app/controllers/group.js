@@ -59,7 +59,7 @@ exports.update = function(req, res){
 	var p = req.params,
 		b = req.body;
 	if (req.user.groups.indexOf(p.group_id) == -1) {
-		res.send("Can not modify group "+p.group_id);
+		res.send(500, "Group "+p.group_id+" not found");
 	} else {
 		res.app.db.models.Group.findById(p.group_id, function(err, group){
 			group.group_name = b.group_name || group.group_name;

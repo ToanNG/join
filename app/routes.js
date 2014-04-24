@@ -15,8 +15,7 @@ var authz = function(req, res, next) {
 	if (req.user && req.user.username == req.params.username)
 		next();
 	else
-		// res.render('401.jade', { layout: false });
-		res.redirect('/login');
+		res.render('401.jade', { layout: false });
 };
 
 var checkLogin = function(req, res, next) {
@@ -61,6 +60,7 @@ exports = module.exports = function(app) {
 	app.put('/users/:username', authz, user.update);
 	app.get('/users/search', auth, user.search);
 	app.post('/users/:username/upload', authz, user.upload);
+	app.post('/users/:username/leave', authz, user.leave);
 
 	//group view
 	app.get('/users/:username/groups', authz, group.list);
